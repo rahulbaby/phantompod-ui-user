@@ -6,46 +6,32 @@ export default ({ row, count }) => {
 	const isOwner = useIsOwner(row.userId);
 	const { _id } = row;
 	return (
-		<React.Fragment>
-			<button
-				type="button"
-				className="btn btn-primary"
-				data-toggle="modal"
-				data-target="#exampleModal"
-			>
-				Launch demo modal
-			</button>
+		<div className="pods-list-wrapper box-shadow">
+			<div className="pod-number">
+				<span className="number-btn green-btn">{count}</span>
+			</div>
+			<div className="pod-content">
+				<h4 className="pod-list-head">{row.name}</h4>
+				<p className="pod-paragraph">
+					{row.description} - ${row.podKey}
+				</p>
+				<div className="pod-list-btns">
+					<button className="btn small-btn blue-btn">
+						<img src="/img/icons/user-group-icon.png" alt="" /> {row.members.length}
+					</button>
 
-			<div
-				className="modal fade"
-				id="exampleModal"
-				tabindex="-1"
-				role="dialog"
-				aria-labelledby="exampleModalLabel"
-				aria-hidden="true"
-			>
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<h5 className="modal-title" id="exampleModalLabel">
-								Modal title
-							</h5>
-							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div className="modal-body">...</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-secondary" data-dismiss="modal">
-								Close
-							</button>
-							<button type="button" className="btn btn-primary">
-								Save changes
-							</button>
-						</div>
-					</div>
+					{isOwner ? (
+						<React.Fragment>
+							<LinkCustom to={`/pod/settings?id=${_id}`}>
+								<button className="btn small-btn green-btn">Setings</button>
+							</LinkCustom>
+							<button className="btn small-btn red-btn">Delete</button>
+						</React.Fragment>
+					) : (
+						<button className="btn small-btn btn-danger">Leave</button>
+					)}
 				</div>
 			</div>
-		</React.Fragment>
+		</div>
 	);
 };
