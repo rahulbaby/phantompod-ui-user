@@ -1,0 +1,289 @@
+@media (max-width:1199px) {}
+
+@media (max-width:992px) {
+    .menulist li {
+        height: 80px;
+    }
+    .head-wrapper {
+        padding: 0 20px;
+    }
+    .pagename {
+        font-size: 18px;
+    }
+    .wrapper {
+        padding: 40px 20px 40px 130px;
+    }
+    .card {
+        padding: 20px 10px;
+    }
+    .card-head {
+        font-size: 22px;
+    }
+    .card-discription {
+        font-size: 14px;
+    }
+    .help-icon {
+        right: 12px;
+        top: 6px;
+    }
+}
+
+@media (max-width:767px) {
+    .nav-left {
+        width: 70px;
+        overflow: scroll;
+    }
+    .menulist li {
+        height: 60px;
+    }
+    .logo a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px 7px;
+        min-height: 70px;
+    }
+    .wrapper {
+        padding: 40px 20px 40px 90px;
+    }
+    header {
+        padding: 0 0 0 70px;
+    }
+    .header-user-details {
+        margin: 0 15px 0 0;
+    }
+    .pagename-wrapper {
+        display: inline-flex;
+        flex-grow: 1;
+    }
+    .head-wrapper {
+        min-height: 70px;
+    }
+    .header-user-img {
+        width: 40px;
+        height: 40px;
+    }
+    .header-toggle {
+        display: block;
+        position: relative;
+        z-index: 11;
+        margin: 0;
+    }
+    .toggle-btn {
+        position: relative;
+        top: -4px;
+        width: 25px;
+        height: 2px;
+        background: #333;
+        display: inline-block;
+    }
+    .toggle-btn::before,
+    .toggle-btn::after {
+        position: absolute;
+        content: "";
+        left: 0;
+        right: 0;
+        width: 25px;
+        height: 2px;
+        background: #333;
+    }
+    .toggle-btn::before {
+        top: -6px;
+    }
+    .toggle-btn::after {
+        bottom: -6px;
+    }
+    .header-pod-details {
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: fixed;
+        right: -280px;
+        top: 0;
+        height: 100%;
+        justify-content: flex-start;
+        align-items: flex-end;
+        background: #fff;
+        z-index: 10;
+        padding: 100px 20px 0;
+        transition: all ease 1s;
+        -webkit-transition: all ease 1s;
+        -moz-transition: all ease 1s;
+        -ms-transition: all ease 1s;
+        -o-transition: all ease 1s;
+        box-shadow: 0px 5px 10px rgba(138, 138, 138, 0.4);
+    }
+    .header-pod-details.menu-on {
+        right: 0;
+    }
+    .header-pod-details {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .btn,
+    .form-control {
+        margin: 0 0 15px !important;
+        width: 100%;
+    }
+    .dashboard-cards-wrapper {
+        flex-wrap: wrap;
+        margin: 0 0 10px;
+    }
+    .dashboard-cards-wrapper .card {
+        width: 48%;
+        margin: 0 0 3%;
+    }
+    .login-wrap {
+        padding: 40px;
+    }
+    .google-btn {
+        margin: 0 auto !important;
+    }
+    .login-form {
+        margin: 0 0 20px;
+    }
+    .right-btns-wrapper .btn {
+        margin: 0 0 0 12px !important;
+        width: auto;
+    }
+    .checklists-wrapper {
+        flex-wrap: wrap;
+    }
+    .checklists-wrapper .checkbox-container {
+        width: 50%;
+        margin: 0 0 1em 0;
+    }
+    .title-cardHead {
+        font-size: 1em;
+    }
+    .checkbox-container {
+        font-size: 13px;
+    }
+    .pod-list-btns {
+        display: flex;
+    }
+    .pod-list-btns button {
+        margin-right: 20px !important;
+    }
+    .notification-wrapper {
+        flex-direction: column;
+    }
+    .notification-bell-wrapper {
+        justify-content: flex-start;
+        padding: 10px;
+    }
+    .notification-date {
+        padding: 0 10px;
+        min-width: 130px;
+    }
+    .notification-content p {
+        font-size: 13px;
+        margin: 10px 0;
+    }
+    .notification-date {
+        padding: 10px 15px;
+        justify-content: flex-start;
+    }
+    .notification-content {
+        padding: 0 10px;
+    }
+}
+
+@media (max-width:575px) {
+    .dashboard-cards-wrapper .card {
+        width: 100%;
+        margin: 0 0 15px;
+    }
+    .card-head {
+        font-size: 26px;
+    }
+    .card-discription {
+        font-size: 16px;
+    }
+    .login-wrap {
+        width: 100%;
+        max-width: 90%;
+        padding: 40px 15px;
+        margin: 3em 0;
+    }
+    .google-btn {
+        max-width: 80%;
+    }
+    .google-btn img {
+        margin: 0 10px 0 0;
+    }
+    .title-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .title-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .title-cardHead {
+        margin: 0 0 15px;
+    }
+    .title-checkbox-wrapper {
+        margin: 0 20px 10px 0;
+    }
+    .checklists-wrapper .checkbox-container {
+        width: 100%;
+    }
+    .pods-list-wrapper,
+    .pod-list-btns {
+        flex-direction: column;
+    }
+    .pod-number {
+        background: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-bottom: 1px solid #bccddc;
+    }
+    .title-cardDetails {
+        flex-direction: column;
+    }
+    .search-from {
+        flex-direction: column;
+    }
+    .search-from .form-control {
+        font-size: 13px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        padding: 10px 20px;
+    }
+    .search-from .btn {
+        padding: 10px 20px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+        height: 30px;
+        padding: 0 20px;
+        width: 130px;
+    }
+    .trash-icon {
+        margin: 0 0 15px;
+    }
+    .contact-form-head {
+        font-size: 16px;
+    }
+    .contact-form-wrapper {
+        color: #3595da;
+        background: none;
+        padding: 20px 0px;
+        margin: 30px 0 0px;
+        border-top: 1px solid #3595da;
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        -ms-border-radius: 0px;
+        -o-border-radius: 0px;
+    }
+}
+
+
+}
+@media (max-width:480px) {}

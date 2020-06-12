@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- BOF Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/fav/favicon-16x16.png">
+    <link rel="manifest" href="img/fav/site.webmanifest">
+    <!-- EOF Favicon -->
+
+    <!-- BOF Fonts Style -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <!-- EOF Fonts Style -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="logo">
+                <a href="#"><img src="img/logo.png" alt="" class="logo-img"></a>
+            </div>
+            <ul class="menulist">
+                <li>
+                    <a href="dashboard.html" class="active">
+                        <img class="menu-icon" src="img/icons/dashboard.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/dashboard-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="my-pods.html">
+                        <img class="menu-icon" src="img/icons/my-pods.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/my-pods-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="marketplace.html">
+                        <img class="menu-icon" src="img/icons/marketplace.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/marketplace-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="notification.html">
+                        <img class="menu-icon" src="img/icons/notification.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/notification-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <img class="menu-icon" src="img/icons/settings.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/settings-active.svg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="support.html">
+                        <img class="menu-icon" src="img/icons/support.svg" alt="">
+                        <img class="menu-icon-hover" src="img/icons/support-active.svg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="head-wrapper">
+            <div class="pagename-wrapper">
+                <div class="pagename">Dashboard</div>
+            </div>
+            <div class="pod-user-details">
+                <div class="header-pod-details">
+                    <a href="create-new-pod.html" class="btn green-btn mr-3">New Pod</a>
+                    <input type="text" class="form-control big-Input mr-3" placeholder="Pod Secret">
+                    <button class="btn blue-btn">Join Pod</button>
+                </div>
+                <div class="header-user-details">
+                    <img class="header-user-img" src="img/user-img.jpg" alt="">
+                </div>
+            </div>
+            <div class="header-toggle">
+                <span class="toggle-btn"></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="wrapper">
+        <div class="dashboard-cards-wrapper">
+            <div class="card iris-blue-card">
+                <h3 class="card-head">25</h3>
+                <p class="card-discription">Pods I am In</p>
+            </div>
+            <div class="card marguerite-blue-card">
+                <h3 class="card-head">12</h3>
+                <p class="card-discription">Pod | Manage</p>
+            </div>
+            <div class="card violet-blue-card">
+                <span class="help-icon"><img src="img/help.png" alt=""></span>
+                <h3 class="card-head">4185</h3>
+                <p class="card-discription">Profile Views</p>
+            </div>
+            <div class="card navy-blue-card">
+                <span class="help-icon"><img src="img/help.png" alt=""></span>
+                <h3 class="card-head">85,439</h3>
+                <p class="card-discription">Post Likes</p>
+            </div>
+        </div>
+        <div class="trending-graph-wrapper">
+            <img src="img/trending-graph.jpg" alt="">
+        </div>
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script>
+        $(".header-toggle").click(function() {
+            $(".header-pod-details").toggleClass("menu-on");
+        });
+
+        $(".toggle-btn").click(function() {
+            $(".toggle-btn").removeClass("menu-on");
+        });
+    </script>
+</body>
+
+</html>
+
+</html>

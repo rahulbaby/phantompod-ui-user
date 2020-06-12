@@ -1,0 +1,972 @@
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #f1f8fc;
+    }
+    
+    a {
+        color: #333;
+    }
+    
+    a:hover {
+        color: #666;
+        text-decoration: none;
+    }
+    
+    .box-shadow {
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+    }
+    
+    .nav-left {
+        background: #fff;
+        width: 110px;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+        z-index: 9;
+    }
+    
+    .logo a {
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding: 6px 0 7px;
+    }
+    
+    .logo-img {
+        width: 100%;
+        max-width: 67px;
+        margin: 0 auto;
+    }
+    
+    .menulist {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    
+    .menulist li {
+        list-style: none;
+        padding: 0px;
+        height: 100px;
+        display: inline-flex;
+        width: 100%;
+    }
+    
+    .menulist li a {
+        display: inline-block;
+        width: 100%;
+        position: relative;
+        border-left: 3px solid #fff;
+        transition: all ease .3s;
+        -webkit-transition: all ease .3s;
+        -moz-transition: all ease .3s;
+        -ms-transition: all ease .3s;
+        -o-transition: all ease .3s;
+    }
+    
+    .menulist li:hover,
+    .menulist li a.active {
+        background: #f1f8fc;
+    }
+    
+    .menulist li a:hover,
+    .menulist li a.active {
+        border-left: 3px solid #0079d1;
+    }
+    
+    .menu-icon,
+    .menu-icon-hover {
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transition: all ease 0.1s;
+        -webkit-transition: all ease 0.1s;
+        -moz-transition: all ease 0.1s;
+        -ms-transition: all ease 0.1s;
+        -o-transition: all ease 0.1s;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+    }
+    
+    .menu-icon-hover {
+        opacity: 0;
+    }
+    
+    .menulist li a:hover .menu-icon,
+    .menulist li a.active .menu-icon {
+        opacity: 0;
+    }
+    
+    .menulist li a:hover .menu-icon-hover,
+    .menulist li a.active .menu-icon-hover {
+        opacity: 1;
+    }
+    
+    header {
+        padding: 0 0 0 110px;
+        background: #fff;
+    }
+    
+    .head-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        min-height: 80px;
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+    }
+    
+    .pagename {
+        color: #0079d1;
+        font-weight: 700;
+        font-size: 30px;
+        padding: 0 20px 0 0;
+    }
+    
+    .pod-user-details,
+    .header-pod-details {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .btn {
+        line-height: 40px;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 0 25px;
+        height: 40px;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+    
+    .green-btn {
+        background: #8dc63f;
+        color: #fff;
+    }
+    
+    .green-btn:hover {
+        background: #8ad229;
+        color: #fff;
+    }
+    
+    .red-btn,
+    .red-btn:hover {
+        background: #ee534f;
+        color: #fff;
+    }
+    
+    .iris-blue-btn,
+    .iris-blue-btn:hover {
+        background: #00b7c7;
+        color: #fff;
+    }
+    
+    .blue-btn {
+        background: #0079d1;
+        color: #fff;
+    }
+    
+    .blue-btn:hover {
+        background: #088bea;
+        color: #fff;
+    }
+    
+    .small-btn {
+        line-height: 24px;
+        padding: 0 22px;
+        height: 28px;
+        font-weight: 400;
+        font-size: 14px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+    }
+    
+    .medium-btn {
+        line-height: 30px;
+        padding: 0 15px;
+        height: 34px;
+        min-width: 100px;
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 50px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+    }
+    
+    .number-btn {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    
+    .trash-btn {
+        display: inline-flex;
+        width: 35px;
+        height: 35px;
+        background: #f00;
+        color: #fff;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .form-control {
+        border: 1px solid #bccddc;
+        color: #cfcfcf;
+        padding: 7px 20px;
+        font-weight: 400;
+        font-size: 15px;
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+        resize: none;
+        max-height: 63px;
+    }
+    
+    .big-Input {
+        height: 40px;
+        background: #f1f8fc;
+        color: #b5babd;
+        border: none;
+        border-radius: 13px;
+        -webkit-border-radius: 13px;
+        -moz-border-radius: 13px;
+        -ms-border-radius: 13px;
+        -o-border-radius: 13px;
+    }
+    
+    button,
+    input,
+    textarea,
+    textarea,
+    .form-control {
+        transition: all ease 1s;
+        -webkit-transition: all ease 1s;
+        -moz-transition: all ease 1s;
+        -ms-transition: all ease 1s;
+        -o-transition: all ease 1s;
+    }
+    
+    button:hover,
+    button:focus,
+    .btn.focus,
+    .btn:focus,
+    input:hover,
+    input:focus,
+    textarea:hover,
+    textarea:focus,
+    .form-control:hover,
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #1763a7;
+    }
+    
+    .big-input:focus {
+        background: #f1f8fc !important;
+    }
+    
+    .curved {
+        border-radius: 50px;
+    }
+    
+    .search-from {
+        display: flex;
+    }
+    
+    .search-from .form-control {
+        border-radius: 50px 0 0 50px;
+    }
+    /* BOF Custom CSS for checkbox */
+    
+    .comment-area {
+        min-height: 225px;
+    }
+    /* The container */
+    
+    .checkbox-container {
+        display: block;
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 0;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /* Hide the browser's default checkbox */
+    
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+    /* Create a custom checkbox */
+    
+    .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 15px;
+        width: 15px;
+        /*background-color: #eee;
+*/
+        border: 1px solid #333333;
+        border-radius: 2px;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        -ms-border-radius: 2px;
+        -o-border-radius: 2px;
+    }
+    /* On mouse-over, add a Black border  */
+    
+    .checkbox-container:hover input~.checkmark {
+        border: 1px solid #000;
+    }
+    /* When the checkbox is checked, add a Black border  */
+    
+    .checkbox-container input:checked~.checkmark {
+        border: 1px solid #000;
+    }
+    /* Create the checkmark/indicator (hidden when not checked) */
+    
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    /* Show the checkmark when checked */
+    
+    .checkbox-container input:checked~.checkmark:after {
+        display: block;
+    }
+    /* Style the checkmark/indicator */
+    
+    .checkbox-container .checkmark:after {
+        left: 8px;
+        top: -3px;
+        width: 7px;
+        height: 14px;
+        border: solid #333333;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(50deg);
+        -ms-transform: rotate(50deg);
+        transform: rotate(50deg);
+        -moz-transform: rotate(50deg);
+        -o-transform: rotate(50deg);
+    }
+    /* BOF blue-checkbox */
+    
+    .blue-checkbox {
+        color: #0079d1;
+    }
+    
+    .blue-checkbox .checkmark {
+        border-color: #0079d1;
+    }
+    
+    .blue-checkbox:hover input~.checkmark,
+    .blue-checkbox input:checked~.checkmark {
+        border: 1px solid #0079d1;
+    }
+    
+    .blue-checkbox .checkmark:after {
+        border: solid #0079d1;
+        border-width: 0 3px 3px 0;
+    }
+    /* BOF blue-checkbox */
+    /* BOF white-checkbox */
+    
+    .white-checkbox {
+        color: #fff;
+        font-weight: 400;
+    }
+    
+    .white-checkbox .checkmark {
+        border-color: #fff;
+    }
+    
+    .white-checkbox:hover input~.checkmark,
+    .white-checkbox input:checked~.checkmark {
+        border: 1px solid #fff;
+    }
+    
+    .white-checkbox .checkmark:after {
+        border: solid #fff;
+        border-width: 0 3px 3px 0;
+    }
+    /* BOF white-checkbox */
+    /* EOF Custom CSS for checkbox */
+    
+    .search-from .btn {
+        border-radius: 0 50px 50px 0;
+        -webkit-border-radius: 0 50px 50px 0;
+        -moz-border-radius: 0 50px 50px 0;
+        -ms-border-radius: 0 50px 50px 0;
+        -o-border-radius: 0 50px 50px 0;
+    }
+    
+    .header-user-details {
+        margin-left: 20px;
+    }
+    
+    .header-user-img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+    }
+    
+    .header-toggle {
+        display: none;
+    }
+    
+    .wrapper {
+        padding: 40px 40px 40px 150px;
+        background: none;
+        border: none;
+    }
+    
+    .dashboard-cards-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 50px;
+    }
+    
+    .card {
+        display: inline-flex;
+        width: 100%;
+        margin: 0;
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        border-left: 5px solid #fff;
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+    }
+    
+    .card-head,
+    .card-discription {
+        margin: 0;
+    }
+    
+    .card-head {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    
+    .card-discription {
+        font-size: 18px;
+    }
+    
+    .dashboard-cards-wrapper .card {
+        width: 23.5%;
+    }
+    
+    .iris-blue-card {
+        border-color: #00b7c7;
+    }
+    
+    .iris-blue-card .card-head {
+        color: #00b7c7;
+    }
+    
+    .marguerite-blue-card {
+        border-color: #7b6bb3;
+    }
+    
+    .marguerite-blue-card .card-head {
+        color: #7b6bb3;
+    }
+    
+    .violet-blue-card {
+        border-color: #af5ea5;
+    }
+    
+    .violet-blue-card .card-head {
+        color: #af5ea5;
+    }
+    
+    .navy-blue-card {
+        border-color: #0079d1;
+    }
+    
+    .navy-blue-card .card-head {
+        color: #0079d1;
+    }
+    
+    .help-icon {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+    /* BOF Title Card CSS  */
+    
+    .title-card {
+        background: #fff;
+        display: inline-flex;
+        width: 100%;
+        margin: 0 0 20px;
+        border: none;
+        border-radius: 8px;
+        padding: 20px;
+        border-left: 5px solid #0079d1;
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+        align-items: center;
+        justify-content: space-between;
+        min-height: 60px;
+    }
+    
+    .title-cardHead {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: 600;
+        color: #0079d1;
+    }
+    
+    .title-cardDetails {
+        display: inline-flex;
+    }
+    
+    .title-checkbox-wrapper {
+        margin: 0 0 0 40px;
+    }
+    /* EOF Title Card CSS  */
+    /* BOF Blue Title Card CSS  */
+    
+    .blue-title-card {
+        background: #0079d1;
+    }
+    
+    .blue-title-card .title-cardHead {
+        color: #fff;
+    }
+    /* EOF Blue Title Card CSS  */
+    
+    .trending-graph-wrapper {
+        background: #fff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+    }
+    
+    .trending-graph-wrapper img {
+        width: 100%;
+    }
+    
+    .hyperlink {
+        border: 1px solid #bccddc;
+        background: #e9e9e9;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    /* BOF Sign In/Up page CSS */
+    
+    .signin-wrapper {
+        background: #0079d1;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .login-wrap {
+        background: #fff;
+        width: 500px;
+        padding: 40px 80px;
+        box-shadow: 5px 8px 20px rgba(0, 0, 0, 0.47);
+        margin: 5em 0;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+    }
+    
+    .login-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 25px;
+    }
+    
+    .login-logo img {
+        max-width: 127px;
+    }
+    
+    .login-form {
+        margin: 0 0 40px;
+    }
+    
+    .login-form .form-control {
+        font-weight: 600;
+        box-shadow: 0px 0px 20px #DDD;
+        border: none;
+        font-size: 13px;
+        min-height: 36px;
+    }
+    
+    .google-btn {
+        width: 100%;
+        background: #4285f4;
+        color: #fff;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 220px;
+        margin: 0 auto;
+    }
+    
+    .google-btn img {
+        width: 20px;
+        margin: 0 30px 0 0
+    }
+    
+    .signup-link {
+        font-weight: 600;
+        text-align: center;
+        color: #1d7fd7;
+        font-size: 13px;
+        margin: 15px 0 0;
+    }
+    
+    .signup-link a {
+        color: #0a5eab;
+    }
+    
+    .signup-link a:hover {
+        color: #1d7fd7;
+    }
+    /* EOF Sign In/Up page CSS */
+    /* BOF Create New Pod Page */
+    
+    .checklists-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 1rem;
+    }
+    
+    .checklists-wrapper .checkbox-container {
+        width: 25%;
+        padding-right: 15px;
+    }
+    
+    .right-btns-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .right-btns-wrapper .btn {
+        margin: 0 0 0 12px;
+    }
+    /* EOF Create New Pod Page */
+    /* BOF My Pods Page */
+    
+    .pod-details {
+        flex-grow: 1;
+    }
+    
+    .pods-list-wrapper {
+        background: #fff;
+        border: 1px solid #bccddc;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .pod-number {
+        background: #cbe1f5;
+        border-right: 1px solid #bccddc;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 15px;
+    }
+    
+    .pod-content {
+        flex-grow: 1;
+        padding: 15px 18px 25px;
+    }
+    
+    .pod-list-head {
+        font-weight: 700;
+        font-size: 16px;
+        color: #0079d1;
+    }
+    
+    .pod-paragraph {
+        color: #666666;
+        font-size: 14px;
+        font-weight: 500;
+        position: relative;
+        padding: 0 0 0 20px;
+    }
+    
+    .pod-paragraph::before {
+        position: absolute;
+        content: "";
+        width: 12px;
+        height: 12px;
+        left: 0;
+        top: 4px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background: #af5ea5;
+        border: 2px solid #64335e;
+    }
+    
+    .pod-list-btns button {
+        margin-right: 18px;
+    }
+    
+    .trash-icon {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 20px 0 15px;
+    }
+    
+    .pod-details-content {
+        padding: 20px 18px;
+    }
+    
+    .pod-details-head {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .pod-details-para {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: #666;
+    }
+    /* EOF My Pods Page */
+    /* BOF Pod Members Page */
+    
+    .member-wrapper {
+        display: flex;
+        align-items: center;
+        border: 1px solid #bccddc;
+        border-radius: 7px;
+        background: #fff;
+        padding: 6px 12px;
+        margin: 0 0 10px;
+    }
+    
+    .member-img {
+        width: 55px;
+        max-height: 55px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 20px;
+    }
+    
+    .member-img img {
+        width: 100%;
+    }
+    
+    .member-content {
+        flex-grow: 1;
+    }
+    
+    .member-name {
+        font-weight: 600;
+        font-size: 17px;
+        margin: 0 0 4px;
+        color: #0079d1;
+    }
+    
+    .member-discription {
+        margin: 0;
+        font-weight: 600;
+        color: #666666;
+        font-size: 14px;
+    }
+    /* EOF Pod Members Page */
+    /* BOF Notification Page */
+    
+    .notification-wrapper {
+        background: #fff;
+        border: 1px solid #bccddc;
+        display: flex;
+        align-items: stretch;
+        min-height: 80px;
+        margin: 0 0 20px;
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+    }
+    
+    .notification-bell-wrapper {
+        display: inline-flex;
+        background: #bccddc;
+        border-right: 1px solid #bccddc;
+        padding: 0 20px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .notification-bell {
+        background: #bcc3c9;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: inline-flex;
+        padding: 8px;
+    }
+    
+    .notification-bell img {
+        width: 100%;
+        opacity: 0.7;
+    }
+    
+    .notification-on img {
+        opacity: 1;
+    }
+    
+    .notification-content {
+        display: inline-flex;
+        flex-grow: 1;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .notification-content p {
+        color: #333333;
+        font-size: 15px;
+        margin: 0;
+    }
+    
+    .notification-date {
+        border-left: 1px solid #bccddc;
+        background: #e4ebf1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0 20px;
+        min-width: 160px;
+    }
+    
+    .notification-on .notification-bell {
+        background: #8dc63f;
+    }
+    
+    .notification-on .notification-date {
+        background: #cbe1f5;
+    }
+    
+    .form-heading {
+        font-weight: 600;
+        font-size: 13px;
+        color: #333333;
+    }
+    /* EOF Notification Page */
+    /* BOF FAQ Page */
+    
+    .faq-wrapper {
+        background: #fff;
+        border: 1px solid #bccddc;
+        border-radius: 7px;
+        margin-bottom: 12px;
+    }
+    
+    .faq-header {
+        background: #cbe1f5;
+        display: flex;
+        align-items: center;
+        padding: 10px 30px;
+        justify-content: space-between;
+    }
+    
+    .faq-head {
+        margin: 0;
+        font-weight: 600;
+        color: #0079d1;
+        font-size: 15px;
+    }
+    
+    .faq-content {
+        padding: 20px 30px 10px;
+    }
+    /* EOF FAQ Page */
+    /* BOF Support Page */
+    
+    .contact-form-wrapper {
+        color: #fff;
+        background: #3595da;
+        text-align: center;
+        padding: 25px 30px;
+        border-radius: 8px;
+        margin: 20px 0 0px;
+    }
+    
+    .contact-form-head {
+        font-weight: 600;
+        font-size: 26px;
+        margin: 0 0 18px;
+    }
+    /* EOF Support Page */
+    
+    .small-head {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .border-none {
+        border: none;
+    }
+    
+    .wd-100 {
+        width: 100%;
+    }
+    
+    .wd-100 {
+        width: 100%;
+    }
