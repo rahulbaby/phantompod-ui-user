@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { instance } from 'utils';
 
-const useGetApi = () => {
+const useApiHttpCall = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	const [result, setResult] = useState(null);
@@ -9,24 +9,26 @@ const useGetApi = () => {
 		let options = { method, url };
 		if (method === 'get') options.params = data;
 		else options.data = data;
+		setLoading(true);
+		setError(null);
+		setResult(null);
 		try {
-			setLoading(true);
-			setError(null);
-			setResult(null);
 			instance(options).then((res) => {
-				setLoading(false);
 				setError(null);
 				setResult(res);
-				onSuccess && onSuccess(res);
+				setLoading(false);
+				if (!res.error) onSuccess && onSuccess(res);
+				else onError && onError(res);
 			});
 		} catch (error) {
 			setError(error);
+			setLoading(false);
 			onError && onError(error);
 		} finally {
-			setLoading(false);
+			//setLoading(false);
 		}
 	};
 	return { triggerApiCall, result, loading, error };
 };
 
-export default useGetApi;
+export default useApiHttpCall;

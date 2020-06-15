@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import _ from 'lodash';
 import { instance } from 'utils';
+import { isArray } from 'utils/functions';
 
 const deepCompareEquals = (a, b) => _.isEqual(a, b);
 const useDeepCompareMemoize = (value) => {
@@ -23,7 +24,7 @@ export default (url, query = {}, options = {}) => {
 	//console.log(query, options);
 	useDeepCompareEffect(() => {
 		instance.get(url, { params: { query, options } }).then(({ docs, total }) => {
-			setRows([...rows, ...docs]);
+			if (isArray(docs)) setRows([...rows, ...docs]);
 			setLoading(false);
 			setTotal(total);
 		});

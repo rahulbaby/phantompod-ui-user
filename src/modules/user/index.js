@@ -136,8 +136,8 @@ const UserPage = () => {
   );
 };
 
-export default () => (
+export default (props) => (
   <Layout>
-    <UserPage />
+    <UserPage {...props} />
   </Layout>
 );

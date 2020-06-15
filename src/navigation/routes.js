@@ -3,11 +3,14 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NotFound from './NotFound';
+import Lab from 'lab';
 import Login from 'modules/auth';
+import SignUp from 'modules/auth/SignUp';
+
 import PodList from 'modules/pod/MyPods';
 import PodSettings from 'modules/pod/Settings';
-import SignUp from 'modules/auth/SignUp';
-import Lab from 'lab';
+import PodMembers from 'modules/pod/Members';
+import NotificationPage from 'modules/notification';
 
 const routes = [
   {
@@ -21,9 +24,19 @@ const routes = [
     component: PodSettings,
   },
   {
+    path: '/pod/members',
+    exact: true,
+    component: PodMembers,
+  },
+  {
     path: '/pod/list',
     exact: true,
     component: PodList,
+  },
+  {
+    path: '/notifications',
+    exact: true,
+    component: NotificationPage,
   },
   {
     path: '/login',

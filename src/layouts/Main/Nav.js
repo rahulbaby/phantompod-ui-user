@@ -15,22 +15,22 @@ const items = [
 	{
 		icon: 'marketplace.svg',
 		iconHover: 'marketplace-active.svg',
-		to: '/',
+		to: '/marketplace',
 	},
 	{
 		icon: 'notification.svg',
 		iconHover: 'notification-active.svg',
-		to: '/',
+		to: '/notifications',
 	},
 	{
 		icon: 'settings.svg',
 		iconHover: 'settings-active.svg',
-		to: '/',
+		to: '/settings',
 	},
 	{
 		icon: 'support.svg',
 		iconHover: 'support-active.svg',
-		to: '/',
+		to: '/support',
 	},
 ];
 

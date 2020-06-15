@@ -37,17 +37,20 @@ instance.interceptors.response.use(
     if (response.status === 200) return response.data;
     else return response;
   },
-  async (error) => {
-    console.log(error);
-    let { keyValue } = error;
-    let message = error.msg || error.message || 'Operation failed !';
-    let messageArr = [];
+  (error) => {
+    const { response } = error;
+
+    //console.log(error);
+    console.log(response.data);
+    //console.log(response.status);
+    let message = error.message || error.message || 'Operation failed !';
+    message = response.data && response.data.message ? response.data.message : message;
+    message = response.data && response.data.message ? response.data.message : message;
 
     return {
-      status: 500,
-      message,
-      messageArr,
-      error: true,
+      status: response && response.status ? response.status : 500,
+      message: response && response.message ? response.message : message,
+      error: response && response.data && response.data.error ? response.data.error : true,
     };
   },
 );

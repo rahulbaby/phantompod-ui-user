@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { LinkCustom } from 'components/common';
-import { showMessage } from 'store/messages/actions';
 import {
 	useForm,
 	Form,
@@ -13,18 +12,25 @@ import {
 	FormResult,
 	FormCheckbox,
 } from 'components/form';
-import { useApiHttpCall } from 'hooks';
+import { useApiHttpCall, useShowMsg, useRedux } from 'hooks';
+import { addRow } from 'modules/pod/actions';
 
 export default () => {
-	const dispatch = useDispatch();
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
+	const [showMessage] = useShowMsg();
+	const { dispatch } = useRedux();
 	const onSubmit = (data) => {
 		triggerApiCall(
 			'pod/alter-members',
 			data,
-			({ error, message }) => dispatch(showMessage(message, error ? 'danger' : 'success')),
-			'get',
-			({ msg }) => dispatch(showMessage(msg, 'error')),
+			(res) => {
+				console.log(res);
+				const { error, message, record } = res;
+				showMessage(message, error ? 'danger' : 'success');
+				if (!error && record) dispatch(addRow(record));
+			},
+			'put',
+			({ message }) => showMessage(message, 'danger'),
 		);
 	};
 	return (
