@@ -87,9 +87,12 @@ const PodForm = (props) => {
       />
       <FormResult result={result} />
       <div className="right-btns-wrapper">
-        <LinkCustom to="/pod/list">
-          <Button className="btn small-btn red-btn" label="Cancel" />
-        </LinkCustom>
+        <Button
+          onClick={history.goBack}
+          className="btn small-btn red-btn"
+          type="button"
+          label="Cancel"
+        />
         <FormButton label="Post" className="btn small-btn green-btn" loading={loading} />
       </div>
     </form>

@@ -1,23 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { LayoutMain } from 'layouts';
 
-import { LoaderList } from 'components/loaders';
-import { useGetDbRow, useQuery, useIsOwner, useApiHttpCall, useShowMsg } from 'hooks';
-import { isoToFormatted } from 'utils/functions';
+import { PodContextProvider, useStateContext } from './context';
+import { useGetDbRow, useQuery, useIsOwner, useApiHttpCall, useShowMsg, useRouter } from 'hooks';
 import { ErrorNotice, EmptyNotice, Button, LinkCustom } from 'components/common';
-import PodForm from './components/Form';
+import { LoaderList } from 'components/loaders';
+import { isoToFormatted } from 'utils/functions';
 import PodRow from './components/Row';
 
 const PodAccessButton = ({ row, memberId, status, podId, ...rest }) => {
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
 	const [showMessage] = useShowMsg();
+	const [{}, dispatch] = useStateContext();
 	return (
 		<Button
 			onClick={() =>
 				triggerApiCall(
 					'pod/alter-member-access',
 					{ _id: row._id, podId, memberId: row.userId, status },
-					() => showMessage(status, 'success'),
+					({ record }) => {
+						showMessage(status, 'success');
+						dispatch({
+							type: 'UPDATE_ROW',
+							payload: { row: record, loading: false },
+						});
+					},
 					'put',
 				)
 			}
@@ -47,41 +54,57 @@ const Row = ({ row, isOwner, podId }) => {
 					{requested ? 'Requested' : rejected ? 'Rejected' : 'Joined'} on{' '}
 					{isoToFormatted(row.updatedAt, 'MMM DD, YYYY')}
 				</p>
-				{(!accepted || requested) && (
-					<PodAccessButton
-						{...buttonProps}
-						status="accepted"
-						label="ACCEPT"
-						className="btn small-btn btn-success"
-					/>
-				)}
-				{(!rejected || requested) && (
-					<PodAccessButton
-						{...buttonProps}
-						status="rejected"
-						label="REJECT"
-						className="btn small-btn btn-danger"
-					/>
+				{isOwner && (
+					<React.Fragment>
+						{(!accepted || requested) && (
+							<PodAccessButton
+								{...buttonProps}
+								status="accepted"
+								label="ACCEPT"
+								className="btn small-btn btn-success"
+							/>
+						)}
+						{(!rejected || requested) && (
+							<PodAccessButton
+								{...buttonProps}
+								status="rejected"
+								label="REJECT"
+								className="btn small-btn btn-danger"
+							/>
+						)}
+					</React.Fragment>
 				)}
 			</div>
 		</div>
 	);
 };
 
-const PodMemebers = () => {
+const PodMembers = () => {
 	const { id } = useQuery();
-	const { loading, row } = useGetDbRow('pod', { _id: id });
 	const [search, setSearch] = useState('');
-	const [status, setStatus] = useState('requested');
+	const [status, setStatus] = useState('accepted');
+	const { history } = useRouter();
+	const { loading: podLoading, row: podRow } = useGetDbRow('pod', { _id: id });
+	const [{ row, loading }, dispatch] = useStateContext();
 	const isOwner = useIsOwner(row ? row.userId : null);
+
+	useEffect(() => {
+		dispatch({
+			type: 'UPDATE_ROW',
+			payload: { row: podRow, loading: podLoading },
+		});
+	}, [podRow, podLoading]);
 
 	if (id && loading) return <LoaderList />;
 	if (!row) return <ErrorNotice />;
-	const members = row.members.filter((x) => search == '' || x.name.indexOf(search) > -1);
+
+	let members = row.members.filter((x) => search == '' || x.name.indexOf(search) > -1);
+	if (!isOwner) members = members.filter((x) => x.status === 'accepted');
 
 	const statusArr = {
-		requested: 'REQUESTED',
 		accepted: 'ACCEPTED',
+		requested: 'REQUESTED',
+
 		rejected: 'REJECTED',
 	};
 	const listByStatus = {};
@@ -98,9 +121,9 @@ const PodMemebers = () => {
 					<h4 className="title-cardHead">Pod Members ({members.length})</h4>
 				</div>
 				<div className="title-cardDetails">
-					<LinkCustom to="/pod/list">
-						<button className="btn medium-btn blue-btn">Back</button>
-					</LinkCustom>
+					<button onClick={history.goBack} className="btn medium-btn blue-btn">
+						Back
+					</button>
 				</div>
 			</div>
 			<div className="search-from mb-4">
@@ -112,7 +135,7 @@ const PodMemebers = () => {
 				/>
 				<button className="btn green-btn search-btn">Search</button>
 			</div>
-			<ul className="nav nav-tabs">
+			<ul className={`nav nav-tabs ${isOwner ? '' : 'd-none'}`}>
 				{Object.keys(statusArr).map((x) => (
 					<li className={`nav-item ${x === status ? 'active' : ''}`} key={x}>
 						<a
@@ -138,8 +161,10 @@ const PodMemebers = () => {
 	);
 };
 
-export default (props) => (
+export default () => (
 	<LayoutMain>
-		<PodMemebers {...props} />
+		<PodContextProvider>
+			<PodMembers />
+		</PodContextProvider>
 	</LayoutMain>
 );

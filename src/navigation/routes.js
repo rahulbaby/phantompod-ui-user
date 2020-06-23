@@ -7,10 +7,12 @@ import Lab from 'lab';
 import Login from 'modules/auth';
 import SignUp from 'modules/auth/SignUp';
 
+import NotificationPage from 'modules/notification';
 import PodList from 'modules/pod/MyPods';
 import PodSettings from 'modules/pod/Settings';
 import PodMembers from 'modules/pod/Members';
-import NotificationPage from 'modules/notification';
+import Marketplace from 'modules/marketplace';
+import PodPosts from 'modules/post';
 
 const routes = [
   {
@@ -32,6 +34,16 @@ const routes = [
     path: '/pod/list',
     exact: true,
     component: PodList,
+  },
+  {
+    path: '/marketplace',
+    exact: true,
+    component: Marketplace,
+  },
+  {
+    path: '/marketplace/:_id',
+    exact: true,
+    component: PodPosts,
   },
   {
     path: '/notifications',

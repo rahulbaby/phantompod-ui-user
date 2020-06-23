@@ -24,7 +24,6 @@ export default () => {
 			'pod/alter-members',
 			data,
 			(res) => {
-				console.log(res);
 				const { error, message, record } = res;
 				showMessage(message, error ? 'danger' : 'success');
 				if (!error && record) dispatch(addRow(record));
