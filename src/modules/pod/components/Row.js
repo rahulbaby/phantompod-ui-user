@@ -61,7 +61,9 @@ export default ({ row, count }) => {
 				<span className="number-btn green-btn">{count}</span>
 			</div>
 			<div className="pod-content">
-				<h4 className="pod-list-head">{row.name}</h4>
+				<LinkCustom to={`/marketplace/${_id}`}>
+					<h4 className="pod-list-head">{row.name}</h4>
+				</LinkCustom>
 				<p className="pod-paragraph">
 					{row.description} - ${row.podKey}
 				</p>

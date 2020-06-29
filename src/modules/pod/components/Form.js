@@ -93,7 +93,11 @@ const PodForm = (props) => {
           type="button"
           label="Cancel"
         />
-        <FormButton label="Post" className="btn small-btn green-btn" loading={loading} />
+        <FormButton
+          label={onEdit ? 'Update pod' : 'Edit pod'}
+          className="btn small-btn green-btn"
+          loading={loading}
+        />
       </div>
     </form>
   );

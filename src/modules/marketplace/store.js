@@ -35,7 +35,7 @@ export const MarketplaceStoreProvider = (props) => {
 		<PostsContext.Provider value={{ state, dispatch, resetStore }}>
 			{props.children}
 			{state.loading && <LoaderList />}
-			{state.error && <ErrorNotice />}
+			{state.error && <ErrorNotice title="You don't have acces to this pod!" />}
 		</PostsContext.Provider>
 	);
 };

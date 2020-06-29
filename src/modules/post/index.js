@@ -4,7 +4,12 @@ import { LinkCustom } from 'components/common';
 import { useRouter } from 'hooks';
 import PostForm from './components/Form';
 import PostList from './components/List';
-import { usePostsStore, usePodDetailsStore, PodDetailsStoreProvider } from './store';
+import {
+	usePostsStore,
+	usePodDetailsStore,
+	PodDetailsStoreProvider,
+	PostsStoreProvider,
+} from './store';
 
 const TitleCard = ({ row }) => {
 	const { history } = useRouter();
@@ -56,7 +61,6 @@ const PostAddFormPre = ({ onSucccess }) => {
 const PodPostsPage = (props) => {
 	const [row, loading] = usePodDetailsStore();
 	const [url, setUrl] = useState('');
-	const { resetStore } = usePostsStore();
 
 	if (url) return <PostForm url={url} row={row} onSuccess={() => setUrl('')} />;
 
@@ -66,7 +70,6 @@ const PodPostsPage = (props) => {
 			<PostAddFormPre
 				onSucccess={(url) => {
 					setUrl(url);
-					resetStore();
 				}}
 			/>
 			<PostList id={row._id} />

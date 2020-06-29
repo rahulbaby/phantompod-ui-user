@@ -7,18 +7,25 @@ import Lab from 'lab';
 import Login from 'modules/auth';
 import SignUp from 'modules/auth/SignUp';
 
+import Dashboard from 'modules/dashboard';
 import NotificationPage from 'modules/notification';
 import PodList from 'modules/pod/MyPods';
 import PodSettings from 'modules/pod/Settings';
 import PodMembers from 'modules/pod/Members';
 import Marketplace from 'modules/marketplace';
 import PodPosts from 'modules/post';
+import Support from 'modules/pages/Support';
 
 const routes = [
   {
     path: '/',
     exact: true,
-    component: Lab,
+    component: Dashboard,
+  },
+  {
+    path: '/dashboard',
+    exact: true,
+    component: Dashboard,
   },
   {
     path: '/pod/settings',
@@ -49,6 +56,11 @@ const routes = [
     path: '/notifications',
     exact: true,
     component: NotificationPage,
+  },
+  {
+    path: '/support',
+    exact: true,
+    component: Support,
   },
   {
     path: '/login',

@@ -37,16 +37,12 @@ export default ({ row, count }) => {
 				<span className="number-btn green-btn">{count}</span>
 			</div>
 			<div className="pod-content">
-				<LinkCustom to={`/marketplace/${row._id}`}>
-					<h4 className="pod-list-head">{row.name}</h4>
-				</LinkCustom>
+				<h4 className="pod-list-head">{row.name}</h4>
 				<p className="pod-paragraph">{row.description}</p>
 				<div className="pod-list-btns">
-					<LinkCustom to={`/pod/members?id=${row._id}`}>
-						<button className="btn small-btn blue-btn">
-							<img src="img/icons/user-group-icon.png" alt="" /> {row.members.length}
-						</button>
-					</LinkCustom>
+					<button className="btn small-btn blue-btn">
+						<img src="img/icons/user-group-icon.png" alt="" /> {row.members.length}
+					</button>
 					<RequestAccessButton id={row.podKey} />
 				</div>
 			</div>

@@ -12,7 +12,7 @@ import reducer, { initialState } from './reducer';
 /*-----------------------------------------------------*/
 
 export const PostsContext = createContext(initialState);
-export const usePostsStore = () => useContext(PostsContext); //not used her , only for component level
+export const usePostsStore = () => useContext(PostsContext); //not used here , only for component level
 
 const limit = 2;
 
@@ -49,7 +49,13 @@ export const PodDetailsStoreProvider = ({ id, children }) => {
 
 	return (
 		<PodDetailsContext.Provider value={[row, loading]}>
-			{loading ? <LoaderList /> : row ? children : <ErrorNotice />}
+			{loading ? (
+				<LoaderList />
+			) : row ? (
+				children
+			) : (
+				<ErrorNotice title="You don't have access to this pod!" />
+			)}
 		</PodDetailsContext.Provider>
 	);
 };
