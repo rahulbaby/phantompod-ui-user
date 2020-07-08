@@ -17,6 +17,13 @@
     .box-shadow {
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
     }
+
+    .color-blue {
+        color: #0079d1;
+    }
+    .color-red {
+        color: #ee534f;
+    }
     
     .nav-left {
         background: #fff;
@@ -590,6 +597,9 @@
         font-size: 18px;
         font-weight: 600;
     }
+    .hyperlink a {
+        word-break: break-all;
+    }
     /* BOF Sign In/Up page CSS */
     
     .signin-wrapper {
@@ -970,3 +980,170 @@
     .wd-100 {
         width: 100%;
     }
+
+    /* BOF Profile Settings Page CSS */
+    .profile-cards-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0 0 30px;
+    }
+    .profile-card {
+        background: #fff;
+        padding: 15px 40px 15px 15px;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        min-height: 165px;
+        width:100%;
+        max-width: 380px;
+    }
+    .prfile-img-wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .prfile-img {
+        width: 100px;
+    }
+    .prfile-img img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    .profile-img-actions {
+        margin: 8px 0 0;
+    }
+    .action-text {
+        font-size: 14px;
+        font-weight: 500;
+        padding: 0 6px;
+    }
+    .profile-details {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 0 0 20px;
+    }
+    .profle-name {
+        font-size: 18px;
+        color: #717581;
+        margin: 0;
+        font-weight: 500;
+    }
+    .profile-email {
+        color: #717581;
+        font-size: 15px;
+        margin: 0 0 6px;
+        display: inline-block;
+    }
+    .subscription-box {
+        flex-direction: column;
+        background: #fff url(../img/dimond.png) no-repeat right center;
+        padding: 15px 40px 15px 15px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;        
+        border-radius: 10px;
+        min-height: 165px;
+        width:100%;
+        max-width: 380px;
+        margin:0 0 0 35px
+    }
+    .subscription-head {
+        font-size: 18px;
+        margin: 0 0 15px;
+        font-weight: 500;
+    }
+    .subscription-type {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 0;
+        color: #7e818c;
+    }
+    .subscription-expiry {
+        margin: 0;
+        font-weight: 500;
+        font-size: 14px;
+        font-style: italic;
+        color: #b4b5b7;
+    }
+    .subscription-btn {
+        margin: 10px 0 0;
+    }
+
+    .free-trail .subscription-expiry {
+        color: #f1807e;
+    }
+    .free-trail .subscription-btn {
+        background: #8dc63f;
+        color: #fff;
+    }
+    .premium-subscription .subscription-expiry {
+        color: #b4b5b7;
+    }
+    .premium-subscription .subscription-btn {
+        background: #ee534f;
+        color: #fff;
+    }
+    /* EOF Profile Settings Page CSS */
+
+    /* BOF Change Password Page CSS */
+    .change-password-wrapper {
+        background: rgba(255, 255, 255, 0.8);
+        position: fixed;
+        left: 110px;
+        top: 80px;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .change-password {
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+    }
+    .change-password-head {
+        font-size: 18px;
+        color: #0079d1;
+        font-weight: 600;
+        margin: 0 0 20px;
+    }
+    .form-label {
+        font-size: 14px;
+        color: #a0a0a0;
+    }
+    /* EOF Change Password Page CSS */
+    
+    /* BOF Error Pages CSS */
+    .error-pages-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 70vh;
+        align-items: center;
+        justify-content: center;
+    }
+    .error-page-img img {
+        width: 100%;
+    }
+    .error-head {
+        font-size: 30px;
+        color: #3a4155;
+        margin: 20px 0 15px;
+        text-align: center;
+    }
+    /* EOF Error Pages CSS */
+    

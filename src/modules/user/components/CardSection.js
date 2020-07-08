@@ -1,36 +1,16 @@
-import './CardSectionStyles.css';
 import React, { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { CardElement, Elements, useStripe, useElements } from '@stripe/react-stripe-js';
 import { Redirect } from 'react-router-dom';
-import { AUTH_TOKEN_KEY, BASE_URL } from 'config';
+import { AUTH_TOKEN_KEY, BASE_URL, REACT_APP_STRIPE_PUBLISHABLE_KEY } from 'config';
+import { useItem } from 'hooks';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 import { LayoutMain } from 'layouts';
 
-export const products = [
-	{
-		key: 0,
-		price: '$5.00',
-		name: 'Basic',
-		interval: 'month',
-		billed: 'monthly',
-	},
-	{
-		key: 1,
-		price: '$15.00',
-		name: 'Premium',
-		interval: 'month',
-		billed: 'monthly',
-	},
-];
-
-export const productSelected = products[0];
 export const customer = {
 	id: 'cus_HVAclyYRKWavr3',
 };
-
-export const REACT_APP_STRIPE_PUBLISHABLE_KEY = 'pk_test_F1U8ZiSPK9gAcjttJZTUiwrZ';
 
 const stripePromise = loadStripe(REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -60,16 +40,15 @@ const CARD_ELEMENT_OPTIONS = {
 };
 
 const CardForm = ({ handleSubmit, subscribing }) => (
-	<div class="card ">
-		<div className="card-body bg-gradient-light">
-			Card details - 4242 4242 4242 4242 - 4000 0027 6000 3184
-			<form id="payment-form" onSubmit={handleSubmit}>
-				<CardElement options={CARD_ELEMENT_OPTIONS} />
-				<button className="btn btn-success m-3" type="submit">
-					{subscribing ? 'Subscribing...' : 'Subscribe'}
-				</button>
-			</form>
-		</div>
+	<div style={{ width: '100%' }}>
+		<h6 className="text-primary">4242 4242 4242 4242</h6>
+		<h6 className="text-success">4000 0027 6000 3184</h6>
+		<form id="payment-form" onSubmit={handleSubmit}>
+			<CardElement options={CARD_ELEMENT_OPTIONS} />
+			<button className="btn small-btn btn-success m-3" type="submit" disabled={subscribing}>
+				{subscribing ? 'Subscribing...' : 'Subscribe'}
+			</button>
+		</form>
 	</div>
 );
 
@@ -78,6 +57,7 @@ const CheckoutForm = () => {
 	const elements = useElements();
 	const [subscribing, setSubscribing] = useState(false);
 	const [accountInformation, setAccountInformation] = useState(null);
+	const paymentCredentials = useItem('paymentCredentials');
 
 	function handleCustomerActionRequired({
 		subscription,
@@ -166,14 +146,14 @@ const CheckoutForm = () => {
 	const createSubscriptionUrl = `${BASE_URL}stripe/create-subscription`;
 
 	const createSubscription = async ({ paymentMethodId }) => {
-		const priceId = productSelected.name.toUpperCase();
+		const priceId = paymentCredentials.PRODUCT_NAME.toUpperCase();
 		const token = await localStorage[AUTH_TOKEN_KEY];
 		return (
 			fetch(createSubscriptionUrl, {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
+					//Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify({
 					customerId: customer.id,
@@ -200,7 +180,7 @@ const CheckoutForm = () => {
 						// returned result to understand what object is returned.
 						subscription: result,
 						paymentMethodId: paymentMethodId,
-						priceId: productSelected.name,
+						priceId: paymentCredentials.PRODUCT_NAME,
 					};
 				})
 				// Some payment methods require a customer to do additional
@@ -225,15 +205,12 @@ const CheckoutForm = () => {
 	const handleSubmit = async (event) => {
 		// Block native form submission.
 		event.preventDefault();
-
 		setSubscribing(true);
-
 		if (!stripe || !elements) {
 			// Stripe.js has not loaded yet. Make sure to disable
 			// form submission until Stripe.js has loaded.
 			return;
 		}
-
 		// Get a reference to a mounted CardElement. Elements knows how
 		// to find your CardElement because there can only ever be one of
 		// each type of element.
@@ -247,6 +224,7 @@ const CheckoutForm = () => {
 
 		if (error) {
 			console.log('[error]', error);
+			setSubscribing(false);
 		} else {
 			console.log('[PaymentMethod]', paymentMethod);
 			createSubscription({ paymentMethodId: paymentMethod.id });
@@ -255,23 +233,16 @@ const CheckoutForm = () => {
 
 	return (
 		<React.Fragment>
-			<div>
-				<pre>{JSON.stringify(accountInformation, null, 2)}</pre>
-			</div>
-			<CardForm handleSubmit={handleSubmit} subscribing={subscribing} />;
+			{accountInformation && <pre>{JSON.stringify(accountInformation, null, 2)}</pre>}
+			<CardForm handleSubmit={handleSubmit} subscribing={subscribing} />
 		</React.Fragment>
 	);
 };
 
-const PaymentForm = (props) => (
+const CardSection = (props) => (
 	<Elements stripe={stripePromise}>
 		<CheckoutForm {...props} />
 	</Elements>
 );
 
-export default () => (
-	<LayoutMain>
-		{' '}
-		<PaymentForm />
-	</LayoutMain>
-);
+export default CardSection;

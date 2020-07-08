@@ -14,6 +14,7 @@ import PodSettings from 'modules/pod/Settings';
 import PodMembers from 'modules/pod/Members';
 import Marketplace from 'modules/marketplace';
 import PodPosts from 'modules/post';
+import UserProfile from 'modules/user';
 import Support from 'modules/pages/Support';
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
     path: '/',
     exact: true,
     component: Dashboard,
+  },
+  {
+    path: '/lab',
+    exact: true,
+    component: Lab,
   },
   {
     path: '/dashboard',
@@ -51,6 +57,11 @@ const routes = [
     path: '/marketplace/:_id',
     exact: true,
     component: PodPosts,
+  },
+  {
+    path: '/settings',
+    exact: true,
+    component: UserProfile,
   },
   {
     path: '/notifications',

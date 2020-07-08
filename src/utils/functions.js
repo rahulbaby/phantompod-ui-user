@@ -54,7 +54,7 @@ export const isArray = (a, retn = false) => {
 export const arrayToUnique = (arrayPassed) =>
   arrayPassed.filter((v, i, a) => a.indexOf(v) === i && v !== '' && v !== undefined && v !== null);
 
-export const isMobile = () => window.innerWidth < 700;
+export const isMobile = () => window.innerWidth < 767;
 
 export const isoToFormatted = (
   a,

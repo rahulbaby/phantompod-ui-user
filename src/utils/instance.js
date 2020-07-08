@@ -5,15 +5,12 @@ REF : https://github.com/axios/axios
 */
 import axios from 'axios';
 import qs from 'qs';
-import { AUTH_TOKEN_KEY } from 'config';
-
-import { BASE_URL } from 'config';
+import { AUTH_TOKEN_KEY, BASE_URL } from 'config';
 
 var instance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    //'Access-Control-Allow-Origin': '*'
   },
 });
 instance.defaults.timeout = 20000;

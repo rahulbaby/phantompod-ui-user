@@ -14,8 +14,10 @@ import {
 } from 'components/form';
 import { useApiHttpCall, useShowMsg, useRedux } from 'hooks';
 import { addRow } from 'modules/pod/actions';
+import { isMobile } from 'utils/functions';
 
 export default () => {
+	const [toggle, setToggle] = React.useState(false);
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
 	const [showMessage] = useShowMsg();
 	const { dispatch } = useRedux();
@@ -39,12 +41,17 @@ export default () => {
 					<div className="pagename">Dashboard</div>
 				</div>
 				<div className="pod-user-details">
-					<div className="header-pod-details">
+					<div className="header-pod-details" style={toggle ? { right: 0 } : {}}>
 						<LinkCustom to="/pod/settings">
 							<button className="btn green-btn mr-3">New Pod</button>
 						</LinkCustom>
 
-						<Form onSubmit={onSubmit} noValidate className="d-inline-flex">
+						<Form
+							onSubmit={onSubmit}
+							noValidate
+							className="d-inline-flex"
+							style={isMobile() ? { flexDirection: 'column' } : {}}
+						>
 							<FormInput name="id" className="mr-3" placeholder="Pod Secret" />
 							<FormButton
 								type="submit"
@@ -59,7 +66,7 @@ export default () => {
 					</div>
 				</div>
 				<div className="header-toggle">
-					<span className="toggle-btn"></span>
+					<span className="toggle-btn" onClick={() => setToggle(!toggle)}></span>
 				</div>
 			</div>
 		</header>

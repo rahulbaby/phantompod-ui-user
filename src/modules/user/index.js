@@ -1,143 +1,64 @@
-import React, { Component, useRef, Fragment, useState, useEffect } from 'react';
-import { createSelector } from 'reselect';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { LayoutMain } from 'layouts';
+import { useRedux } from 'hooks';
+import UserPasswordChangeForm from './components/PasswordChangeForm';
+import UserBillingForm from './components/BillingForm';
+import SubscriptionCard from './components/SubscriptionCard';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Drawer from '@material-ui/core/Drawer';
-
-import Layout from 'layouts/Main';
-
-import { TableComp, CustomButton } from 'components/common';
-
-import Form from './components/Form';
-import Filter from './components/Filter';
-import { instance } from 'lib';
-import { showMessage } from 'store/messages/actions';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
-const API = 'user';
-
-const selectItem = createSelector((state) => state.items.rows);
-
-const Batchcol = ({ row }) => {
-  const batches = useSelector(({ items }) => items.rows.batches);
-  let batch = batches.find((x) => x.batchId === row.batchId);
-  return batch ? batch.batchName : '-NA-';
-};
-
-const StatusCol = ({ row }) => {
-  const accountStatusArr = useSelector(({ items }) => items.rows.accountStatus);
-  let accountStatus = accountStatusArr.find((x) => x.accountStatusId === row.accountStatus);
-  let color = row.accountStatus == 1 ? 'green' : row.accountStatus == 2 ? 'blue' : 'red';
-  return accountStatus ? (
-    <Typography style={{ color }}>{accountStatus.accountStatusLabel}</Typography>
-  ) : (
-    '-NA-'
-  );
-};
-
-const cols = [
-  { label: 'Name', key: 'name' },
-  { label: 'Phone', key: 'phone' },
-  {
-    label: 'Batch',
-    key: 'batchId',
-    formatter: (row) => <Batchcol row={row} />,
-  },
-  {
-    label: 'Status',
-    key: 'accountStatus',
-    formatter: (row) => <StatusCol row={row} />,
-  },
-];
-
-const where = { phone: 7034443377 };
-
-const UserPage = () => {
-  const classes = useStyles();
-  const tableRef = useRef(null);
-  const [showForm, setShowForm] = useState(false);
-  const [row, setRow] = useState(null);
-  const [where, setWhere] = useState({});
-  //const [count, setCount] = useState(0);
-  const dispatch = useDispatch();
-
-  const fetchRows = () => tableRef && tableRef.current.fetchRows();
-
-  useEffect(() => {
-    fetchRows();
-  }, [where]);
-
-  const handleDelete = (row) => () => {
-    setRow(row);
-    instance.delete(`user/${row.id}`).then((res) => {
-      if (res.error) return;
-      dispatch(showMessage(`${row.name} removed from list`, 'error'));
-      fetchRows();
-    });
-  };
-
-  const handleEdit = (row) => () => {
-    setRow(null);
-    setShowForm(false);
-    setTimeout(() => {
-      setRow(row);
-      setShowForm(true);
-    }, 100);
-  };
-
+const ProfileCard = ({ setShowPasswordForm }) => {
+  const { getReduxItem } = useRedux();
+  const authData = getReduxItem('auth');
+  const userData = authData.user;
   return (
-    <div className={classes.root}>
-      <Drawer
-        anchor={'right'}
-        open={showForm}
-        style={{ padding: '10vW' }}
-        onClose={() => {
-          setShowForm(false);
-          setRow(null);
-        }}
-      >
-        <Form
-          onSuccess={() => {
-            fetchRows();
-            setShowForm(false);
-            setRow(null);
-          }}
-          onCancel={() => {
-            setShowForm(false);
-            setRow(null);
-          }}
-          row={row}
-        />
-      </Drawer>
-      <Filter onSuccess={(where) => setWhere(where)} />
-      <TableComp
-        where={where}
-        ref={tableRef}
-        cols={cols}
-        API={API}
-        DELETE_API={API}
-        pKey={`id`}
-        rowHightLighted={row ? row.id : null}
-        onEditClick={handleEdit}
-        handleDelete={handleDelete}
-      />
-      {!showForm && <CustomButton label="ADD NEW STUDENT" onClick={() => setShowForm(true)} />}
+    <div className="profile-card box-shadow">
+      <div className="prfile-img-wrapper">
+        <div className="prfile-img">
+          <img src="img/user-img.jpg" alt="" />
+        </div>
+        <div className="profile-img-actions">
+          <span className="action-text color-blue">Change</span>
+          <span className="action-text color-red">Delete</span>
+        </div>
+      </div>
+      <div className="profile-details">
+        <h3 className="profle-name">{userData.name}</h3>
+        <div>
+          <a href="javascript:(0)" className="profile-email">
+            {userData.email}
+          </a>
+        </div>
+        <button className="btn small-btn blue-btn" onClick={() => setShowPasswordForm(true)}>
+          Change password
+        </button>
+      </div>
     </div>
   );
 };
 
-export default (props) => (
-  <Layout>
-    <UserPage {...props} />
-  </Layout>
+const UserProfile = () => {
+  const [showPasswordForm, setShowPasswordForm] = React.useState(false);
+  return (
+    <React.Fragment>
+      <div className="title-card">
+        <div className="title-cardHead-wrapper">
+          <h4 className="title-cardHead">Profile Settings</h4>
+        </div>
+      </div>
+      <div className="profile-cards-wrapper">
+        <ProfileCard
+          showPasswordForm={showPasswordForm}
+          setShowPasswordForm={setShowPasswordForm}
+        />
+        <SubscriptionCard />
+      </div>
+      {showPasswordForm && <UserPasswordChangeForm setShowPasswordForm={setShowPasswordForm} />}
+      <UserBillingForm />
+    </React.Fragment>
+  );
+};
+
+export default () => (
+  <LayoutMain>
+    <UserProfile />
+  </LayoutMain>
 );
