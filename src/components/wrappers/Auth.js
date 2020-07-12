@@ -9,19 +9,32 @@ const WrapperAuth = (props) => {
   let history = useHistory();
   let location = useLocation();
 
+  const pathname = location.pathname;
+  const pathnamePlanSelectionArr = ['/plan-selction', '/premium-subscription'];
+
   const auth = useSelector(({ auth }) => auth);
   const { isLoading, authenticated, error, lastFetchValid } = auth;
   useEffect(() => {
-    if (!authenticated && !isLoading) history.push('/login?page=' + location.pathname);
+    if (!authenticated && !isLoading) history.push('/login?page=' + pathname);
   }, [authenticated, isLoading]);
 
   useEffect(() => {
     dispatch(checkUser());
   }, []);
 
-  let cont = props.children || null;
+  useEffect(() => {
+    if (authenticated && auth.user.status === null && !pathnamePlanSelectionArr.includes(pathname))
+      history.push('/plan-selction');
+  }, [pathname]);
 
-  if ((isLoading && !lastFetchValid) || !authenticated) cont = <LoaderCircular />;
+  let cont = props.children || null;
+  if (
+    (isLoading && !lastFetchValid) ||
+    !authenticated ||
+    !auth.user ||
+    !Object.keys(auth.user).length
+  )
+    cont = <LoaderCircular />;
   return <Fragment>{cont}</Fragment>;
 };
 

@@ -93,3 +93,7 @@ export const imgSrc = (file, path) => {
   //return `https://www.ariselive.in:30006/${path}/${file || 'default.png'}`;
   return `${BASE_URL}/${path}/${file || 'default.png'}`;
 };
+export const isLinkedInUrl = (url) => {
+  var testString = /(ftp|http|https):\/\/?(?:www\.)?linkedin.com(\w+:{0,1}\w*@)?(\S+)(:([0-9])+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+  return testString.test(url);
+};

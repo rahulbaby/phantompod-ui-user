@@ -4,7 +4,21 @@ import { COLOR_PRIMARY, COLOR_SECONDARY } from 'config/colors';
 import { isMobile } from 'lib/functions';
 
 export default (props) => {
-  let { title, subTitle } = props;
+  let { title, subTitle, onRetry } = props;
+
+  return (
+    <div className="error-pages-wrapper">
+      <div className="error-page-img">
+        <img src="/img/no-connection.png" alt="" />
+      </div>
+      <h4 className="error-head">{title || 'Something went wrong!'}</h4>
+      {onRetry && (
+        <button onClick={onRetry} className="btn small-btn blue-btn">
+          Reload Page
+        </button>
+      )}
+    </div>
+  );
 
   return (
     <div className="card">

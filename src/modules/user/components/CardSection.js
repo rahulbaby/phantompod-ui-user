@@ -4,9 +4,14 @@ import { CardElement, Elements, useStripe, useElements } from '@stripe/react-str
 import { Redirect } from 'react-router-dom';
 import { AUTH_TOKEN_KEY, BASE_URL, REACT_APP_STRIPE_PUBLISHABLE_KEY } from 'config';
 import { useItem } from 'hooks';
+import { useRedux } from 'hooks';
+import { refreshUser } from 'modules/auth/actions';
+import { showMessage } from 'store/messages/actions';
+
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 import { LayoutMain } from 'layouts';
+import { instance } from 'utils';
 
 export const customer = {
 	id: 'cus_HVAclyYRKWavr3',
@@ -46,26 +51,30 @@ const CardForm = ({ handleSubmit, subscribing }) => (
 		<form id="payment-form" onSubmit={handleSubmit}>
 			<CardElement options={CARD_ELEMENT_OPTIONS} />
 			<button className="btn small-btn btn-success m-3" type="submit" disabled={subscribing}>
-				{subscribing ? 'Subscribing...' : 'Subscribe'}
+				{subscribing ? 'PAY NOW...' : 'PAY NOW'}
 			</button>
 		</form>
 	</div>
 );
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ onSuccess }) => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const [subscribing, setSubscribing] = useState(false);
 	const [accountInformation, setAccountInformation] = useState(null);
 	const paymentCredentials = useItem('paymentCredentials');
+	const { dispatch, getReduxItem } = useRedux();
+	const authData = getReduxItem('auth');
+	const user = authData.user;
+	const createSubscriptionUrl = `${BASE_URL}stripe/create-subscription`;
 
-	function handleCustomerActionRequired({
+	const handleCustomerActionRequired = ({
 		subscription,
 		invoice,
 		priceId,
 		paymentMethodId,
 		isRetry,
-	}) {
+	}) => {
 		if (subscription && subscription.status === 'active') {
 			// subscription is active, no customer actions required.
 			return { subscription, priceId, paymentMethodId };
@@ -110,9 +119,9 @@ const CheckoutForm = () => {
 			// No customer action needed
 			return { subscription, priceId, paymentMethodId };
 		}
-	}
+	};
 
-	function handlePaymentMethodRequired({ subscription, paymentMethodId, priceId }) {
+	const handlePaymentMethodRequired = ({ subscription, paymentMethodId, priceId }) => {
 		if (subscription.status === 'active') {
 			// subscription is active, no customer actions required.
 			return { subscription, priceId, paymentMethodId };
@@ -129,37 +138,29 @@ const CheckoutForm = () => {
 		} else {
 			return { subscription, priceId, paymentMethodId };
 		}
-	}
+	};
 
-	function onSubscriptionComplete(result) {
-		console.log(result);
-		// Payment was successful. Provision access to your service.
-		// Remove invoice from localstorage because payment is now complete.
-		// clearCache();
-		setAccountInformation(result);
-		// Change your UI to show a success message to your customer.
-		// onSubscriptionSampleDemoComplete(result);
-		// Call your backend to grant access to your service based on
-		// the product your customer subscribed to.
-		// Get the product by using result.subscription.price.product
-	}
-	const createSubscriptionUrl = `${BASE_URL}stripe/create-subscription`;
+	const onSubscriptionComplete = (result) => {
+		setTimeout(() => {
+			dispatch(showMessage('Success', 'success'));
+			dispatch(refreshUser());
+			onSuccess && onSuccess();
+		}, 5000);
+	};
 
 	const createSubscription = async ({ paymentMethodId }) => {
 		const priceId = paymentCredentials.PRODUCT_NAME.toUpperCase();
 		const token = await localStorage[AUTH_TOKEN_KEY];
+		if (!user.stripeCustomerId) await instance.get('stripe/create-customer');
 		return (
 			fetch(createSubscriptionUrl, {
 				method: 'post',
 				headers: {
+					Accept: 'application/json, text/plain, */*',
 					'Content-Type': 'application/json',
-					//Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${token}`,
 				},
-				body: JSON.stringify({
-					customerId: customer.id,
-					paymentMethodId: paymentMethodId,
-					priceId: priceId,
-				}),
+				body: JSON.stringify({ paymentMethodId: paymentMethodId }),
 			})
 				.then((response) => {
 					return response.json();
@@ -197,7 +198,8 @@ const CheckoutForm = () => {
 					// An error has happened. Display the failure to the user here.
 					// We utilize the HTML element we created.
 					console.log(error);
-					// displayError(error);
+					dispatch(showMessage('Payment not completed'));
+					setSubscribing(false);
 				})
 		);
 	};
@@ -233,7 +235,7 @@ const CheckoutForm = () => {
 
 	return (
 		<React.Fragment>
-			{accountInformation && <pre>{JSON.stringify(accountInformation, null, 2)}</pre>}
+			{accountInformation && false && <pre>{JSON.stringify(accountInformation, null, 2)}</pre>}
 			<CardForm handleSubmit={handleSubmit} subscribing={subscribing} />
 		</React.Fragment>
 	);

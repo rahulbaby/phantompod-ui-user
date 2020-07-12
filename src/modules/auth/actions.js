@@ -31,19 +31,36 @@ export const singOut = () => (dispatch) => {
     type: UNAUTHENTICATED,
   });
   /*
-	return instance.get( SIGN_OUT_API )
-		.then(res=>{
-			return dispatch({
-			   type : UNAUTHENTICATED,
-			})
-		})
-	*/
+  return instance.get( SIGN_OUT_API )
+    .then(res=>{
+      return dispatch({
+         type : UNAUTHENTICATED,
+      })
+    })
+  */
 };
 
 export const checkUser = () => (dispatch) => {
   dispatch({
     type: IS_LOADING,
   });
+  return instance({
+    method: 'post',
+    url: CHECK_USER_API,
+  }).then((res) => {
+    if (res.user)
+      return dispatch({
+        payload: res.user,
+        type: AUTHENTICATED,
+      });
+    else
+      return dispatch({
+        type: UNAUTHENTICATED,
+      });
+  });
+};
+
+export const refreshUser = () => (dispatch) => {
   return instance({
     method: 'post',
     url: CHECK_USER_API,

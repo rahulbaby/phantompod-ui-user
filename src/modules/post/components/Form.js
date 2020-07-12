@@ -16,6 +16,7 @@ import {
 import { Button, LinkCustom } from 'components/common';
 import { showMessage } from 'store/messages/actions';
 import { useRouter, useSubmit, useItem } from 'hooks';
+import { isLinkedInUrl } from 'utils/functions';
 
 const FieldCheckBoxObj = {
 	autoShare: 'Auto Share',

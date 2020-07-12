@@ -226,10 +226,14 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
         font-size: 15px;
         font-weight: 500;
-    }
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
     
     .trash-btn {
         display: inline-flex;
@@ -237,10 +241,14 @@
         height: 35px;
         background: #f00;
         color: #fff;
-        border-radius: 50%;
         align-items: center;
         justify-content: center;
-    }
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
     
     .form-control {
         border: 1px solid #bccddc;
@@ -301,7 +309,11 @@
     
     .curved {
         border-radius: 50px;
-    }
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        -ms-border-radius: 50px;
+        -o-border-radius: 50px;
+}
     
     .search-from {
         display: flex;
@@ -309,7 +321,11 @@
     
     .search-from .form-control {
         border-radius: 50px 0 0 50px;
-    }
+        -webkit-border-radius: 50px 0 0 50px;
+        -moz-border-radius: 50px 0 0 50px;
+        -ms-border-radius: 50px 0 0 50px;
+        -o-border-radius: 50px 0 0 50px;
+}
     /* BOF Custom CSS for checkbox */
     
     .comment-area {
@@ -452,7 +468,11 @@
         width: 55px;
         height: 55px;
         border-radius: 50%;
-    }
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
     
     .header-toggle {
         display: none;
@@ -476,11 +496,15 @@
         width: 100%;
         margin: 0;
         border: none;
-        border-radius: 8px;
         padding: 20px;
         border-left: 5px solid #fff;
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
-    }
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+}
     
     .card-head,
     .card-discription {
@@ -545,14 +569,18 @@
         width: 100%;
         margin: 0 0 20px;
         border: none;
-        border-radius: 8px;
         padding: 20px;
         border-left: 5px solid #0079d1;
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
         align-items: center;
         justify-content: space-between;
         min-height: 60px;
-    }
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+}
     
     .title-cardHead {
         margin: 0;
@@ -582,13 +610,68 @@
     
     .trending-graph-wrapper {
         background: #fff;
-        padding: 30px;
-        border-radius: 20px;
+        padding: 30px 30px 5px;
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        -ms-border-radius: 20px;
+        -o-border-radius: 20px;
     }
-    
-    .trending-graph-wrapper img {
+
+    .graph-head {
+        font-size: 22px;
+        font-weight: 600;
+        color: #3a4155;
+        margin: 0 0 10px;
+    }
+    .graph-area {
+        position: relative;
+        padding: 0 0 40px;
+    }
+    .graph-progress {
+        position: relative;
+        z-index: 1;
+        padding: 10px 13px 0 5px;
+    }
+    .progress {
+        background: none;
+        margin: 0 0 15px;
+        height: auto;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+}
+    .progress-bar {
+        background: #0079d1;
+        padding: 8px 20px;
+        text-align: left;
+        line-height: 14px;
+    }
+
+    .graph-breakdowns {
+        position: absolute;
+        top: 0;
+        z-index: 0;
+        height: 100%;
+        display: flex;
         width: 100%;
+        justify-content: space-between;
+    }
+    .breakdown-single {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        color: #b4b4b4;
+        font-weight: 300;
+        font-size: 13px;
+    }
+    .breakdown-border {
+        border-left: 2px dashed #a7a7a7;
+        height: 84%;
+        margin-bottom: 10px;
     }
     
     .hyperlink {
@@ -650,13 +733,17 @@
         width: 100%;
         background: #4285f4;
         color: #fff;
-        border-radius: 7px;
         display: flex;
         align-items: center;
         justify-content: center;
         max-width: 220px;
         margin: 0 auto;
-    }
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+}
     
     .google-btn img {
         width: 20px;
@@ -799,19 +886,27 @@
         display: flex;
         align-items: center;
         border: 1px solid #bccddc;
-        border-radius: 7px;
         background: #fff;
         padding: 6px 12px;
         margin: 0 0 10px;
-    }
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+}
     
     .member-img {
         width: 55px;
         max-height: 55px;
-        border-radius: 50%;
         overflow: hidden;
         margin-right: 20px;
-    }
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
     
     .member-img img {
         width: 100%;
@@ -864,10 +959,14 @@
         background: #bcc3c9;
         width: 32px;
         height: 32px;
-        border-radius: 50%;
         display: inline-flex;
         padding: 8px;
-    }
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
     
     .notification-bell img {
         width: 100%;
@@ -923,9 +1022,13 @@
     .faq-wrapper {
         background: #fff;
         border: 1px solid #bccddc;
-        border-radius: 7px;
         margin-bottom: 12px;
-    }
+        border-radius: 7px;
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        -ms-border-radius: 7px;
+        -o-border-radius: 7px;
+}
     
     .faq-header {
         background: #cbe1f5;
@@ -953,9 +1056,13 @@
         background: #3595da;
         text-align: center;
         padding: 25px 30px;
-        border-radius: 8px;
         margin: 20px 0 0px;
-    }
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+}
     
     .contact-form-head {
         font-weight: 600;
@@ -1015,7 +1122,11 @@
     .prfile-img img {
         width: 100%;
         border-radius: 50%;
-    }
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+}
 
     .profile-img-actions {
         margin: 8px 0 0;
@@ -1049,13 +1160,17 @@
         padding: 15px 40px 15px 15px;
         display: flex;
         align-items: flex-start;
-        justify-content: center;        
-        border-radius: 10px;
+        justify-content: center;
         min-height: 165px;
         width:100%;
         max-width: 380px;
-        margin:0 0 0 35px
-    }
+        margin:0 0 0 35px    ;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
     .subscription-head {
         font-size: 18px;
         margin: 0 0 15px;
@@ -1077,7 +1192,7 @@
     .subscription-btn {
         margin: 10px 0 0;
     }
-
+    
     .free-trail .subscription-expiry {
         color: #f1807e;
     }
@@ -1093,7 +1208,7 @@
         color: #fff;
     }
     /* EOF Profile Settings Page CSS */
-
+    
     /* BOF Change Password Page CSS */
     .change-password-wrapper {
         background: rgba(255, 255, 255, 0.8);
@@ -1110,11 +1225,15 @@
     .change-password {
         background: #fff;
         padding: 30px;
-        border-radius: 10px;
         width: 100%;
         max-width: 600px;
         position: relative;
-    }
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
     .change-password-head {
         font-size: 18px;
         color: #0079d1;
@@ -1147,3 +1266,88 @@
     }
     /* EOF Error Pages CSS */
     
+    /* BOF Dashboard Plans Page  */
+    .plans-list-wrapper {
+        display: flex;
+        margin: 10px 0 0
+    }
+    .plan-list-single {
+        background: #fff;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 40px 0 0;
+        text-align: center;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        padding: 30px 70px;
+    }
+    .plan-price {
+        margin: 10px 0 15px;
+        color: #717581;
+        font-size: 4.5em;
+        font-weight: 500;
+        line-height: 60px;
+    }
+    span.currency {
+        font-size: 2.5rem;
+    }
+    .price-title {
+        font-size: 14px;
+        margin: 0;
+        line-height: 20px;
+    }
+    ul.plan-specs {
+        margin: 0 0 25px;
+        padding: 0;
+        text-align: left;
+    }
+    ul.plan-specs li {
+        list-style: none;
+        position: relative;
+        margin: 0 0 5px;
+        padding: 0 0 0 25px;
+        color: #717581;
+    }
+    
+    ul.plan-specs li::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+    .plan-includes::before {
+        background: url(../img/check.png) no-repeat center center;
+    }
+    .not-includes::before {
+        background: url(../img/close.png) no-repeat center center;
+    }
+    .free-plan .subscription-head {
+        color: #0079d1;
+        font-weight: 600;
+    }
+    .free-plan button.btn {
+        background: #0079d1;
+        color: #fff;
+    }
+    .premium-plan .subscription-head {
+        color: #8dc63f;
+        font-weight: 600;
+    }
+    .premium-plan button.btn {
+        background: #8dc63f;
+        color: #fff;
+    }
+    .premium-plan {
+        background: #fff url(../img/dimond.png) no-repeat right 40px;
+    }
+    /* EOF Dashboard Plans Page  */

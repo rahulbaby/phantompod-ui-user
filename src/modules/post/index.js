@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LayoutMain } from 'layouts';
 import { LinkCustom } from 'components/common';
-import { useRouter } from 'hooks';
+import { useRouter, useRedux } from 'hooks';
 import PostForm from './components/Form';
 import PostList from './components/List';
 import {
@@ -10,6 +10,8 @@ import {
 	PodDetailsStoreProvider,
 	PostsStoreProvider,
 } from './store';
+import { isLinkedInUrl } from 'utils/functions';
+import { showMessage } from 'store/messages/actions';
 
 const TitleCard = ({ row }) => {
 	const { history } = useRouter();
@@ -32,7 +34,15 @@ const TitleCard = ({ row }) => {
 
 const PostAddFormPre = ({ onSucccess }) => {
 	const [url, setUrl] = useState('');
+	const [loading, setLoading] = useState('');
+	const { dispatch, getReduxItem } = useRedux();
 	const handleSubmit = () => {
+		setLoading(true);
+		if (!isLinkedInUrl(url)) {
+			dispatch(showMessage('Please enter a valid url!'));
+			setTimeout(() => setLoading(false), 1000);
+			return;
+		}
 		onSucccess(url);
 	};
 	return (
@@ -50,7 +60,12 @@ const PostAddFormPre = ({ onSucccess }) => {
 					value={url}
 					onChange={(e) => setUrl(e.target.value)}
 				/>
-				<button className="btn green-btn search-btn" type="submit" onClick={handleSubmit}>
+				<button
+					className="btn green-btn search-btn"
+					type="submit"
+					onClick={handleSubmit}
+					disabled={loading}
+				>
 					Add Post
 				</button>
 			</div>

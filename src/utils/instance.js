@@ -36,9 +36,9 @@ instance.interceptors.response.use(
   },
   (error) => {
     const { response } = error;
-
+    if (!response) return { status: 500, message: 'No response from server' };
     //console.log(error);
-    console.log(response.data);
+    //console.log(response.data);
     //console.log(response.status);
     let message = error.message || error.message || 'Operation failed !';
     message = response.data && response.data.message ? response.data.message : message;

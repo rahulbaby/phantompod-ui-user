@@ -14,16 +14,56 @@ const SectionCard = ({ title, subtitle, help, color }) => (
 );
 
 const ProgressBar = ({ value, label }) => (
-	<div className="progress mb-4" style={{ height: 30 }}>
+	<div className="progress">
 		<div
-			className="progress-bar "
+			className="progress-bar"
 			role="progressbar"
-			style={{ with: `${value || 0}%` }}
-			aria-valuenow={value || 0}
+			aria-valuenow={value}
 			aria-valuemin="0"
-			aria-valuemax={100}
+			aria-valuemax="100"
+			style={{ width: `${value || 0}%` }}
 		>
 			{label}
+		</div>
+	</div>
+);
+
+const DashboardStati = () => (
+	<div className="trending-graph-wrapper">
+		<h3 className="graph-head">Trending Posts by Number of Likes</h3>
+		<div className="graph-area">
+			<div className="graph-progress">
+				<ProgressBar label="New Boost" value={70} />
+				<ProgressBar label="New Boost" value={70} />
+				<ProgressBar label="New Boost" value={70} />
+				<ProgressBar label="New Boost" value={70} />
+			</div>
+			<div className="graph-breakdowns">
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>0</span>
+				</div>
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>100</span>
+				</div>
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>200</span>
+				</div>
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>300</span>
+				</div>
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>400</span>
+				</div>
+				<div className="breakdown-single">
+					<div className="breakdown-border"></div>
+					<span>500</span>
+				</div>
+			</div>
 		</div>
 	</div>
 );
@@ -36,13 +76,7 @@ const Dashboard = () => (
 			<SectionCard title="4185" subtitle="Pod | Manage" color="violet-blue-card" />
 			<SectionCard title="85,439" subtitle="Post Likes" color="navy-blue-card" />
 		</div>
-		<div className="trending-graph-wrapper">
-			<h6>Trending posts by number oflikes</h6>
-
-			<ProgressBar label="New Boost" value={70} />
-			<ProgressBar label="Stay Haungry , stay foolish" value={460} />
-			<ProgressBar label="h6. Bootstrap heading" value={420} />
-		</div>
+		<DashboardStati />
 	</React.Fragment>
 );
 

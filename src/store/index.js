@@ -13,7 +13,7 @@ const initialState = {};
 const persistConfig = {
 	key: 'root',
 	storage,
-	blacklist: ['router', 'message', 'auth'], //
+	blacklist: ['router', 'message'], //
 };
 const persistedReducer = persistReducer(persistConfig, reducers(history));
 

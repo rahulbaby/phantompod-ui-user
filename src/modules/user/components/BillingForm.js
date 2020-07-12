@@ -14,16 +14,15 @@ import {
 } from 'components/form';
 import { useRouter, useSubmit, useItem } from 'hooks';
 import { showMessage } from 'store/messages/actions';
+import { refreshUser } from 'modules/auth/actions';
 
 const countryListArr = getNames();
 
 const UserBillingForm = (props) => {
-	const { dispatch, getReduxItem } = useRedux();
 	const { history } = useRouter();
 	const commentsDefault = useItem('comments');
-
 	const { triggerSubmit, result, loading, error } = useSubmit();
-
+	const { dispatch, getReduxItem } = useRedux();
 	const authData = getReduxItem('auth');
 	const row = authData.user.billingDetails;
 	const onEdit = row.name && row.name !== '';
@@ -35,6 +34,7 @@ const UserBillingForm = (props) => {
 			if (!res.error) {
 				props.onSuccess && props.onSuccess();
 				dispatch(showMessage('Billing details updated', 'success'));
+				dispatch(refreshUser());
 			}
 		});
 	};
@@ -93,7 +93,11 @@ const UserBillingForm = (props) => {
 					/>
 				</div>
 				<div className="right-btns-wrapper">
-					<button className="btn small-btn red-btn">Cancel</button>
+					{props.onCancel && (
+						<button onCancel={props.onCancel} className="btn small-btn red-btn">
+							Cancel
+						</button>
+					)}
 					<FormButton
 						label={onEdit ? 'Update' : 'Add'}
 						className="btn small-btn green-btn"

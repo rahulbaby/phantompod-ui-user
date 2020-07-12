@@ -16,6 +16,8 @@ import Marketplace from 'modules/marketplace';
 import PodPosts from 'modules/post';
 import UserProfile from 'modules/user';
 import Support from 'modules/pages/Support';
+import UserPlanSelection from 'modules/user/PlanSelection';
+import UserSubscription from 'modules/user/Subscription';
 
 const routes = [
   {
@@ -82,6 +84,16 @@ const routes = [
     path: '/signup',
     exact: true,
     component: SignUp,
+  },
+  {
+    path: '/plan-selction',
+    exact: true,
+    component: UserPlanSelection,
+  },
+  {
+    path: '/premium-subscription',
+    exact: true,
+    component: UserSubscription,
   },
   {
     path: '*',

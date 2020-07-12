@@ -1,14 +1,12 @@
 import React from 'react';
 import { LayoutMain } from 'layouts';
-import { useRedux } from 'hooks';
+import { useRedux, useRouter } from 'hooks';
 import UserPasswordChangeForm from './components/PasswordChangeForm';
 import UserBillingForm from './components/BillingForm';
 import SubscriptionCard from './components/SubscriptionCard';
+import ResetButton from './components/ResetButton';
 
-const ProfileCard = ({ setShowPasswordForm }) => {
-  const { getReduxItem } = useRedux();
-  const authData = getReduxItem('auth');
-  const userData = authData.user;
+const ProfileCard = ({ setShowPasswordForm, userData }) => {
   return (
     <div className="profile-card box-shadow">
       <div className="prfile-img-wrapper">
@@ -37,6 +35,16 @@ const ProfileCard = ({ setShowPasswordForm }) => {
 
 const UserProfile = () => {
   const [showPasswordForm, setShowPasswordForm] = React.useState(false);
+  const [showBillingForm, setShowBillingForm] = React.useState(false);
+  const { getReduxItem } = useRedux();
+  const authData = getReduxItem('auth');
+  const userData = authData.user;
+  const { history } = useRouter();
+
+  React.useEffect(() => {
+    if (userData.status === null) history.push('plan-selction');
+  }, []);
+
   return (
     <React.Fragment>
       <div className="title-card">
@@ -48,11 +56,12 @@ const UserProfile = () => {
         <ProfileCard
           showPasswordForm={showPasswordForm}
           setShowPasswordForm={setShowPasswordForm}
+          userData={userData}
         />
-        <SubscriptionCard />
+        <SubscriptionCard setShowBillingForm={setShowBillingForm} />
       </div>
       {showPasswordForm && <UserPasswordChangeForm setShowPasswordForm={setShowPasswordForm} />}
-      <UserBillingForm />
+      {(userData.isBillingAdded || showBillingForm) && <UserBillingForm />}
     </React.Fragment>
   );
 };
@@ -60,5 +69,6 @@ const UserProfile = () => {
 export default () => (
   <LayoutMain>
     <UserProfile />
+    <ResetButton />
   </LayoutMain>
 );
