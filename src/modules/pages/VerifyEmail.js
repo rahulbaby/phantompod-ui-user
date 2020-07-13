@@ -6,9 +6,10 @@ import { singOut } from 'modules/auth/actions';
 
 export default () => {
 	const { dispatch } = useRedux();
-	const { history } = useRouter();
+	const { history, query } = useRouter();
 	useEffect(() => {
 		//API call
+		console.log('query', query);
 	}, []);
 	return (
 		<LayoutPlain>
