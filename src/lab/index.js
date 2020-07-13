@@ -7,6 +7,7 @@ import { AUTH_TOKEN_KEY, BASE_URL } from 'config';
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 import { LayoutMain } from 'layouts';
+import moment from 'moment';
 
 export const products = [
 	{
@@ -269,9 +270,10 @@ const PaymentForm = (props) => (
 	</Elements>
 );
 
+let cDate = moment(new Date()).add('days', 10).unix();
+
 export default () => (
 	<LayoutMain>
-		{' '}
-		<PaymentForm />
+		{cDate} - {moment.unix(cDate).format('DD MMM YYYY hh:mm a')}
 	</LayoutMain>
 );

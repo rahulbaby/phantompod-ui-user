@@ -60,7 +60,12 @@ const UserProfile = () => {
         />
         <SubscriptionCard setShowBillingForm={setShowBillingForm} />
       </div>
-      {showPasswordForm && <UserPasswordChangeForm setShowPasswordForm={setShowPasswordForm} />}
+      {showPasswordForm && (
+        <UserPasswordChangeForm
+          setShowPasswordForm={setShowPasswordForm}
+          onSuccess={() => setShowPasswordForm(false)}
+        />
+      )}
       {(userData.isBillingAdded || showBillingForm) && <UserBillingForm />}
     </React.Fragment>
   );

@@ -39,23 +39,32 @@ const SubscriptionCardTrial = ({ user, setShowBillingForm }) => {
 		<div className="subscription-box box-shadow free-trail">
 			<h3 className="subscription-head color-blue">Subscription</h3>
 			<h5 className="subscription-type">Free Trail</h5>
-			<p className="subscription-expiry">(Expires in 5 days)</p>
+			<p className="subscription-expiry">
+				(Expires on {moment.unix(user.trialDetails.expiresAt).format('DD MMM YYYY hh:mm a')})
+			</p>
 			<SubscriptionButton setShowBillingForm={setShowBillingForm} />
 		</div>
 	);
 };
 
 const SubscriptionCardPaid = ({ user }) => {
+	const cancelled = user.status === 'cancelled';
+	let subscriptionLabel = 'Free Trial';
+	if (user.isActive) subscriptionLabel = 'Active';
+	if (!user.onTrial && !user.isActive) subscriptionLabel = 'Subscription Error';
+	if (cancelled) subscriptionLabel = 'cancelled';
 	return (
 		<div className="subscription-box box-shadow premium-subscription">
 			<h3 className="subscription-head color-blue">Subscription</h3>
-			<h5 className="subscription-type">{user.status.toUpperCase()}</h5>
+			<h5 className="subscription-type">{subscriptionLabel.toUpperCase()}</h5>
 
-			{user.isActive ? (
+			{!user.onTrial && !cancelled ? (
 				<React.Fragment>
-					<p className="subscription-expiry">
-						(Next billng on July {moment.unix(user.paymentExpiresAt).format('DD MMM YYYY hh:mm a')})
-					</p>
+					{user.paymentExpiresAt && (
+						<p className="subscription-expiry">
+							(Next billng on {moment.unix(user.paymentExpiresAt).format('DD MMM YYYY hh:mm a')})
+						</p>
+					)}
 					<SubscriptionCancelButton />
 				</React.Fragment>
 			) : (

@@ -35,14 +35,19 @@ const PodForm = (props) => {
 
   const onSubmit = (data) => {
     data.comments = data.comments.split('\r\n').filter((x) => x.trim() != '');
-    triggerSubmit('pod', data, (res) => {
-      if (!res.error) {
-        props.onSuccess && props.onSuccess();
-        dispatch(showMessage('Pod list updated', 'success'));
-        reset();
-        history.push('/pod/list');
-      }
-    });
+    triggerSubmit(
+      'pod',
+      data,
+      (res) => {
+        if (!res.error) {
+          props.onSuccess && props.onSuccess();
+          dispatch(showMessage('Pod list updated', 'success'));
+          reset();
+          history.push('/pod/list');
+        }
+      },
+      onEdit ? 'put' : 'post',
+    );
   };
 
   const getInputProps = (name, label = '') => ({ name, label, register });

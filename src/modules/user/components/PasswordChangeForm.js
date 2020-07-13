@@ -1,37 +1,76 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-const UserPasswordChangeForm = ({ setShowPasswordForm }) => (
-	<div className="change-password-wrapper">
-		<div className="change-password box-shadow">
-			<h4 className="change-password-head">Change password</h4>
-			<form action="">
-				<div className="row">
-					<div className="col-lg-6">
-						<div className="form-group">
-							<label className="form-label">Old password</label>
-							<input type="text" className="form-control  form-Input" />
+import {
+	useForm,
+	Form,
+	FormInput,
+	FormTextArea,
+	FormSelect,
+	FormButton,
+	FormResult,
+	FormCheckbox,
+} from 'components/form';
+import { showMessage } from 'store/messages/actions';
+import { useRouter, useSubmit, useItem } from 'hooks';
+
+const API_URL = 'user/reset-password';
+const UserPasswordChangeForm = ({ setShowPasswordForm, onSuccess }) => {
+	const dispatch = useDispatch();
+	const { handleSubmit, register, reset } = useForm();
+
+	const { triggerSubmit, result, loading, error } = useSubmit();
+
+	const onSubmit = (data) => {
+		triggerSubmit('user/reset-password', data, (res) => {
+			if (!res.error) {
+				onSuccess && onSuccess();
+				dispatch(showMessage('Password updated!', 'success'));
+				reset();
+			}
+		});
+	};
+
+	const getInputProps = (name, label = '') => ({ name, register });
+	return (
+		<div className="change-password-wrapper">
+			<div className="change-password box-shadow">
+				<h4 className="change-password-head">Change password</h4>
+				<form onSubmit={handleSubmit(onSubmit)} noValidate>
+					<div className="row">
+						<div className="col-lg-6">
+							<div className="form-group">
+								<label className="form-label">Old password</label>
+								<FormInput
+									{...getInputProps('oldPassword', 'Pod Name')}
+									className="form-control  form-Input"
+								/>
+							</div>
+						</div>
+						<div className="col-lg-6">
+							<div className="form-group">
+								<label className="form-label">New password</label>
+								<FormInput
+									{...getInputProps('newPassword', 'Pod Name')}
+									className="form-control  form-Input"
+								/>
+							</div>
 						</div>
 					</div>
-					<div className="col-lg-6">
-						<div className="form-group">
-							<label className="form-label">New password</label>
-							<input type="text" className="form-control  form-Input" />
-						</div>
+					<div className="right-btns-wrapper">
+						<button
+							type="button"
+							className="btn small-btn red-btn"
+							onClick={() => setShowPasswordForm(false)}
+						>
+							Cancel
+						</button>
+						<button className="btn small-btn green-btn">Change</button>
 					</div>
-				</div>
-				<div className="right-btns-wrapper">
-					<button
-						type="button"
-						className="btn small-btn red-btn"
-						onClick={() => setShowPasswordForm(false)}
-					>
-						Cancel
-					</button>
-					<button className="btn small-btn green-btn">Change</button>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
-	</div>
-);
+	);
+};
 
 export default UserPasswordChangeForm;

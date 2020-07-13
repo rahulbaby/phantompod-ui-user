@@ -25,7 +25,7 @@ const UserBillingForm = (props) => {
 	const { dispatch, getReduxItem } = useRedux();
 	const authData = getReduxItem('auth');
 	const row = authData.user.billingDetails;
-	const onEdit = row.name && row.name !== '';
+	const onEdit = row && row.name && row.name !== '';
 
 	const { handleSubmit, register, reset } = useForm(row);
 

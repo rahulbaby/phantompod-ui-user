@@ -10,7 +10,7 @@ const Message = ({ item }) => {
     //setTimeout(() => dispatch(clearMessage(item.id)), 4000);
 
     if (item.text)
-      toast(item.text, {
+      toast(item.text.toUpperCase(), {
         // onClose: () => dispatch(clearMessage(item.id)),
         className: `text-white bg-${item.severity || 'dark'}`,
       });

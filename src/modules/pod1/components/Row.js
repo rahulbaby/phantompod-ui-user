@@ -53,7 +53,7 @@ export default ({ row, count }) => {
 	const isOwner = useIsOwner(row.userId);
 	const { _id, podKey } = row;
 	const members = row.members.filter((x) =>
-		isOwner ? x.status !== 'rejected' : x.status === 'accepeted',
+		isOwner ? x.status !== 'rejected' : x.status === 'accepted',
 	);
 	return (
 		<div className="pods-list-wrapper box-shadow">

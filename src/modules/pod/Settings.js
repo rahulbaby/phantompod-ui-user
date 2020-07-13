@@ -6,8 +6,7 @@ import { ErrorNotice } from 'components/common';
 import { useGetDbRow, useQuery, useUserId } from 'hooks';
 import PodForm from './components/Form';
 
-const PodSettings = () => {
-	const { id } = useQuery();
+const PodSettings = ({ id }) => {
 	const { loading, row } = useGetDbRow('pod', { _id: id });
 	const userId = useUserId();
 
@@ -17,8 +16,7 @@ const PodSettings = () => {
 	return <PodForm row={id ? row : {}} />;
 };
 
-export default (props) => (
-	<LayoutMain>
-		<PodSettings {...props} />
-	</LayoutMain>
-);
+export default (props) => {
+	const { id } = useQuery();
+	return <LayoutMain>{id ? <PodSettings {...props} id={id} /> : <PodForm />}</LayoutMain>;
+};

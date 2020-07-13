@@ -22,6 +22,7 @@ const PodLeaveButton = ({ id, podKey }) => {
 				);
 			}}
 			loading={loading}
+			className="btn small-btn red-btn"
 		/>
 	);
 };
@@ -53,7 +54,7 @@ export default ({ row, count }) => {
 	const isOwner = useIsOwner(row.userId);
 	const { _id, podKey } = row;
 	const members = row.members.filter((x) =>
-		isOwner ? x.status !== 'rejected' : x.status === 'accepeted',
+		isOwner ? x.status !== 'rejected' : x.status === 'accepted',
 	);
 	return (
 		<div className="pods-list-wrapper box-shadow">
@@ -61,7 +62,7 @@ export default ({ row, count }) => {
 				<span className="number-btn green-btn">{count}</span>
 			</div>
 			<div className="pod-content">
-				<LinkCustom to={`/marketplace/${_id}`}>
+				<LinkCustom to={`/pod/details/${_id}`}>
 					<h4 className="pod-list-head">{row.name}</h4>
 				</LinkCustom>
 				<p className="pod-paragraph">
@@ -77,7 +78,7 @@ export default ({ row, count }) => {
 					{isOwner ? (
 						<React.Fragment>
 							<LinkCustom to={`/pod/settings?id=${_id}`}>
-								<button className="btn small-btn green-btn">Setings</button>
+								<button className="btn small-btn green-btn">Settings</button>
 							</LinkCustom>
 							<PodDeleteButton id={_id} />
 						</React.Fragment>

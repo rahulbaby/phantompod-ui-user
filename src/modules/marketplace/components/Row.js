@@ -12,7 +12,7 @@ const RequestAccessButton = ({ id }) => {
 
 	const handleClick = () => {
 		triggerApiCall(
-			'pod/alter-members',
+			'pod/request-member-access',
 			{ id },
 			(res) => {
 				const { error, message, record } = res;

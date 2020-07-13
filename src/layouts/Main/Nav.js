@@ -32,6 +32,11 @@ const items = [
 		iconHover: 'support-active.svg',
 		to: '/support',
 	},
+	{
+		icon: 'support.svg',
+		iconHover: 'support-active.svg',
+		to: '/logout',
+	},
 ];
 
 export default () => (

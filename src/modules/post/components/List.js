@@ -26,9 +26,13 @@ const PostDeleteButton = ({ id }) => {
 					'delete',
 				);
 			}}
-			className="btn small-btn red-btn"
-			loading={loading}
-		/>
+		>
+			<div class="trash-icon">
+				<a href="#" class="trash-btn">
+					<img src="/img/icons/trash-icon.png" alt="" />
+				</a>
+			</div>
+		</ConfirmButton>
 	);
 };
 

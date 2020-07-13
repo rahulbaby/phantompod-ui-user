@@ -23,7 +23,7 @@ export default () => {
 	const { dispatch } = useRedux();
 	const onSubmit = (data) => {
 		triggerApiCall(
-			'pod/alter-members',
+			'pod/request-member-access',
 			data,
 			(res) => {
 				const { error, message, record } = res;
@@ -42,7 +42,7 @@ export default () => {
 				</div>
 				<div className="pod-user-details">
 					<div className="header-pod-details" style={toggle ? { right: 0 } : {}}>
-						<LinkCustom to="/pod/settings">
+						<LinkCustom to="/pod/create-new">
 							<button className="btn green-btn mr-3">New Pod</button>
 						</LinkCustom>
 

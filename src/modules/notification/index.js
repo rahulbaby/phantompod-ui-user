@@ -3,8 +3,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LayoutMain } from 'layouts';
 import { isoToFormatted } from 'utils/functions';
 import { instance } from 'utils';
-import { useRouter } from 'hooks';
+import { useRouter, useRedux } from 'hooks';
 import { fetchRows } from './actions';
+import { showMessage } from 'store/messages/actions';
+
+const ReadAllButton = ({ onSuccess }) => {
+	const [loading, setLoading] = React.useState(false);
+	const { dispatch, getReduxItem } = useRedux();
+	const authData = getReduxItem('auth');
+	const user = authData.user;
+
+	const handleClick = () => {
+		setLoading(true);
+		instance.get('notification/read-all').then((res) => {
+			setTimeout(() => {
+				dispatch(showMessage('Success', 'success'));
+				onSuccess && onSuccess();
+				setLoading(false);
+			}, 500);
+		});
+	};
+
+	return (
+		<React.Fragment>
+			<button className="btn medium-btn blue-btn" onClick={handleClick} disabled={loading}>
+				{loading ? 'Processing..' : 'Mark all as read'}
+			</button>
+		</React.Fragment>
+	);
+};
 
 const Row = ({ row }) => {
 	const { history } = useRouter();
@@ -44,7 +71,7 @@ const NotificationPage = () => {
 					</h4>
 				</div>
 				<div className="title-cardDetails">
-					<button className="btn medium-btn blue-btn">Mark all as read</button>
+					<ReadAllButton onSuccess={() => dispatch(fetchRows())} />
 				</div>
 			</div>
 			{rows.map((x) => (
