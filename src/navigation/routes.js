@@ -20,6 +20,7 @@ import Support from 'modules/pages/Support';
 import UserPlanSelection from 'modules/user/PlanSelection';
 import UserSubscription from 'modules/user/Subscription';
 import VerifyEmail from 'modules/pages/VerifyEmail';
+import VerifyEmailPrompt from 'modules/pages/VerifyEmailPrompt';
 
 const routes = [
   {
@@ -116,6 +117,11 @@ const routes = [
     path: '/verify-email',
     exact: true,
     component: VerifyEmail,
+  },
+  {
+    path: '/verify-email-prompt',
+    exact: true,
+    component: VerifyEmailPrompt,
   },
   {
     path: '*',

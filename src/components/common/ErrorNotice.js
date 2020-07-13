@@ -12,6 +12,7 @@ export default (props) => {
         <img src="/img/no-connection.png" alt="" />
       </div>
       <h4 className="error-head">{title || 'Something went wrong!'}</h4>
+      {subTitle && <p className="card-text">{subTitle}</p>}
       {onRetry && (
         <button onClick={onRetry} className="btn small-btn blue-btn">
           Reload Page

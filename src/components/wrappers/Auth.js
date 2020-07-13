@@ -11,9 +11,12 @@ const WrapperAuth = (props) => {
 
   const pathname = location.pathname;
   const pathnamePlanSelectionArr = ['/plan-selction', '/premium-subscription'];
+  const pathnameEmailVerArr = ['/verify-email', '/verify-email-prompt'];
 
   const auth = useSelector(({ auth }) => auth);
   const { isLoading, authenticated, error, lastFetchValid } = auth;
+  const emailVerified = authenticated ? !auth.user.emailVerified : false;
+
   useEffect(() => {
     if (!authenticated && !isLoading) history.push('/login?page=' + pathname);
   }, [authenticated, isLoading]);
@@ -23,7 +26,13 @@ const WrapperAuth = (props) => {
   }, []);
 
   useEffect(() => {
-    if (authenticated && auth.user.status === null && !pathnamePlanSelectionArr.includes(pathname))
+    if (authenticated && !auth.user.emailVerified && !pathnameEmailVerArr.includes(pathname))
+      history.push('/verify-email-prompt');
+    else if (
+      authenticated &&
+      auth.user.status === null &&
+      ![...pathnamePlanSelectionArr, ...pathnameEmailVerArr].includes(pathname)
+    )
       history.push('/plan-selction');
   }, [pathname]);
 
@@ -35,6 +44,7 @@ const WrapperAuth = (props) => {
     !Object.keys(auth.user).length
   )
     cont = <LoaderCircular />;
+
   return <Fragment>{cont}</Fragment>;
 };
 
