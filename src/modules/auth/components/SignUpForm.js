@@ -33,10 +33,10 @@ const SignUpForm = (props) => {
       />
       <FormInput
         type="email"
-        label="Email"
+        label="Email Address"
         name="email"
         className="curved mb-3 box-shadow"
-        placeholder="Email"
+        placeholder="Email Address"
       />
       <FormInput
         type="password"

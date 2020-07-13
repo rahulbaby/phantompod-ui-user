@@ -31,6 +31,11 @@ const MarketplacePage = (props) => {
 
 export default () => (
 	<LayoutMain>
+		<div className="title-card">
+			<div className="title-cardHead-wrapper">
+				<h4 className="title-cardHead">Marketplace</h4>
+			</div>
+		</div>
 		<MarketplaceStoreProvider>
 			<MarketplacePage />
 		</MarketplaceStoreProvider>

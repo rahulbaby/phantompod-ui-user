@@ -29,7 +29,7 @@ const LoginForm = (props) => {
         label="Email"
         name="email"
         className="curved mb-3 box-shadow"
-        placeholder="Email"
+        placeholder="Email Address"
       />
       <FormInput
         type="password"

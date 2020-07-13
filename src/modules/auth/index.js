@@ -16,8 +16,7 @@ export default () => (
 				<img src="/img/icons/google-icon.png" alt="" /> Sign In with Google
 			</button>
 			<h6 className="signup-link">
-				Don't have an account?
-				<LinkCustom to="/signup">Sign Up</LinkCustom>
+				Don't have an account? <LinkCustom to="/signup">Sign Up</LinkCustom>
 			</h6>
 		</div>
 	</LayoutAuth>

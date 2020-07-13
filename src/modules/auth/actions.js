@@ -1,4 +1,5 @@
 import { instance } from 'lib';
+import Cookies from 'universal-cookie';
 import { AUTH_TOKEN_KEY } from 'config';
 import {
   SIGN_IN,
@@ -10,6 +11,8 @@ import {
   IS_LOADING,
 } from './constants';
 
+const cookies = new Cookies();
+
 /* action creators */
 export const signIn = (data) => (dispatch) => {
   return dispatch({
@@ -20,6 +23,7 @@ export const signIn = (data) => (dispatch) => {
 
 export const authenticated = (data) => (dispatch) => {
   localStorage.setItem(AUTH_TOKEN_KEY, data.token);
+  cookies.set(AUTH_TOKEN_KEY, data.token, { path: '/' });
   return dispatch({
     type: AUTHENTICATED,
   });
@@ -27,6 +31,7 @@ export const authenticated = (data) => (dispatch) => {
 
 export const singOut = () => (dispatch) => {
   localStorage.removeItem(AUTH_TOKEN_KEY);
+  cookies.remove(AUTH_TOKEN_KEY, { path: '/' });
   return dispatch({
     type: UNAUTHENTICATED,
   });
