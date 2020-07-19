@@ -34,6 +34,7 @@ const PodAccessButton = ({ row, memberId, status, podId, ...rest }) => {
 						});
 					},
 					'put',
+					({ message }) => showMessage(message || 'Something went wrong!', 'danger'),
 				)
 			}
 			label="Change Sataus"
@@ -142,7 +143,7 @@ const PodMembers = () => {
 		});
 	}, [podRow, podLoading]);
 
-	if (id && loading) return <LoaderList />;
+	if ((id && loading) || podLoading) return <LoaderList />;
 	if (!row) return <ErrorNotice />;
 
 	let members = row.members.filter((x) => search == '' || x.name.indexOf(search) > -1);

@@ -13,11 +13,17 @@ const SubscriptionCancelButton = ({ onSuccess }) => {
 
 	const handleClick = () => {
 		setLoading(true);
-		instance.post('stripe/cancel-subscription').then((res) => {
+		instance.post('stripe/cancel-subscription').then(({ error }) => {
 			setTimeout(() => {
-				dispatch(showMessage('Success', 'success'));
+				dispatch(
+					showMessage(
+						error ? error.message || 'Something went wrong!' : 'Success',
+						error ? 'danger' : 'success',
+					),
+				);
 				dispatch(refreshUser());
-				onSuccess && onSuccess();
+				if (error) setLoading(false);
+				else onSuccess && onSuccess();
 			}, 5000);
 		});
 	};

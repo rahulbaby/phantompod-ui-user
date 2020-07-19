@@ -6,6 +6,31 @@ import { isoToFormatted } from 'utils/functions';
 import { setPage } from '../actions';
 import { useIsOwner, useApiHttpCall, useRedux, useShowMsg } from 'hooks';
 
+const PostAcceptButton = ({ id }) => {
+	const { resetStore } = usePostsStore();
+	const { triggerApiCall, result, loading, error } = useApiHttpCall();
+	const [showMessage] = useShowMsg();
+	return (
+		<Button
+			onClick={() =>
+				triggerApiCall(
+					'post/approve',
+					{ id },
+					({ record }) => {
+						showMessage('Success', 'success');
+						resetStore();
+					},
+					'put',
+					({ message }) => showMessage(message || 'Something went wrong!', 'danger'),
+				)
+			}
+			label="Approve"
+			className="btn small-btn btn-success"
+			loading={loading}
+		/>
+	);
+};
+
 const PostDeleteButton = ({ id }) => {
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
 	const { dispatch } = useRedux();
@@ -27,8 +52,8 @@ const PostDeleteButton = ({ id }) => {
 				);
 			}}
 		>
-			<div class="trash-icon">
-				<a href="#" class="trash-btn">
+			<div className="trash-icon">
+				<a href="#" className="trash-btn">
 					<img src="/img/icons/trash-icon.png" alt="" />
 				</a>
 			</div>
@@ -36,7 +61,7 @@ const PostDeleteButton = ({ id }) => {
 	);
 };
 
-const PostRow = ({ row, count }) => {
+const PostRow = ({ row, count, isPodOwner }) => {
 	const isOwner = useIsOwner(row.userId._id);
 	return (
 		<div className="pods-list-wrapper box-shadow">
@@ -50,6 +75,12 @@ const PostRow = ({ row, count }) => {
 				</p>
 			</div>
 			{isOwner && <PostDeleteButton id={row._id} />}
+			{isPodOwner && !row.approved && (
+				<div style={{ alignSelf: 'center' }}>
+					<PostAcceptButton id={row._id} />
+					<PostDeleteButton id={row._id} />
+				</div>
+			)}
 		</div>
 	);
 };
@@ -57,23 +88,24 @@ const PostRow = ({ row, count }) => {
 const PostList = (props) => {
 	const { state, dispatch } = usePostsStore();
 	const { rows, loading, total, page } = state;
+	const isPodOwner = useIsOwner(props.row.userId);
 	return (
 		<Fragment>
 			{!loading && rows.length === 0 && <EmptyNotice title="No posts avialable now." />}
 			{rows.map((x, i) => (
-				<PostRow count={i + 1} row={x} key={x._id.toString()} />
+				<PostRow count={i + 1} row={x} key={x._id.toString()} isPodOwner={isPodOwner} />
 			))}
 			{rows.length < total && !loading && (
-				<Button label="load more" onClick={() => setPage(dispatch)(page + 1)} />
+				<Button label="load more" onClick={() => setPage(dispatch)(page + 1, props.id)} />
 			)}
 		</Fragment>
 	);
 };
 
-export default ({ id }) => {
+export default ({ id, row }) => {
 	return (
 		<PostsStoreProvider id={id}>
-			<PostList />
+			<PostList id={id} row={row} />
 		</PostsStoreProvider>
 	);
 };

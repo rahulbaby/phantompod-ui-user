@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LayoutMain } from 'layouts';
-import { LinkCustom } from 'components/common';
-import { useRouter, useRedux } from 'hooks';
+import { LinkCustom, ConfirmButton } from 'components/common';
+import { useRouter, useRedux, useApiHttpCall, useShowMsg } from 'hooks';
 import PostForm from './components/Form';
 import PostList from './components/List';
 import {
@@ -12,6 +12,33 @@ import {
 } from './store';
 import { isLinkedInUrl } from 'utils/functions';
 import { showMessage } from 'store/messages/actions';
+
+const PodLeaveButton = ({ id, podKey }) => {
+	const { triggerApiCall, result, loading, error } = useApiHttpCall();
+	const { dispatch } = useRedux();
+	const [showMessage] = useShowMsg();
+	const { history } = useRouter();
+	return (
+		<ConfirmButton
+			label="Leave"
+			message="You are about to leave this pod."
+			onConfirm={() => {
+				triggerApiCall(
+					'pod/alter-members',
+					{ id: podKey, remove: 1 },
+					({ error, message }) => {
+						showMessage(message, error ? 'danger' : 'success');
+						history.replace('/pod/list');
+					},
+					'put',
+				);
+			}}
+			loading={loading}
+		>
+			<a>Leave Pod</a>
+		</ConfirmButton>
+	);
+};
 
 const TitleCard = ({ row }) => {
 	const { history } = useRouter();
@@ -24,9 +51,22 @@ const TitleCard = ({ row }) => {
 				<button onClick={history.goBack} className="btn medium-btn blue-btn">
 					Back
 				</button>
-				<LinkCustom to={`/pod/settings?id=${row._id}`}>
+				<div class="settings-dropdown-icon">
 					<img src="/img/icons/settings.png" style={{ margin: '0 0 0 12px' }} alt="" />
-				</LinkCustom>
+					<div class="settings-dropdown-wrapper">
+						<ul class="settings-dropdown">
+							<li>
+								<LinkCustom to={`/pod/members?id=${row._id}`}>Members</LinkCustom>
+							</li>
+							<li>
+								<LinkCustom to={`/pod/settings?id=${row._id}`}>Settings</LinkCustom>
+							</li>
+							<li>
+								<PodLeaveButton id={row._id} podKey={row.podKey} />
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -87,7 +127,7 @@ const PodPostsPage = (props) => {
 					setUrl(url);
 				}}
 			/>
-			<PostList id={row._id} />
+			<PostList id={row._id} row={row} />
 		</React.Fragment>
 	);
 };

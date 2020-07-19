@@ -42,7 +42,7 @@ export default ({ row, url, onSuccess }) => {
 				onSuccess && onSuccess();
 				dispatch(showMessage('Post list updated', 'success'));
 				reset();
-				//history.push(`/marketplace/${row._id}`);
+				history.push(`/marketplace/${row._id}`);
 			}
 		});
 	};

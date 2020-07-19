@@ -7,6 +7,7 @@ let initialState = {
   total: 0,
   page: 0,
   error: false,
+  unreadTotal: 0,
 };
 
 let lastFetchValid;
@@ -28,6 +29,7 @@ const moduleReducer = (state = initialState, action) => {
         rows: action.payload.docs,
         total: action.payload.total,
         page: action.payload.page,
+        unreadTotal: action.payload.unreadTotal,
       };
 
     case `${FETCH_ROWS}${REJECTED}`:

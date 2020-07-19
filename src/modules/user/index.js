@@ -5,16 +5,25 @@ import UserPasswordChangeForm from './components/PasswordChangeForm';
 import UserBillingForm from './components/BillingForm';
 import SubscriptionCard from './components/SubscriptionCard';
 import ResetButton from './components/ResetButton';
+import UserAvatar from './components/Avatar';
+import { Modal } from 'components/common';
+import { imgSrc } from 'utils/functions';
 
 const ProfileCard = ({ setShowPasswordForm, userData }) => {
+  const modalRef = React.useRef();
+
   return (
     <div className="profile-card box-shadow">
       <div className="prfile-img-wrapper">
         <div className="prfile-img">
-          <img src="img/user-img.jpg" alt="" />
+          <img src={imgSrc(userData.image, 'user')} alt="" />
         </div>
+
         <div className="profile-img-actions">
-          <span className="action-text color-blue">Change</span>
+          <Modal ref={modalRef}>
+            <span className="action-text color-blue">Change</span>
+            <UserAvatar onSuccess={() => modalRef.current.toggleModal()} />
+          </Modal>
           <span className="action-text color-red">Delete</span>
         </div>
       </div>

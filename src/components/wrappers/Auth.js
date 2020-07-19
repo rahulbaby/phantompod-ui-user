@@ -26,7 +26,7 @@ const WrapperAuth = (props) => {
   }, []);
 
   useEffect(() => {
-    if (authenticated && !auth.user.emailVerified && !pathnameEmailVerArr.includes(pathname))
+    if (authenticated && !auth.user.emailVerified && !pathnameEmailVerArr.includes(pathname) && false )
       history.push('/verify-email-prompt');
     else if (
       authenticated &&

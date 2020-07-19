@@ -21,14 +21,14 @@ export const PostsStoreProvider = (props) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
 	useEffect(() => {
-		setPage(dispatch)(1);
+		setPage(dispatch)(1, props.id);
 	}, []);
 
 	const resetStore = () => {
 		dispatch({
 			type: RESET_STORE,
 		});
-		setPage(dispatch)(1);
+		setPage(dispatch)(1, props.id);
 	};
 
 	return (

@@ -3,7 +3,7 @@ import { FETCH_ROWS_API, REFRESH_ROWS, SET_LOADING, SET_PAGE } from './constants
 import { isArray } from 'utils/functions';
 /* action creators */
 
-export const fetchRows = (dispatch) => (page, limit = 2) => {
+export const fetchRows = (dispatch) => (page, limit = 5) => {
 	dispatch({
 		type: SET_LOADING,
 	});

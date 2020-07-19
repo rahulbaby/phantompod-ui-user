@@ -40,7 +40,7 @@ const Row = ({ row }) => {
 			className={`notification-wrapper ${row.seen ? '' : 'notification-on'}`}
 			onClick={() => {
 				instance.get(`/notification/read/${row._id}`);
-				history.push(`/pod/members?id=${row.meta.id}`);
+				history.push(row.meta.url ? row.meta.url : `/pod/members?id=${row.meta.id}`);
 			}}
 		>
 			<div className="notification-bell-wrapper">

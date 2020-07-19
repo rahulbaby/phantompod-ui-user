@@ -15,12 +15,17 @@ import {
 import { useApiHttpCall, useShowMsg, useRedux } from 'hooks';
 import { addRow } from 'modules/pod/actions';
 import { isMobile } from 'utils/functions';
+import { imgSrc } from 'utils/functions';
 
 export default () => {
 	const [toggle, setToggle] = React.useState(false);
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
 	const [showMessage] = useShowMsg();
 	const { dispatch } = useRedux();
+	const { getReduxItem } = useRedux();
+	const authData = getReduxItem('auth');
+	const userData = authData.user;
+
 	const onSubmit = (data) => {
 		triggerApiCall(
 			'pod/request-member-access',
@@ -28,7 +33,7 @@ export default () => {
 			(res) => {
 				const { error, message, record } = res;
 				showMessage(message, error ? 'danger' : 'success');
-				if (!error && record) dispatch(addRow(record));
+				//if (!error && record) dispatch(addRow(record));
 			},
 			'put',
 			({ message }) => showMessage(message, 'danger'),
@@ -62,7 +67,18 @@ export default () => {
 						</Form>
 					</div>
 					<div className="header-user-details">
-						<img className="header-user-img" src="/img/user-img.jpg" alt="" />
+						<img className="header-user-img" src={imgSrc(userData.image, 'user')} alt="" />
+						<div className="header-login-details-wrapper">
+							<div className="header-login-details">
+								<div className="profile-pic">
+									<img className="header-user-img" src={imgSrc(userData.image, 'user')} alt="" />
+								</div>
+								<h5 className="profile-name">{userData.name}</h5>
+								<p className="logout">
+									<LinkCustom to="/logout">logout</LinkCustom>
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div className="header-toggle">
