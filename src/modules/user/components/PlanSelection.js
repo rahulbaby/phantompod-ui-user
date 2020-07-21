@@ -49,7 +49,7 @@ const UserPlanSelection = () => {
 				</div>
 			</div>
 
-			<div className="plans-list-wrapper">
+			<div className="plans-list-wrapper" style={{ justifyContent: 'center' }}>
 				<div className="plan-list-single box-shadow free-plan">
 					<h3 className="subscription-head">Free Trial</h3>
 					<div className="plan-price">
