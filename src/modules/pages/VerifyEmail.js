@@ -9,11 +9,11 @@ import { instance } from 'utils';
 
 const VerificationResult = ({ verified }) => {
 	return verified ? (
-		<div class="alert alert-success" role="alert">
+		<div className="alert alert-success m-4" role="alert">
 			Email verified successfully!
 		</div>
 	) : (
-		<div class="alert alert-danger" role="alert">
+		<div className="alert alert-danger m-4" role="alert">
 			Sorry ! Can't varify email now.
 		</div>
 	);
@@ -24,18 +24,12 @@ export default () => {
 	const { history, query } = useRouter();
 	const [verified, setVerified] = useState(null);
 
-	const auth = useSelector(({ auth }) => auth);
-	const { isLoading, authenticated, error, lastFetchValid } = auth;
-	const emailVerified = authenticated ? auth.user.emailVerified : false;
+	useEffect(() => {
+		if (verified) history.replace('/login');
+	}, [verified]);
 
 	useEffect(() => {
-		if (emailVerified) history.replace('/');
-	}, [emailVerified]);
-
-	useEffect(() => {
-		//API call
 		instance.post('verify-email', query).then((res) => {
-			console.log('res data:', res);
 			setVerified(res.verified || false);
 		});
 	}, []);

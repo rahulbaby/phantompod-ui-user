@@ -4,7 +4,7 @@ import { Message } from '../components';
 const LayoutPlain = (props) => {
 	return (
 		<React.Fragment>
-			<div className="wrapper">
+			<div>
 				<Message />
 				{props.children || null}
 			</div>
