@@ -17,6 +17,7 @@ import { Button, LinkCustom } from 'components/common';
 import { showMessage } from 'store/messages/actions';
 import { useRouter, useSubmit, useItem } from 'hooks';
 import { isLinkedInUrl } from 'utils/functions';
+import { instance } from 'utils';
 
 const FieldCheckBoxObj = {
 	autoShare: 'Auto Share',
@@ -42,6 +43,7 @@ export default ({ row, url, onSuccess }) => {
 				onSuccess && onSuccess();
 				dispatch(showMessage('Post list updated', 'success'));
 				reset();
+				instance.get(`post/trigger-bot?id=${res._id}`);
 				history.push(`/marketplace/${row._id}`);
 			}
 		});

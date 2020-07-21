@@ -67,13 +67,13 @@ export default () => {
 						</Form>
 					</div>
 					<div className="header-user-details">
-						<img className="header-user-img" src={imgSrc(userData.image, 'user')} alt="" />
+						<img className="header-user-img" src={imgSrc(userData?.image, 'user')} alt="" />
 						<div className="header-login-details-wrapper">
 							<div className="header-login-details">
 								<div className="profile-pic">
-									<img className="header-user-img" src={imgSrc(userData.image, 'user')} alt="" />
+									<img className="header-user-img" src={imgSrc(userData?.image, 'user')} alt="" />
 								</div>
-								<h5 className="profile-name">{userData.name}</h5>
+								<h5 className="profile-name">{userData?.name}</h5>
 								<p className="logout">
 									<LinkCustom to="/logout">logout</LinkCustom>
 								</p>
