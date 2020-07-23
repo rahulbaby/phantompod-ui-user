@@ -34,7 +34,7 @@ const PodForm = (props) => {
   const { triggerSubmit, result, loading, error } = useSubmit();
 
   const onSubmit = (data) => {
-    data.comments = data.comments.split('\r\n').filter((x) => x.trim() != '');
+    data.comments = data.comments.split('\n').filter((x) => x.trim() != '');
     triggerSubmit(
       'pod',
       data,

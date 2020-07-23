@@ -28,16 +28,17 @@ export default ({ row, url, onSuccess }) => {
 	const dispatch = useDispatch();
 	const { history } = useRouter();
 	const { triggerSubmit, result, loading, error } = useSubmit();
-	const { handleSubmit, register, reset } = useForm(
-		_.pick(row, ['comments', 'autoShare', 'autoLike', 'autoComment', 'autoValidate']),
-	);
+	let formRow = _.pick(row, ['comments', 'autoShare', 'autoLike', 'autoComment', 'autoValidate']);
+	formRow.comments = formRow.comments.join('\n');
+	const { handleSubmit, register, reset } = useForm(formRow);
 
 	const getInputProps = (name, label = '') => ({ name, label, register });
 
 	const onSubmit = (data) => {
 		data.url = url;
 		data.podId = row._id;
-		data.comments = data.comments.split('\r\n').filter((x) => x.trim() != '');
+		data.comments = data.comments.split('\n').filter((x) => x.trim() != '');
+		console.log(data.comments);
 		triggerSubmit('post', data, (res) => {
 			if (!res.error) {
 				onSuccess && onSuccess();
