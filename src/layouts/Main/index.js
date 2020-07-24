@@ -11,7 +11,7 @@ const LayoutMain = (props) => {
 			<Header />
 			<div className="wrapper">
 				<Message />
-				<WrapperAuth>{props.children || null}</WrapperAuth>
+				{props.children || null}
 			</div>
 		</React.Fragment>
 	);
@@ -19,6 +19,8 @@ const LayoutMain = (props) => {
 
 export default (props) => (
 	<WrapperDataFetch>
-		<LayoutMain {...props} />
+		<WrapperAuth>
+			<LayoutMain {...props} />
+		</WrapperAuth>
 	</WrapperDataFetch>
 );
