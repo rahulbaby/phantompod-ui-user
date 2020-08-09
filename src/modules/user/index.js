@@ -75,7 +75,7 @@ const UserProfile = () => {
           onSuccess={() => setShowPasswordForm(false)}
         />
       )}
-      {(userData.isBillingAdded || showBillingForm) && <UserBillingForm />}
+      {(userData.isBillingAdded || showBillingForm || 1) && <UserBillingForm />}
     </React.Fragment>
   );
 };

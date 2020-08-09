@@ -11,13 +11,14 @@ import { authenticated } from '../actions';
 const SignUpForm = (props) => {
   const dispatch = useDispatch();
   const { triggerSubmit, result, loading, error } = useSubmit();
+  const { history } = useRouter();
 
   const onSubmit = (data) => {
     triggerSubmit('user', data, (res) => {
       if (!res.error) {
         props.onSuccess && props.onSuccess();
         dispatch(showMessage('Account created', 'success'));
-        dispatch(authenticated(res));
+        history.push('/notice?tmpl=0');
       }
     });
   };

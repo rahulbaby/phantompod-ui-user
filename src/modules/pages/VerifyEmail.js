@@ -25,7 +25,7 @@ export default () => {
 	const [verified, setVerified] = useState(null);
 
 	useEffect(() => {
-		if (verified) history.replace('/login');
+		if (verified) history.replace('/notice?tmpl=1');
 	}, [verified]);
 
 	useEffect(() => {

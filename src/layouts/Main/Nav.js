@@ -56,7 +56,7 @@ export default () => {
 			<div className="nav-left">
 				<div className="logo">
 					<a href="#">
-						<img src={imgSrc(userData?.image, 'user')} className="logo-img" />
+						<img src="/img/logo.png" className="logo-img" />
 					</a>
 				</div>
 				<ul className="menulist">

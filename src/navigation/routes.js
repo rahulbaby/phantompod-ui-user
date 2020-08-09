@@ -17,6 +17,7 @@ import Marketplace from 'modules/marketplace';
 import PodPosts from 'modules/post';
 import UserProfile from 'modules/user';
 import Support from 'modules/pages/Support';
+import Notice from 'modules/pages/Notice';
 import UserPlanSelection from 'modules/user/PlanSelection';
 import UserSubscription from 'modules/user/Subscription';
 import VerifyEmail from 'modules/pages/VerifyEmail';
@@ -122,6 +123,11 @@ const routes = [
     path: '/verify-email-prompt',
     exact: true,
     component: VerifyEmailPrompt,
+  },
+  {
+    path: '/notice',
+    exact: true,
+    component: Notice,
   },
   {
     path: '*',

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useRedux } from 'hooks';
+import * as yup from 'yup';
 import { getNames } from 'country-list';
 
 import {
@@ -18,6 +19,15 @@ import { refreshUser } from 'modules/auth/actions';
 
 const countryListArr = getNames();
 
+const SignupSchema = yup.object().shape({
+	name: yup.string().required(),
+	country: yup.string().required(),
+	state: yup.string().required(),
+	streetAddress: yup.string().required(),
+	city: yup.string().required(),
+	zip: yup.number().required(),
+});
+
 const UserBillingForm = (props) => {
 	const { history } = useRouter();
 	const commentsDefault = useItem('comments');
@@ -27,7 +37,9 @@ const UserBillingForm = (props) => {
 	const row = authData.user.billingDetails;
 	const onEdit = row && row.name && row.name !== '';
 
-	const { handleSubmit, register, reset } = useForm(row);
+	const { handleSubmit, register, reset, errors } = useForm(row, {
+		validationSchema: SignupSchema,
+	});
 
 	const onSubmit = (data) => {
 		triggerSubmit('user/update-billing-details', data, (res) => {
@@ -92,6 +104,7 @@ const UserBillingForm = (props) => {
 						className="form-control form-Input"
 					/>
 				</div>
+				<FormResult errors={errors} />
 				<div className="right-btns-wrapper">
 					{props.onCancel && (
 						<button onCancel={props.onCancel} className="btn small-btn red-btn">

@@ -5,7 +5,7 @@ import { LinkCustom } from 'components/common';
 import SignUpForm from './components/SignUpForm';
 
 const GOOGLE_AUTH_URL = `${BASE_URL}auth/google`;
-
+console.log('GOOGLE_AUTH_URL', GOOGLE_AUTH_URL);
 export default () => (
 	<LayoutAuth>
 		<div className="login-form">

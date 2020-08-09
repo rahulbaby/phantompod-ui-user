@@ -13,10 +13,6 @@ import { showMessage } from 'store/messages/actions';
 import { LayoutMain } from 'layouts';
 import { instance } from 'utils';
 
-export const customer = {
-	id: 'cus_HVAclyYRKWavr3',
-};
-
 const stripePromise = loadStripe(REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 if (!REACT_APP_STRIPE_PUBLISHABLE_KEY) {
