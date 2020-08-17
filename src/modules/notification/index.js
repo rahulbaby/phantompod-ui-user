@@ -42,6 +42,7 @@ const Row = ({ row }) => {
 				instance.get(`/notification/read/${row._id}`);
 				history.push(row.meta.url ? row.meta.url : `/pod/members?id=${row.meta.id}`);
 			}}
+			style={{ cursor: 'pointer' }}
 		>
 			<div className="notification-bell-wrapper">
 				<span className="notification-bell">

@@ -66,8 +66,11 @@ export default ({ row, count }) => {
 					<h4 className="pod-list-head">{row.name}</h4>
 				</LinkCustom>
 				<p className="pod-paragraph">
-					{row.description} - ${row.podKey}
+					{row.description}
+					<br />
+					<small className="text-secondary">POD SECRET : {row.podKey}</small>
 				</p>
+
 				<div className="pod-list-btns">
 					<LinkCustom to={`/pod/members?id=${_id}`}>
 						<button className="btn small-btn blue-btn">

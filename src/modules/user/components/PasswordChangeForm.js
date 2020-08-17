@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
 
 import {
 	useForm,
@@ -14,10 +15,15 @@ import {
 import { showMessage } from 'store/messages/actions';
 import { useRouter, useSubmit, useItem } from 'hooks';
 
+const validationSchema = yup.object().shape({
+	oldPassword: yup.string().required('Old password is required'),
+	newPassword: yup.string().required('New password is required'),
+});
+
 const API_URL = 'user/reset-password';
 const UserPasswordChangeForm = ({ setShowPasswordForm, onSuccess }) => {
 	const dispatch = useDispatch();
-	const { handleSubmit, register, reset } = useForm();
+	const { handleSubmit, register, reset, errors } = useForm({}, { validationSchema });
 
 	const { triggerSubmit, result, loading, error } = useSubmit();
 
@@ -44,6 +50,7 @@ const UserPasswordChangeForm = ({ setShowPasswordForm, onSuccess }) => {
 								<FormInput
 									{...getInputProps('oldPassword', 'Pod Name')}
 									className="form-control  form-Input"
+									type="password"
 								/>
 							</div>
 						</div>
@@ -53,10 +60,12 @@ const UserPasswordChangeForm = ({ setShowPasswordForm, onSuccess }) => {
 								<FormInput
 									{...getInputProps('newPassword', 'Pod Name')}
 									className="form-control  form-Input"
+									type="password"
 								/>
 							</div>
 						</div>
 					</div>
+					<FormResult result={result} errors={errors} />
 					<div className="right-btns-wrapper">
 						<button
 							type="button"

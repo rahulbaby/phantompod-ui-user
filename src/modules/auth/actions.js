@@ -29,8 +29,8 @@ export const authenticated = (data) => (dispatch) => {
   });
 };
 
-export const singOut = () => (dispatch) => {
-  localStorage.removeItem(AUTH_TOKEN_KEY);
+export const singOut = () => async (dispatch) => {
+  await localStorage.removeItem(AUTH_TOKEN_KEY);
   cookies.remove(AUTH_TOKEN_KEY, { path: '/' });
   return dispatch({
     type: UNAUTHENTICATED,

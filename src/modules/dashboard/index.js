@@ -1,5 +1,6 @@
 import React from 'react';
 import { LayoutMain } from 'layouts';
+import { instance } from 'utils';
 
 const SectionCard = ({ title, subtitle, help, color }) => (
 	<div className={`card ${color || 'iris-blue-card'}`}>
@@ -28,54 +29,92 @@ const ProgressBar = ({ value, label }) => (
 	</div>
 );
 
-const DashboardStati = () => (
-	<div className="trending-graph-wrapper">
-		<h3 className="graph-head">Trending Posts by Number of Likes</h3>
-		<div className="graph-area">
-			<div className="graph-progress">
-				<ProgressBar label="New Boost" value={70} />
-				<ProgressBar label="New Boost" value={70} />
-				<ProgressBar label="New Boost" value={70} />
-				<ProgressBar label="New Boost" value={70} />
-			</div>
-			<div className="graph-breakdowns">
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>0</span>
+const DashboardStati = () => {
+	const [loading, setLoading] = React.useState(false);
+	const [result, setresult] = React.useState([]);
+	const getRows = () => {
+		setLoading(true);
+		instance.get('user/dashboard-posts').then((res) => {
+			setLoading(false);
+			setresult(res.posts);
+		});
+	};
+	React.useEffect(() => {
+		getRows();
+	}, []);
+	if (loading || !result.length) return null;
+	return (
+		<div className="trending-graph-wrapper">
+			<h3 className="graph-head">Trending Posts by Number of Likes</h3>
+			<div className="graph-area">
+				<div className="graph-progress">
+					{result.map((x) => (
+						<ProgressBar label={x.name} value={x.postLikes} />
+					))}
 				</div>
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>100</span>
-				</div>
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>200</span>
-				</div>
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>300</span>
-				</div>
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>400</span>
-				</div>
-				<div className="breakdown-single">
-					<div className="breakdown-border"></div>
-					<span>500</span>
+				<div className="graph-breakdowns">
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>0</span>
+					</div>
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>100</span>
+					</div>
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>200</span>
+					</div>
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>300</span>
+					</div>
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>400</span>
+					</div>
+					<div className="breakdown-single">
+						<div className="breakdown-border"></div>
+						<span>500</span>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-);
+	);
+};
+
+const DashboardCards = () => {
+	const [loading, setLoading] = React.useState(false);
+	const [result, setresult] = React.useState({
+		podsOwn: '--',
+		podsImIn: '--',
+		profileViews: '--',
+		postLikes: '--',
+	});
+	const getRows = () => {
+		setLoading(true);
+		instance.get('user/dashboard').then((res) => {
+			setLoading(false);
+			setresult(res);
+		});
+	};
+	React.useEffect(() => {
+		getRows();
+	}, []);
+	const { podsOwn, podsImIn, profileViews, postLikes } = result;
+	return (
+		<div className="dashboard-cards-wrapper">
+			<SectionCard title={podsOwn} subtitle="Pods I own" color="iris-blue-card" />
+			<SectionCard title={podsImIn} subtitle="Pods I am In" color="marguerite-blue-card" />
+			<SectionCard title={postLikes} subtitle="Post Likes" color="violet-blue-card" />
+			<SectionCard title={profileViews} subtitle="Profile Views" color="navy-blue-card" />
+		</div>
+	);
+};
 
 const Dashboard = () => (
 	<React.Fragment>
-		<div className="dashboard-cards-wrapper">
-			<SectionCard title="25" subtitle="Pods I am In" color="iris-blue-card" />
-			<SectionCard title="12" subtitle="Pods I am In" color="marguerite-blue-card" />
-			<SectionCard title="4185" subtitle="Pod | Manage" color="violet-blue-card" />
-			<SectionCard title="85,439" subtitle="Post Likes" color="navy-blue-card" />
-		</div>
+		<DashboardCards />
 		<DashboardStati />
 	</React.Fragment>
 );

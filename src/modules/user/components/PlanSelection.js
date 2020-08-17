@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'hooks';
 import { useRedux } from 'hooks';
 import { showMessage } from 'store/messages/actions';
 import { refreshUser } from 'modules/auth/actions';
 import { instance } from 'utils';
+import { LoaderCircular } from 'components/loaders';
 
 const TrialSubscriptionButton = ({ onSuccess }) => {
 	const [loading, setLoading] = React.useState(false);
@@ -37,10 +38,25 @@ const UserPlanSelection = () => {
 	const authData = getReduxItem('auth');
 	const user = authData.user;
 	const userStatus = user ? user.status : null;
+	const [loading, setLoading] = useState(true);
+	const [settings, setSettings] = useState({});
 
 	React.useEffect(() => {
 		if (userStatus !== null) history.push('/settings');
 	}, [userStatus]);
+	const getSettings = () => {
+		setLoading(true);
+		instance.get('settings').then((res) => {
+			setSettings(res);
+			setLoading(false);
+		});
+	};
+	React.useEffect(() => {
+		getSettings();
+	}, []);
+
+	if (loading) return <LoaderCircular />;
+
 	return (
 		<React.Fragment>
 			<div className="title-card">
@@ -56,9 +72,7 @@ const UserPlanSelection = () => {
 						<span className="currency">$</span>0<p className="price-title">Free for 14 days</p>
 					</div>
 					<ul className="plan-specs">
-						<li className="plan-includes">Join upto 20 Pods</li>
-						<li className="plan-includes">Create upto 10 Pods</li>
-						<li className="plan-includes">Submit 5 posts per day</li>
+						<li className="plan-includes">{`Upto ${settings.trialDayCount} Pods`}</li>
 						<li className="plan-includes">Basic Pods</li>
 						<li className="not-includes">Dedicated support</li>
 					</ul>
@@ -71,9 +85,7 @@ const UserPlanSelection = () => {
 						<p className="price-title">Per month</p>
 					</div>
 					<ul className="plan-specs">
-						<li className="plan-includes">Join upto 20 Pods</li>
-						<li className="plan-includes">Create upto 10 Pods</li>
-						<li className="plan-includes">Submit 5 posts per day</li>
+						<li className="plan-includes">Unlimited Pods</li>
 						<li className="plan-includes">Basic Pods</li>
 						<li className="plan-includes">Dedicated support</li>
 					</ul>

@@ -23,9 +23,9 @@ const SignupSchema = yup.object().shape({
 	name: yup.string().required(),
 	country: yup.string().required(),
 	state: yup.string().required(),
-	streetAddress: yup.string().required(),
+	streetAddress: yup.string().required('street address is a required field'),
 	city: yup.string().required(),
-	zip: yup.number().required(),
+	zip: yup.string().required(),
 });
 
 const UserBillingForm = (props) => {
