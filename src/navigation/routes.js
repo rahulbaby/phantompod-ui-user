@@ -7,6 +7,7 @@ import Lab from 'lab';
 import Login from 'modules/auth';
 import SignUp from 'modules/auth/SignUp';
 import Logout from 'modules/auth/Logout';
+import GAuthResponse from 'modules/auth/GAuthResponse';
 
 import Dashboard from 'modules/dashboard';
 import NotificationPage from 'modules/notification';
@@ -113,6 +114,11 @@ const routes = [
     path: '/logout',
     exact: true,
     component: Logout,
+  },
+  {
+    path: '/gauth-response',
+    exact: true,
+    component: GAuthResponse,
   },
   {
     path: '/verify-email',
