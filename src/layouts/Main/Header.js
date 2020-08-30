@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams, useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { LinkCustom } from 'components/common';
 import {
@@ -17,6 +18,18 @@ import { addRow } from 'modules/pod/actions';
 import { isMobile } from 'utils/functions';
 import { imgSrc } from 'utils/functions';
 
+const titles = {
+	'/settings': 'settings',
+	'/support': 'Support',
+	'/notifications': 'Notifications',
+	'/pod/list': 'My Pods',
+	'/pod/details/:_id': 'My Pods',
+	'/pod/create-new': 'My Pods',
+	'/pod/members': 'My Pods',
+	'/pod/settings': 'My Pods',
+	'/marketplace': 'Pod Library',
+};
+
 export default () => {
 	const [toggle, setToggle] = React.useState(false);
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
@@ -25,6 +38,15 @@ export default () => {
 	const { getReduxItem } = useRedux();
 	const authData = getReduxItem('auth');
 	const userData = authData.user;
+
+	const params = useParams();
+	const location = useLocation();
+	const history = useHistory();
+	const match = useRouteMatch();
+
+	console.log({ match });
+
+	let title = titles[location.pathname] || titles[match.path] || 'Dashboard';
 
 	const onSubmit = (data) => {
 		triggerApiCall(
@@ -43,7 +65,9 @@ export default () => {
 		<header>
 			<div className="head-wrapper">
 				<div className="pagename-wrapper">
-					<div className="pagename">Dashboard</div>
+					<div className="pagename" style={{ fontSize: 25 }}>
+						{title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()}
+					</div>
 				</div>
 				<div className="pod-user-details">
 					<div className="header-pod-details" style={toggle ? { right: 0 } : {}}>

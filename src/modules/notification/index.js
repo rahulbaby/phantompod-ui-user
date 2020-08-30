@@ -16,11 +16,12 @@ const ReadAllButton = ({ onSuccess }) => {
 	const handleClick = () => {
 		setLoading(true);
 		instance.get('notification/read-all').then((res) => {
+			dispatch(showMessage('Success', 'success'));
+			onSuccess && onSuccess();
+			setLoading(false);
 			setTimeout(() => {
-				dispatch(showMessage('Success', 'success'));
-				onSuccess && onSuccess();
-				setLoading(false);
-			}, 500);
+				window.location.reload();
+			}, 200);
 		});
 	};
 

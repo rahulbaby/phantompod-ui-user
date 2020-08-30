@@ -16,7 +16,7 @@ export default () => (
 				<img src="/img/icons/google-icon.png" alt="" /> Sign In with Google
 			</button>
 			<h6 className="signup-link">
-				Already a member?
+				Already a member?{` `}
 				<LinkCustom to="/login">Sign In</LinkCustom>
 			</h6>
 		</div>

@@ -1,10 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers';
+import * as yup from 'yup';
 
-export default ({ defaultValues, children, onSubmit, ...rest }) => {
-  const methods = useForm({ defaultValues });
-  const { handleSubmit } = methods;
+import FormResult from './Result';
 
+const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  age: yup.number().positive().integer().required(),
+});
+
+export default ({ defaultValues, children, onSubmit, validationSchema = {}, ...rest }) => {
+  const options = { defaultValues };
+  if (Object.keys(validationSchema).length) options.resolver = yupResolver(validationSchema);
+  const methods = useForm(options);
+  const { handleSubmit, errors } = methods;
+  console.log('errors', errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} {...rest}>
       {Array.isArray(children)
@@ -20,6 +31,7 @@ export default ({ defaultValues, children, onSubmit, ...rest }) => {
               : child;
           })
         : children}
+      <FormResult errors={errors} />
     </form>
   );
 };

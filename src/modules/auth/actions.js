@@ -12,6 +12,14 @@ import {
 } from './constants';
 
 const cookies = new Cookies();
+const cookieOptions = {
+  path: '/',
+  secure: true,
+  session: false,
+  hostOnly: false,
+  httpOnly: true,
+  sameSite: true,
+};
 
 /* action creators */
 export const signIn = (data) => (dispatch) => {
@@ -23,7 +31,7 @@ export const signIn = (data) => (dispatch) => {
 
 export const authenticated = (data) => (dispatch) => {
   localStorage.setItem(AUTH_TOKEN_KEY, data.token);
-  cookies.set(AUTH_TOKEN_KEY, data.token, { path: '/' });
+  cookies.set(AUTH_TOKEN_KEY, data.token, cookieOptions);
   return dispatch({
     type: AUTHENTICATED,
   });
@@ -31,7 +39,7 @@ export const authenticated = (data) => (dispatch) => {
 
 export const singOut = () => async (dispatch) => {
   await localStorage.removeItem(AUTH_TOKEN_KEY);
-  cookies.remove(AUTH_TOKEN_KEY, { path: '/' });
+  cookies.remove(AUTH_TOKEN_KEY, cookieOptions);
   return dispatch({
     type: UNAUTHENTICATED,
   });

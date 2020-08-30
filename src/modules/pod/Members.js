@@ -14,6 +14,7 @@ import {
 import { ErrorNotice, EmptyNotice, Button, LinkCustom } from 'components/common';
 import { LoaderList } from 'components/loaders';
 import { isoToFormatted } from 'utils/functions';
+import { imgSrc } from 'utils/functions';
 import PodRow from './components/Row';
 
 const PodAccessButton = ({ row, memberId, status, podId, ...rest }) => {
@@ -84,7 +85,7 @@ const Row = ({ row, isOwner, podId }) => {
 	return (
 		<div className="member-wrapper">
 			<div className="member-img">
-				<img src="/img/user-img.jpg" alt="" />
+				<img src={imgSrc(row.image, 'user')} alt="" />
 			</div>
 			<div className="member-content">
 				<h5 className="member-name">{row.name}</h5>
@@ -127,10 +128,17 @@ const Row = ({ row, isOwner, podId }) => {
 	);
 };
 
+const statusArr = {
+	accepted: 'ACCEPTED',
+	requested: 'REQUESTED',
+	banned: 'BANNED',
+};
+
 const PodMembers = () => {
-	const { id } = useQuery();
+	const { id, tab } = useQuery();
 	const [search, setSearch] = useState('');
 	const [status, setStatus] = useState('accepted');
+
 	const { history } = useRouter();
 	const { loading: podLoading, row: podRow } = useGetDbRow('pod', { _id: id });
 	const [{ row, loading }, dispatch] = useStateContext();
@@ -142,18 +150,18 @@ const PodMembers = () => {
 			payload: { row: podRow, loading: podLoading },
 		});
 	}, [podRow, podLoading]);
+	React.useEffect(() => {
+		if (Object.keys(statusArr).indexOf(tab) !== -1) setStatus(tab);
+	}, []);
 
 	if ((id && loading) || podLoading) return <LoaderList />;
 	if (!row) return <ErrorNotice />;
 
-	let members = row.members.filter((x) => search == '' || x.name.indexOf(search) > -1);
+	let members = row.members.filter(
+		(x) => search == '' || x.name.toLowerCase().indexOf(search.toLowerCase()) > -1,
+	);
 	if (!isOwner) members = members.filter((x) => x.status === 'accepted');
 
-	const statusArr = {
-		accepted: 'ACCEPTED',
-		requested: 'REQUESTED',
-		banned: 'BANNED',
-	};
 	const listByStatus = {};
 	Object.keys(statusArr).map((x) => {
 		listByStatus[x] = members.filter((xm) => xm.status === x);
@@ -165,7 +173,9 @@ const PodMembers = () => {
 			{false && <PodRow row={row} count={1} />}
 			<div className="title-card mt-4">
 				<div className="title-cardHead-wrapper">
-					<h4 className="title-cardHead">Pod Members ({members.length})</h4>
+					<h4 className="title-cardHead">
+						Pod Members ({members.filter((x) => x.status === 'accepted').length})
+					</h4>
 				</div>
 				<div className="title-cardDetails">
 					<button onClick={history.goBack} className="btn medium-btn blue-btn">

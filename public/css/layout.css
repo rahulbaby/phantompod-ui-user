@@ -4,16 +4,16 @@
         font-family: 'Poppins', sans-serif;
         background: #f1f8fc;
     }
-    
+
     a {
         color: #333;
     }
-    
+
     a:hover {
         color: #666;
         text-decoration: none;
     }
-    
+
     .box-shadow {
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
     }
@@ -24,7 +24,7 @@
     .color-red {
         color: #ee534f;
     }
-    
+
     .nav-left {
         background: #fff;
         width: 110px;
@@ -36,20 +36,20 @@
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
         z-index: 9;
     }
-    
+
     .logo a {
         display: inline-block;
         text-align: center;
         width: 100%;
         padding: 6px 0 7px;
     }
-    
+
     .logo-img {
         width: 100%;
         max-width: 67px;
         margin: 0 auto;
     }
-    
+
     .menulist {
         padding: 0;
         margin: 0;
@@ -57,7 +57,7 @@
         width: 100%;
         flex-wrap: wrap;
     }
-    
+
     .menulist li {
         list-style: none;
         padding: 0px;
@@ -65,7 +65,7 @@
         display: inline-flex;
         width: 100%;
     }
-    
+
     .menulist li a {
         display: inline-block;
         width: 100%;
@@ -77,17 +77,17 @@
         -ms-transition: all ease .3s;
         -o-transition: all ease .3s;
     }
-    
+
     .menulist li:hover,
     .menulist li a.active {
         background: #f1f8fc;
     }
-    
+
     .menulist li a:hover,
     .menulist li a.active {
         border-left: 3px solid #0079d1;
     }
-    
+
     .menu-icon,
     .menu-icon-hover {
         top: 50%;
@@ -104,16 +104,16 @@
         -ms-transform: translate(-50%, -50%);
         -o-transform: translate(-50%, -50%);
     }
-    
+
     .menu-icon-hover {
         opacity: 0;
     }
-    
+
     .menulist li a:hover .menu-icon,
     .menulist li a.active .menu-icon {
         opacity: 0;
     }
-    
+
     .menulist li a:hover .menu-icon-hover,
     .menulist li a.active .menu-icon-hover {
         opacity: 1;
@@ -138,12 +138,12 @@
         -ms-transform: translate(0%, 30px);
         -o-transform: translate(0%, 30px);
 }
-    
+
     header {
         padding: 0 0 0 110px;
         background: #fff;
     }
-    
+
     .head-wrapper {
         display: flex;
         align-items: center;
@@ -152,14 +152,14 @@
         min-height: 80px;
         box-shadow: 5px 6px 5px rgba(221, 221, 221, 0.4);
     }
-    
+
     .pagename {
         color: #0079d1;
         font-weight: 700;
         font-size: 30px;
         padding: 0 20px 0 0;
     }
-    
+
     .pod-user-details,
     .header-pod-details {
         display: inline-flex;
@@ -167,7 +167,7 @@
         align-items: center;
         justify-content: flex-end;
     }
-    
+
     .btn {
         line-height: 40px;
         font-size: 15px;
@@ -180,39 +180,39 @@
         -ms-border-radius: 15px;
         -o-border-radius: 15px;
     }
-    
+
     .green-btn {
         background: #8dc63f;
         color: #fff;
     }
-    
+
     .green-btn:hover {
         background: #8ad229;
         color: #fff;
     }
-    
+
     .red-btn,
     .red-btn:hover {
         background: #ee534f;
         color: #fff;
     }
-    
+
     .iris-blue-btn,
     .iris-blue-btn:hover {
         background: #00b7c7;
         color: #fff;
     }
-    
+
     .blue-btn {
         background: #0079d1;
         color: #fff;
     }
-    
+
     .blue-btn:hover {
         background: #088bea;
         color: #fff;
     }
-    
+
     .small-btn {
         line-height: 24px;
         padding: 0 22px;
@@ -225,7 +225,7 @@
         -ms-border-radius: 50px;
         -o-border-radius: 50px;
     }
-    
+
     .medium-btn {
         line-height: 30px;
         padding: 0 15px;
@@ -239,7 +239,7 @@
         -ms-border-radius: 50px;
         -o-border-radius: 50px;
     }
-    
+
     .number-btn {
         width: 32px;
         height: 32px;
@@ -254,7 +254,7 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
 }
-    
+
     .trash-btn {
         display: inline-flex;
         width: 35px;
@@ -269,7 +269,7 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
 }
-    
+
     .form-control {
         border: 1px solid #bccddc;
         color: #cfcfcf;
@@ -284,7 +284,7 @@
         resize: none;
         max-height: 63px;
     }
-    
+
     .big-Input {
         height: 40px;
         background: #f1f8fc;
@@ -296,7 +296,7 @@
         -ms-border-radius: 13px;
         -o-border-radius: 13px;
     }
-    
+
     button,
     input,
     textarea,
@@ -308,7 +308,7 @@
         -ms-transition: all ease 1s;
         -o-transition: all ease 1s;
     }
-    
+
     button:hover,
     button:focus,
     .btn.focus,
@@ -322,11 +322,11 @@
         box-shadow: none;
         border-color: #1763a7;
     }
-    
+
     .big-input:focus {
         background: #f1f8fc !important;
     }
-    
+
     .curved {
         border-radius: 50px;
         -webkit-border-radius: 50px;
@@ -334,11 +334,11 @@
         -ms-border-radius: 50px;
         -o-border-radius: 50px;
 }
-    
+
     .search-from {
         display: flex;
     }
-    
+
     .search-from .form-control {
         border-radius: 50px 0 0 50px;
         -webkit-border-radius: 50px 0 0 50px;
@@ -347,12 +347,12 @@
         -o-border-radius: 50px 0 0 50px;
 }
     /* BOF Custom CSS for checkbox */
-    
+
     .comment-area {
         min-height: 225px;
     }
     /* The container */
-    
+
     .checkbox-container {
         display: block;
         position: relative;
@@ -367,7 +367,7 @@
         user-select: none;
     }
     /* Hide the browser's default checkbox */
-    
+
     .checkbox-container input {
         position: absolute;
         opacity: 0;
@@ -376,7 +376,7 @@
         width: 0;
     }
     /* Create a custom checkbox */
-    
+
     .checkmark {
         position: absolute;
         top: 2px;
@@ -393,29 +393,29 @@
         -o-border-radius: 2px;
     }
     /* On mouse-over, add a Black border  */
-    
+
     .checkbox-container:hover input~.checkmark {
         border: 1px solid #000;
     }
     /* When the checkbox is checked, add a Black border  */
-    
+
     .checkbox-container input:checked~.checkmark {
         border: 1px solid #000;
     }
     /* Create the checkmark/indicator (hidden when not checked) */
-    
+
     .checkmark:after {
         content: "";
         position: absolute;
         display: none;
     }
     /* Show the checkmark when checked */
-    
+
     .checkbox-container input:checked~.checkmark:after {
         display: block;
     }
     /* Style the checkmark/indicator */
-    
+
     .checkbox-container .checkmark:after {
         left: 8px;
         top: -3px;
@@ -430,48 +430,48 @@
         -o-transform: rotate(50deg);
     }
     /* BOF blue-checkbox */
-    
+
     .blue-checkbox {
         color: #0079d1;
     }
-    
+
     .blue-checkbox .checkmark {
         border-color: #0079d1;
     }
-    
+
     .blue-checkbox:hover input~.checkmark,
     .blue-checkbox input:checked~.checkmark {
         border: 1px solid #0079d1;
     }
-    
+
     .blue-checkbox .checkmark:after {
         border: solid #0079d1;
         border-width: 0 3px 3px 0;
     }
     /* BOF blue-checkbox */
     /* BOF white-checkbox */
-    
+
     .white-checkbox {
         color: #fff;
         font-weight: 400;
     }
-    
+
     .white-checkbox .checkmark {
         border-color: #fff;
     }
-    
+
     .white-checkbox:hover input~.checkmark,
     .white-checkbox input:checked~.checkmark {
         border: 1px solid #fff;
     }
-    
+
     .white-checkbox .checkmark:after {
         border: solid #fff;
         border-width: 0 3px 3px 0;
     }
     /* BOF white-checkbox */
     /* EOF Custom CSS for checkbox */
-    
+
     .search-from .btn {
         border-radius: 0 50px 50px 0;
         -webkit-border-radius: 0 50px 50px 0;
@@ -479,12 +479,12 @@
         -ms-border-radius: 0 50px 50px 0;
         -o-border-radius: 0 50px 50px 0;
     }
-    
+
     .header-user-details {
         margin-left: 20px;
         position: relative;
     }
-    
+
     .header-user-img {
         width: 55px;
         height: 55px;
@@ -548,24 +548,24 @@
     .header-user-details:hover .header-login-details-wrapper {
         display: block;
     }
-    
+
     .header-toggle {
         display: none;
     }
-    
+
     .wrapper {
         padding: 40px 40px 40px 150px;
         background: none;
         border: none;
     }
-    
+
     .dashboard-cards-wrapper {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin: 0 0 50px;
     }
-    
+
     .card {
         display: inline-flex;
         width: 100%;
@@ -580,64 +580,64 @@
         -ms-border-radius: 8px;
         -o-border-radius: 8px;
 }
-    
+
     .card-head,
     .card-discription {
         margin: 0;
     }
-    
+
     .card-head {
         font-size: 30px;
         font-weight: 600;
     }
-    
+
     .card-discription {
         font-size: 18px;
     }
-    
+
     .dashboard-cards-wrapper .card {
         width: 23.5%;
     }
-    
+
     .iris-blue-card {
         border-color: #00b7c7;
     }
-    
+
     .iris-blue-card .card-head {
         color: #00b7c7;
     }
-    
+
     .marguerite-blue-card {
         border-color: #7b6bb3;
     }
-    
+
     .marguerite-blue-card .card-head {
         color: #7b6bb3;
     }
-    
+
     .violet-blue-card {
         border-color: #af5ea5;
     }
-    
+
     .violet-blue-card .card-head {
         color: #af5ea5;
     }
-    
+
     .navy-blue-card {
         border-color: #0079d1;
     }
-    
+
     .navy-blue-card .card-head {
         color: #0079d1;
     }
-    
+
     .help-icon {
         position: absolute;
         right: 20px;
         top: 15px;
     }
     /* BOF Title Card CSS  */
-    
+
     .title-card {
         background: #fff;
         display: inline-flex;
@@ -656,14 +656,14 @@
         -ms-border-radius: 8px;
         -o-border-radius: 8px;
 }
-    
+
     .title-cardHead {
         margin: 0;
         font-size: 1.2em;
         font-weight: 600;
         color: #0079d1;
     }
-    
+
     .title-cardDetails {
         display: inline-flex;
         position: relative;
@@ -715,22 +715,22 @@
     .settings-dropdown-icon:hover .settings-dropdown-wrapper {
         display: block;
     }
-    
+
     .title-checkbox-wrapper {
         margin: 0 0 0 40px;
     }
     /* EOF Title Card CSS  */
     /* BOF Blue Title Card CSS  */
-    
+
     .blue-title-card {
         background: #0079d1;
     }
-    
+
     .blue-title-card .title-cardHead {
         color: #fff;
     }
     /* EOF Blue Title Card CSS  */
-    
+
     .trending-graph-wrapper {
         background: #fff;
         padding: 30px 30px 5px;
@@ -796,7 +796,7 @@
         height: 84%;
         margin-bottom: 10px;
     }
-    
+
     .hyperlink {
         border: 1px solid #bccddc;
         background: #e9e9e9;
@@ -807,7 +807,7 @@
         word-break: break-all;
     }
     /* BOF Sign In/Up page CSS */
-    
+
     .signin-wrapper {
         background: #0079d1;
         min-height: 100vh;
@@ -815,7 +815,7 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .login-wrap {
         background: #fff;
         width: 500px;
@@ -828,22 +828,22 @@
         -ms-border-radius: 15px;
         -o-border-radius: 15px;
     }
-    
+
     .login-logo {
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 0 25px;
     }
-    
+
     .login-logo img {
         max-width: 127px;
     }
-    
+
     .login-form {
         margin: 0 0 40px;
     }
-    
+
     .login-form .form-control {
         font-weight: 600;
         box-shadow: 0px 0px 20px #DDD;
@@ -851,7 +851,7 @@
         font-size: 13px;
         min-height: 36px;
     }
-    
+
     .google-btn {
         width: 100%;
         background: #4285f4;
@@ -867,12 +867,12 @@
         -ms-border-radius: 7px;
         -o-border-radius: 7px;
 }
-    
+
     .google-btn img {
         width: 20px;
         margin: 0 30px 0 0
     }
-    
+
     .signup-link {
         font-weight: 600;
         text-align: center;
@@ -880,45 +880,45 @@
         font-size: 13px;
         margin: 15px 0 0;
     }
-    
+
     .signup-link a {
         color: #0a5eab;
     }
-    
+
     .signup-link a:hover {
         color: #1d7fd7;
     }
     /* EOF Sign In/Up page CSS */
     /* BOF Create New Pod Page */
-    
+
     .checklists-wrapper {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 1rem;
     }
-    
+
     .checklists-wrapper .checkbox-container {
         width: 25%;
         padding-right: 15px;
     }
-    
+
     .right-btns-wrapper {
         display: flex;
         align-items: center;
         justify-content: flex-end;
     }
-    
+
     .right-btns-wrapper .btn {
         margin: 0 0 0 12px;
     }
     /* EOF Create New Pod Page */
     /* BOF My Pods Page */
-    
+
     .pod-details {
         flex-grow: 1;
     }
-    
+
     .pods-list-wrapper {
         background: #fff;
         border: 1px solid #bccddc;
@@ -933,7 +933,7 @@
         -o-border-radius: 10px;
         overflow: hidden;
     }
-    
+
     .pod-number {
         background: #cbe1f5;
         border-right: 1px solid #bccddc;
@@ -941,18 +941,18 @@
         align-items: center;
         padding: 0 15px;
     }
-    
+
     .pod-content {
         flex-grow: 1;
         padding: 15px 18px 25px;
     }
-    
+
     .pod-list-head {
         font-weight: 700;
         font-size: 16px;
         color: #0079d1;
     }
-    
+
     .pod-paragraph {
         color: #666666;
         font-size: 14px;
@@ -960,7 +960,7 @@
         position: relative;
         padding: 0 0 0 20px;
     }
-    
+
     .pod-paragraph::before {
         position: absolute;
         content: "";
@@ -976,26 +976,26 @@
         background: #af5ea5;
         border: 2px solid #64335e;
     }
-    
+
     .pod-list-btns button {
         margin-right: 18px;
     }
-    
+
     .trash-icon {
         display: inline-flex;
         align-items: center;
         padding: 0 20px 0 15px;
     }
-    
+
     .pod-details-content {
         padding: 20px 18px;
     }
-    
+
     .pod-details-head {
         font-weight: 600;
         font-size: 16px;
     }
-    
+
     .pod-details-para {
         margin: 0;
         font-size: 13px;
@@ -1004,7 +1004,7 @@
     }
     /* EOF My Pods Page */
     /* BOF Pod Members Page */
-    
+
     .member-wrapper {
         display: flex;
         align-items: center;
@@ -1018,7 +1018,7 @@
         -ms-border-radius: 7px;
         -o-border-radius: 7px;
 }
-    
+
     .member-img {
         width: 55px;
         max-height: 55px;
@@ -1030,22 +1030,22 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
 }
-    
+
     .member-img img {
         width: 100%;
     }
-    
+
     .member-content {
         flex-grow: 1;
     }
-    
+
     .member-name {
         font-weight: 600;
         font-size: 17px;
         margin: 0 0 4px;
         color: #0079d1;
     }
-    
+
     .member-discription {
         margin: 0;
         font-weight: 600;
@@ -1054,7 +1054,7 @@
     }
     /* EOF Pod Members Page */
     /* BOF Notification Page */
-    
+
     .notification-wrapper {
         background: #fff;
         border: 1px solid #bccddc;
@@ -1068,7 +1068,7 @@
         -ms-border-radius: 7px;
         -o-border-radius: 7px;
     }
-    
+
     .notification-bell-wrapper {
         display: inline-flex;
         background: #bccddc;
@@ -1077,7 +1077,7 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .notification-bell {
         background: #bcc3c9;
         width: 32px;
@@ -1090,29 +1090,29 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
 }
-    
+
     .notification-bell img {
         width: 100%;
         opacity: 0.7;
     }
-    
+
     .notification-on img {
         opacity: 1;
     }
-    
+
     .notification-content {
         display: inline-flex;
         flex-grow: 1;
         align-items: center;
         padding: 0 20px;
     }
-    
+
     .notification-content p {
         color: #333333;
         font-size: 15px;
         margin: 0;
     }
-    
+
     .notification-date {
         border-left: 1px solid #bccddc;
         background: #e4ebf1;
@@ -1125,15 +1125,15 @@
         padding: 0 20px;
         min-width: 160px;
     }
-    
+
     .notification-on .notification-bell {
         background: #8dc63f;
     }
-    
+
     .notification-on .notification-date {
         background: #cbe1f5;
     }
-    
+
     .form-heading {
         font-weight: 600;
         font-size: 13px;
@@ -1141,7 +1141,7 @@
     }
     /* EOF Notification Page */
     /* BOF FAQ Page */
-    
+
     .faq-wrapper {
         background: #fff;
         border: 1px solid #bccddc;
@@ -1152,7 +1152,7 @@
         -ms-border-radius: 7px;
         -o-border-radius: 7px;
 }
-    
+
     .faq-header {
         background: #cbe1f5;
         display: flex;
@@ -1160,20 +1160,20 @@
         padding: 10px 30px;
         justify-content: space-between;
     }
-    
+
     .faq-head {
         margin: 0;
         font-weight: 600;
         color: #0079d1;
         font-size: 15px;
     }
-    
+
     .faq-content {
         padding: 20px 30px 10px;
     }
     /* EOF FAQ Page */
     /* BOF Support Page */
-    
+
     .contact-form-wrapper {
         color: #fff;
         background: #3595da;
@@ -1186,27 +1186,27 @@
         -ms-border-radius: 8px;
         -o-border-radius: 8px;
 }
-    
+
     .contact-form-head {
         font-weight: 600;
         font-size: 26px;
         margin: 0 0 18px;
     }
     /* EOF Support Page */
-    
+
     .small-head {
         font-size: 16px;
         font-weight: 600;
     }
-    
+
     .border-none {
         border: none;
     }
-    
+
     .wd-100 {
         width: 100%;
     }
-    
+
     .wd-100 {
         width: 100%;
     }
@@ -1315,7 +1315,7 @@
     .subscription-btn {
         margin: 10px 0 0;
     }
-    
+
     .free-trail .subscription-expiry {
         color: #f1807e;
     }
@@ -1331,7 +1331,7 @@
         color: #fff;
     }
     /* EOF Profile Settings Page CSS */
-    
+
     /* BOF Change Password Page CSS */
     .change-password-wrapper {
         background: rgba(255, 255, 255, 0.8);
@@ -1368,7 +1368,7 @@
         color: #a0a0a0;
     }
     /* EOF Change Password Page CSS */
-    
+
     /* BOF Error Pages CSS */
     .error-pages-wrapper {
         display: flex;
@@ -1388,7 +1388,7 @@
         text-align: center;
     }
     /* EOF Error Pages CSS */
-    
+
     /* BOF Dashboard Plans Page  */
     .plans-list-wrapper {
         display: flex;
@@ -1434,7 +1434,7 @@
         padding: 0 0 0 25px;
         color: #717581;
     }
-    
+
     ul.plan-specs li::before {
         position: absolute;
         content: "";
@@ -1474,3 +1474,35 @@
         background: #fff url(../img/dimond.png) no-repeat right 40px;
     }
     /* EOF Dashboard Plans Page  */
+    .page-overlay {
+        background: #ffffff;
+        color: #666666;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        z-index: 5000;
+        top: 0;
+        left: 0;
+        float: left;
+        text-align: center;
+        padding-top: 25%;
+        opacity: .80;
+      }
+
+      .spinner {
+          margin: 0 auto;
+          height: 64px;
+          width: 64px;
+          animation: rotate 0.8s infinite linear;
+          border: 5px solid #0079d1;
+          border-right-color: transparent;
+          border-radius: 50%;
+      }
+      @keyframes rotate {
+          0% {
+              transform: rotate(0deg);
+          }
+          100% {
+              transform: rotate(360deg);
+          }
+      }

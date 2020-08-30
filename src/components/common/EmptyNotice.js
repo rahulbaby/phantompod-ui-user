@@ -12,6 +12,7 @@ export default (props) => {
         <img src="/img/no-data.png" alt="" />
       </div>
       <h4 className="error-head">{title || 'Nothing in the list Now!'}</h4>
+      {subTitle && <span>{subTitle}</span>}
       {onRetry && (
         <button onClick={onRetry} className="btn small-btn blue-btn">
           Reload Page

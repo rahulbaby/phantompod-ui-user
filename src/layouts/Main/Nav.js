@@ -39,6 +39,11 @@ const items = [
 	},
 ];
 
+function useForceUpdate() {
+	const [value, setValue] = React.useState(0); // integer state
+	return () => setValue((value) => ++value); // update the state to force render
+}
+
 export default () => {
 	const { getReduxItem } = useRedux();
 	const authData = getReduxItem('auth');
@@ -49,10 +54,17 @@ export default () => {
 		dispatch(fetchRows());
 	}, []);
 
-	if (notificationCount) items[3].badge = notificationCount;
+	if (notificationCount) {
+		items[3].badge = notificationCount;
+	}
+
+	const forceUpdate = useForceUpdate();
+	React.useEffect(() => {
+		forceUpdate();
+	}, [notificationCount]);
 
 	return (
-		<nav>
+		<nav key={`notificationCount-${notificationCount}`}>
 			<div className="nav-left">
 				<div className="logo">
 					<a href="#">
@@ -61,9 +73,9 @@ export default () => {
 				</div>
 				<ul className="menulist">
 					{items.map((x, i) => (
-						<li key={i.toString()}>
+						<li key={`${i.toString()}-${notificationCount}`}>
 							<LinkCustom to={x.to} classNameActive="active">
-								{x.badge && <span class="notification-count">{x.badge}</span>}
+								{x.badge ? <span class="notification-count">{x.badge}</span> : null}
 								<img className="menu-icon" src={`/img/icons/${x.icon}`} alt="" />
 								<img className="menu-icon-hover" src={`/img/icons/${x.iconHover}`} alt="" />
 							</LinkCustom>

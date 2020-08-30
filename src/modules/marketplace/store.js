@@ -24,11 +24,11 @@ export const MarketplaceStoreProvider = (props) => {
 		setPage(dispatch)(1);
 	}, []);
 
-	const resetStore = () => {
+	const resetStore = (search = '') => {
 		dispatch({
 			type: RESET_STORE,
 		});
-		setPage(dispatch)(1);
+		setPage(dispatch)(1, search);
 	};
 
 	return (

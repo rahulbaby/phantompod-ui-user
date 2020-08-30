@@ -7,7 +7,7 @@ import moment from 'moment';
 import { showMessage } from 'store/messages/actions';
 import SubscriptionCancelButton from './SubscriptionCancelButton';
 
-const SubscriptionButton = ({ label = 'Upgrade to premium', setShowBillingForm }) => {
+const SubscriptionButton = ({ label = 'Upgrate to Premium', setShowBillingForm }) => {
 	const [showPayment, setShowPayment] = React.useState(false);
 	const { dispatch, getReduxItem } = useRedux();
 	const authData = getReduxItem('auth');

@@ -1,5 +1,6 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
 
 import { useRouter, useSubmit } from 'hooks';
 import { Form, FormInput, FormSelect, FormButton, FormResult } from 'components/form';
@@ -8,11 +9,17 @@ import { showMessage } from 'store/messages/actions';
 
 import { authenticated } from '../actions';
 
+const validationSchema = yup.object().shape({
+  name: yup.string().required().min(3, 'Your name requires at least three characters'),
+  email: yup.string().required().email(),
+  password: yup.string().required(),
+});
+
 const SignUpForm = (props) => {
   const dispatch = useDispatch();
-  const { triggerSubmit, result, loading, error } = useSubmit();
+  const { triggerSubmit, result, loading, errors } = useSubmit();
   const { history } = useRouter();
-
+  console.log('errors', errors);
   const onSubmit = (data) => {
     triggerSubmit('user', data, (res) => {
       if (!res.error) {
@@ -24,7 +31,12 @@ const SignUpForm = (props) => {
   };
 
   return (
-    <Form onSubmit={onSubmit} noValidate style={{ backgroundColor: '#fff', padding: 10 }}>
+    <Form
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+      noValidate
+      style={{ backgroundColor: '#fff', padding: 10 }}
+    >
       <FormInput
         label="Name"
         name="name"
@@ -46,13 +58,13 @@ const SignUpForm = (props) => {
         className="curved mb-3 box-shadow"
         placeholder="Password"
       />
-      <FormResult result={result} />
       <FormButton
         type="submit"
         label="Sign Up"
         className="btn signin-btn curved blue-btn wd-100"
         loading={loading}
       />
+      <FormResult result={result} />
     </Form>
   );
 };

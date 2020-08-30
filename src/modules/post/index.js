@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LayoutMain } from 'layouts';
 import { LinkCustom, ConfirmButton } from 'components/common';
-import { useRouter, useRedux, useApiHttpCall, useShowMsg } from 'hooks';
+import { useRouter, useRedux, useApiHttpCall, useShowMsg, useIsOwner } from 'hooks';
 import PostForm from './components/Form';
 import PostList from './components/List';
 import {
@@ -13,11 +13,12 @@ import {
 import { isLinkedInUrl } from 'utils/functions';
 import { showMessage } from 'store/messages/actions';
 
-const PodLeaveButton = ({ id, podKey }) => {
+const PodLeaveButton = ({ id, podKey, isOwner }) => {
 	const { triggerApiCall, result, loading, error } = useApiHttpCall();
 	const { dispatch } = useRedux();
 	const [showMessage] = useShowMsg();
 	const { history } = useRouter();
+
 	return (
 		<ConfirmButton
 			label="Leave"
@@ -35,13 +36,42 @@ const PodLeaveButton = ({ id, podKey }) => {
 			}}
 			loading={loading}
 		>
-			<a>Leave Pod</a>
+			<a style={{ cursor: 'pointer' }}>Leave Pod</a>
+		</ConfirmButton>
+	);
+};
+
+const PodDeleteButton = ({ id }) => {
+	const { triggerApiCall, result, loading, error } = useApiHttpCall();
+	const { dispatch } = useRedux();
+	const [showMessage] = useShowMsg();
+	const { history } = useRouter();
+
+	return (
+		<ConfirmButton
+			label="Delete"
+			message="Pod will deleted."
+			onConfirm={() => {
+				triggerApiCall(
+					'pod',
+					{ id },
+					({ error, message }) => {
+						showMessage(message, error ? 'danger' : 'success');
+						history.replace('/pod/list');
+					},
+					'delete',
+				);
+			}}
+			loading={loading}
+		>
+			<a style={{ cursor: 'pointer' }}>Delete Pod</a>
 		</ConfirmButton>
 	);
 };
 
 const TitleCard = ({ row }) => {
 	const { history } = useRouter();
+	const isOwner = useIsOwner(row.userId);
 	return (
 		<div className="title-card">
 			<div className="title-cardHead-wrapper">
@@ -55,14 +85,24 @@ const TitleCard = ({ row }) => {
 					<img src="/img/icons/settings.png" style={{ margin: '0 0 0 12px' }} alt="" />
 					<div class="settings-dropdown-wrapper">
 						<ul class="settings-dropdown">
-							<li>
-								<LinkCustom to={`/pod/members?id=${row._id}`}>Members</LinkCustom>
+							<li style={{ backgroundColor: '#8dc63f', color: '#fff' }}>
+								<LinkCustom style={{ color: '#fff' }} to={`/pod/members?id=${row._id}`}>
+									Members
+								</LinkCustom>
 							</li>
-							<li>
-								<LinkCustom to={`/pod/settings?id=${row._id}`}>Settings</LinkCustom>
-							</li>
-							<li>
-								<PodLeaveButton id={row._id} podKey={row.podKey} />
+							{isOwner && (
+								<li style={{ backgroundColor: '#0079d1', color: '#fff' }}>
+									<LinkCustom style={{ color: '#fff' }} to={`/pod/settings?id=${row._id}`}>
+										Settings
+									</LinkCustom>
+								</li>
+							)}
+							<li style={{ backgroundColor: '#717581', color: '#fff' }}>
+								{isOwner ? (
+									<PodDeleteButton id={row._id} podKey={row.podKey} />
+								) : (
+									<PodLeaveButton id={row._id} podKey={row.podKey} />
+								)}
 							</li>
 						</ul>
 					</div>

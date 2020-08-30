@@ -69,7 +69,9 @@ const PostRow = ({ row, count, isPodOwner }) => {
 				<span className="number-btn green-btn">{count}</span>
 			</div>
 			<div className="pod-content pod-details-content">
-				<h4 className="pod-details-head">{row.name}</h4>
+				<a className="pod-details-head" href={row.url} target="_blank">
+					{row.name}
+				</a>
 				<p className="pod-details-para">
 					Added by {row.userId.name} on {isoToFormatted(row.createdAt, 'MMM DD, YYYY')}
 				</p>

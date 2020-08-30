@@ -4,6 +4,7 @@ import { useRedux } from 'hooks';
 import { showMessage } from 'store/messages/actions';
 import { refreshUser } from 'modules/auth/actions';
 import { instance } from 'utils';
+import { LoaderPage } from 'components/loaders';
 
 const SubscriptionCancelButton = ({ onSuccess }) => {
 	const [loading, setLoading] = React.useState(false);
@@ -30,6 +31,7 @@ const SubscriptionCancelButton = ({ onSuccess }) => {
 
 	return (
 		<React.Fragment>
+			{loading && <LoaderPage />}
 			<button className="btn small-btn subscription-btn" onClick={handleClick} disabled={loading}>
 				{loading ? 'Cancelling..' : 'Cancel subscription'}
 			</button>

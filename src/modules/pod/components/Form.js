@@ -27,11 +27,20 @@ const PodForm = (props) => {
   const { history } = useRouter();
   const commentsDefault = useItem('comments');
   const onEdit = props.row && props.row._id;
-  const { handleSubmit, register, reset } = useForm(
-    onEdit ? props.row : { comments: commentsDefault.join('\r\n') },
+  const { handleSubmit, register, reset, watch } = useForm(
+    onEdit
+      ? { ...props.row, ...{ comments: props.row.comments ? props.row.comments.join('\r\n') : '' } }
+      : {
+          comments: commentsDefault.join('\r\n'),
+          autoComment: true,
+          autoLike: true,
+          autoShare: true,
+          autoValidate: true,
+        },
   );
 
   const { triggerSubmit, result, loading, error } = useSubmit();
+  const watchAutoComment = watch('autoComment', props.row ? props.row.autoComment : true);
 
   const onSubmit = (data) => {
     data.comments = data.comments.split('\n').filter((x) => x.trim() != '');
@@ -85,11 +94,13 @@ const PodForm = (props) => {
           <FormCheckbox {...getInputProps(x, FieldCheckBoxObj[x])} key={x} />
         ))}
       </div>
-      <h5 className="small-head">Default Comments</h5>
-      <FormTextArea
-        className="mb-3 box-shadow comment-area"
-        {...getInputProps('comments', 'Comments')}
-      />
+      <div style={{ display: !watchAutoComment ? 'block' : 'none' }}>
+        <h5 className="small-head">Default Comments</h5>
+        <FormTextArea
+          className="mb-3 box-shadow comment-area"
+          {...getInputProps('comments', 'Comments')}
+        />
+      </div>
       <FormResult result={result} />
       <div className="right-btns-wrapper">
         <Button
@@ -99,7 +110,7 @@ const PodForm = (props) => {
           label="Cancel"
         />
         <FormButton
-          label={onEdit ? 'Update pod' : 'Add pod'}
+          label={onEdit ? 'Update pod' : 'Create pod'}
           className="btn small-btn green-btn"
           loading={loading}
         />

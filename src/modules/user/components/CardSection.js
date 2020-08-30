@@ -7,6 +7,7 @@ import { useItem } from 'hooks';
 import { useRedux } from 'hooks';
 import { refreshUser } from 'modules/auth/actions';
 import { showMessage } from 'store/messages/actions';
+import { LoaderPage } from 'components/loaders';
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -39,11 +40,9 @@ const CARD_ELEMENT_OPTIONS = {
 		},
 	},
 };
-
+//4242 4242 4242 4242 , 4000 0027 6000 3184
 const CardForm = ({ handleSubmit, subscribing }) => (
 	<div style={{ width: '100%' }}>
-		<h6 className="text-primary">4242 4242 4242 4242</h6>
-		<h6 className="text-success">4000 0027 6000 3184</h6>
 		<form id="payment-form" onSubmit={handleSubmit}>
 			<CardElement options={CARD_ELEMENT_OPTIONS} />
 			<button className="btn small-btn btn-success m-3" type="submit" disabled={subscribing}>
@@ -231,7 +230,7 @@ const CheckoutForm = ({ onSuccess }) => {
 
 	return (
 		<React.Fragment>
-			{accountInformation && false && <pre>{JSON.stringify(accountInformation, null, 2)}</pre>}
+			{subscribing && <LoaderPage />}
 			<CardForm handleSubmit={handleSubmit} subscribing={subscribing} />
 		</React.Fragment>
 	);
