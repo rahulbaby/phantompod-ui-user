@@ -19,7 +19,7 @@ import { isMobile } from 'utils/functions';
 import { imgSrc } from 'utils/functions';
 
 const titles = {
-	'/settings': 'settings',
+	'/settings': 'Settings',
 	'/support': 'Support',
 	'/notifications': 'Notifications',
 	'/pod/list': 'My Pods',
@@ -66,7 +66,7 @@ export default () => {
 			<div className="head-wrapper">
 				<div className="pagename-wrapper">
 					<div className="pagename" style={{ fontSize: 25 }}>
-						{title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()}
+						{title}
 					</div>
 				</div>
 				<div className="pod-user-details">

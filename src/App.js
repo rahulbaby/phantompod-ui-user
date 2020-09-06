@@ -10,7 +10,7 @@ import AppRouter from 'nav/routes';
 let { store, persistor } = configureStore();
 
 /*disable logs*/
-var DEBUG = false;
+var DEBUG = true;
 if (!DEBUG) {
   if (!window.console) window.console = {};
   var methods = ['log', 'debug', 'warn', 'info'];

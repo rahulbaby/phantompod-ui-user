@@ -93,7 +93,7 @@ const PostList = (props) => {
 	const isPodOwner = useIsOwner(props.row.userId);
 	return (
 		<Fragment>
-			{!loading && rows.length === 0 && <EmptyNotice title="No posts avialable now." />}
+			{!loading && rows.length === 0 && <EmptyNotice title="There is nothing found in the list" />}
 			{rows.map((x, i) => (
 				<PostRow count={i + 1} row={x} key={x._id.toString()} isPodOwner={isPodOwner} />
 			))}

@@ -136,7 +136,7 @@ export default function App(props) {
         flexDirection: 'column',
         backgroundColor: '#fff',
         padding: 10,
-        maxWidth: 300,
+        minWidth: 300,
       }}
     >
       {loading && <LoaderCircular />}

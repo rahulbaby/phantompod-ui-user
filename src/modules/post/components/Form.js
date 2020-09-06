@@ -41,7 +41,6 @@ export default ({ row, url, onSuccess }) => {
 	const { triggerSubmit, result, loading, error } = useSubmit();
 	let formRow = _.pick(row, ['comments', 'autoShare', 'autoLike', 'autoComment', 'autoValidate']);
 	formRow.comments = formRow.comments.join('\r\n');
-	formRow.name = 'xxxxxxxxxx';
 	const { handleSubmit, register, reset, errors } = useForm(formRow, {
 		resolver: yupResolver(validationSchema),
 	});
@@ -69,7 +68,7 @@ export default ({ row, url, onSuccess }) => {
 		triggerSubmit('post', data, (res) => {
 			if (!res.error) {
 				onSuccess && onSuccess();
-				dispatch(showMessage('Post list updated', 'success'));
+				dispatch(showMessage(res.message || 'Post list updated', 'success'));
 				reset();
 				instance.get(`post/trigger-bot?id=${res._id}`);
 				history.push(`/pod/details/${row._id}`);

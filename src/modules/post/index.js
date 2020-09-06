@@ -85,19 +85,19 @@ const TitleCard = ({ row }) => {
 					<img src="/img/icons/settings.png" style={{ margin: '0 0 0 12px' }} alt="" />
 					<div class="settings-dropdown-wrapper">
 						<ul class="settings-dropdown">
-							<li style={{ backgroundColor: '#8dc63f', color: '#fff' }}>
-								<LinkCustom style={{ color: '#fff' }} to={`/pod/members?id=${row._id}`}>
+							<li style={{ color: '#000' }}>
+								<LinkCustom style={{ color: '#000' }} to={`/pod/members?id=${row._id}`}>
 									Members
 								</LinkCustom>
 							</li>
 							{isOwner && (
-								<li style={{ backgroundColor: '#0079d1', color: '#fff' }}>
-									<LinkCustom style={{ color: '#fff' }} to={`/pod/settings?id=${row._id}`}>
+								<li>
+									<LinkCustom style={{ color: '#000' }} to={`/pod/settings?id=${row._id}`}>
 										Settings
 									</LinkCustom>
 								</li>
 							)}
-							<li style={{ backgroundColor: '#717581', color: '#fff' }}>
+							<li style={{ color: '#000' }}>
 								{isOwner ? (
 									<PodDeleteButton id={row._id} podKey={row.podKey} />
 								) : (

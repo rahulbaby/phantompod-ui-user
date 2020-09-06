@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useRedux } from 'hooks';
 import * as yup from 'yup';
 import { getNames } from 'country-list';
+import { yupResolver } from '@hookform/resolvers';
 
 import {
 	useForm,
@@ -19,7 +20,7 @@ import { refreshUser } from 'modules/auth/actions';
 
 const countryListArr = getNames();
 
-const SignupSchema = yup.object().shape({
+const validationSchema = yup.object().shape({
 	name: yup.string().required(),
 	country: yup.string().required(),
 	state: yup.string().required(),
@@ -38,7 +39,7 @@ const UserBillingForm = (props) => {
 	const onEdit = row && row.name && row.name !== '';
 
 	const { handleSubmit, register, reset, errors } = useForm(row, {
-		validationSchema: SignupSchema,
+		resolver: yupResolver(validationSchema),
 	});
 
 	const onSubmit = (data) => {

@@ -94,7 +94,7 @@ const PodForm = (props) => {
           <FormCheckbox {...getInputProps(x, FieldCheckBoxObj[x])} key={x} />
         ))}
       </div>
-      <div style={{ display: !watchAutoComment ? 'block' : 'none' }}>
+      <div style={{ display: watchAutoComment ? 'block' : 'none' }}>
         <h5 className="small-head">Default Comments</h5>
         <FormTextArea
           className="mb-3 box-shadow comment-area"
@@ -110,7 +110,7 @@ const PodForm = (props) => {
           label="Cancel"
         />
         <FormButton
-          label={onEdit ? 'Update pod' : 'Create pod'}
+          label={onEdit ? 'Update Pod' : 'Create Pod'}
           className="btn small-btn green-btn"
           loading={loading}
         />

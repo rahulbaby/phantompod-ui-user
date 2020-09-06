@@ -13,6 +13,13 @@ const UserSubscription = () => {
 	const userData = authData.user;
 	return (
 		<React.Fragment>
+			<div className="title-card">
+				<div className="title-cardHead-wrapper">
+					<h4 className="title-cardHead">
+						{showBillingForm ? 'Billing Information' : 'Secure Payment'}
+					</h4>
+				</div>
+			</div>
 			{showBillingForm && (
 				<UserBillingForm
 					onSuccess={() => {
