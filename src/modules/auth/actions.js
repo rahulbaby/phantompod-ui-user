@@ -14,10 +14,10 @@ import {
 const cookies = new Cookies();
 const cookieOptions = {
   path: '/',
-  secure: true,
+  //secure: true,
   session: false,
   hostOnly: false,
-  httpOnly: true,
+  //httpOnly: true,
   sameSite: true,
 };
 
