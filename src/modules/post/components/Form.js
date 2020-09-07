@@ -41,7 +41,7 @@ export default ({ row, url, onSuccess }) => {
 	const { triggerSubmit, result, loading, error } = useSubmit();
 	let formRow = _.pick(row, ['comments', 'autoShare', 'autoLike', 'autoComment', 'autoValidate']);
 	formRow.comments = formRow.comments.join('\r\n');
-	const { handleSubmit, register, reset, errors } = useForm(formRow, {
+	const { handleSubmit, register, reset, errors, watch } = useForm(formRow, {
 		resolver: yupResolver(validationSchema),
 	});
 
@@ -76,6 +76,8 @@ export default ({ row, url, onSuccess }) => {
 		});
 	};
 
+	const watchAutoComment = watch('autoComment', row ? row.autoComment : true);
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} noValidate>
 			<div className="title-card hyperlink">
@@ -95,6 +97,7 @@ export default ({ row, url, onSuccess }) => {
 			</div>
 			<h5 className="small-head">Default Comments</h5>
 			<FormTextArea
+				style={{ display: watchAutoComment ? 'block' : 'none' }}
 				className="mb-3 box-shadow comment-area"
 				{...getInputProps('comments', 'Comments')}
 			/>

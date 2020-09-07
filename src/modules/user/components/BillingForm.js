@@ -21,12 +21,24 @@ import { refreshUser } from 'modules/auth/actions';
 const countryListArr = getNames();
 
 const validationSchema = yup.object().shape({
-	name: yup.string().required(),
+	name: yup
+		.string()
+		.required()
+		.min(3)
+		.matches(/^[a-z ,.'-]+$/i, 'name is not in proper format'),
 	country: yup.string().required(),
-	state: yup.string().required(),
-	streetAddress: yup.string().required('street address is a required field'),
+	state: yup
+		.string()
+		.required()
+		.min(3)
+		.matches(/^[a-z ,.'-]+$/i, 'name is not in proper format'),
+	streetAddress: yup
+		.string()
+		.min(3)
+		.required('street address is a required field')
+		.matches(/^[a-z ,.'-]+$/i, 'name is not in proper format'),
 	city: yup.string().required(),
-	zip: yup.string().required(),
+	zip: yup.string().required().min(3),
 });
 
 const UserBillingForm = (props) => {

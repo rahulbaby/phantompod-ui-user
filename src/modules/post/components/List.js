@@ -62,7 +62,9 @@ const PostDeleteButton = ({ id }) => {
 };
 
 const PostRow = ({ row, count, isPodOwner }) => {
-	const isOwner = useIsOwner(row.userId._id);
+	const { getReduxItem } = useRedux();
+	const isOwner = useIsOwner(row.userId);
+	const auth = getReduxItem('auth');
 	return (
 		<div className="pods-list-wrapper box-shadow">
 			<div className="pod-number">
@@ -76,7 +78,7 @@ const PostRow = ({ row, count, isPodOwner }) => {
 					Added by {row.userId.name} on {isoToFormatted(row.createdAt, 'MMM DD, YYYY')}
 				</p>
 			</div>
-			{isOwner && <PostDeleteButton id={row._id} />}
+			{(isOwner || (isPodOwner && row.approved)) && <PostDeleteButton id={row._id} />}
 			{isPodOwner && !row.approved && (
 				<div style={{ alignSelf: 'center' }}>
 					<PostAcceptButton id={row._id} />

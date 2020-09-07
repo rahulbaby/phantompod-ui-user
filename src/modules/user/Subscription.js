@@ -16,7 +16,7 @@ const UserSubscription = () => {
 			<div className="title-card">
 				<div className="title-cardHead-wrapper">
 					<h4 className="title-cardHead">
-						{showBillingForm ? 'Billing Information' : 'Secure Payment'}
+						{showBillingForm ? 'Billing Information' : 'Secure Payment Form'}
 					</h4>
 				</div>
 			</div>
