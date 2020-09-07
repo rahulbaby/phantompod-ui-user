@@ -11,6 +11,4 @@ const cookieOptions = {
 	sameSite: true,
 };
 
-cookies.set('xxxxxxxxxxxxxxxxxxxxx', 'TEST', cookieOptions);
-
 export default () => null;
