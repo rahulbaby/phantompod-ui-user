@@ -95,7 +95,9 @@ export default ({ row, url, onSuccess }) => {
 					)}
 				</div>
 			</div>
-			<h5 className="small-head">Default Comments</h5>
+			<h5 className="small-head" style={{ display: watchAutoComment ? 'block' : 'none' }}>
+				Default Comments
+			</h5>
 			<FormTextArea
 				style={{ display: watchAutoComment ? 'block' : 'none' }}
 				className="mb-3 box-shadow comment-area"

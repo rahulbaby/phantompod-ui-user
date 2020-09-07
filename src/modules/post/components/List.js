@@ -39,7 +39,7 @@ const PostDeleteButton = ({ id }) => {
 	return (
 		<ConfirmButton
 			label="Delete"
-			message="Pod will be removed from the list."
+			message="Post will be removed from the list."
 			onConfirm={() => {
 				triggerApiCall(
 					'post',
