@@ -18,6 +18,9 @@ if (!DEBUG) {
     console[methods[i]] = function () {};
   }
 }
+
+console.log = function () {};
+
 /*disable logs end*/
 
 class App extends Component {

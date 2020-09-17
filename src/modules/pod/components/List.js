@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
 import { EmptyNotice } from 'components/common';
+import { LoaderList } from 'components/loaders';
 
 import PodRow from './Row';
 const PodList = ({ loading, rows }) => {
 	return (
 		<Fragment>
+			{loading && rows.length == 0 && <LoaderList />}
 			{!loading && rows.length === 0 && (
 				<EmptyNotice
 					title="You are not a member of any Pods!"

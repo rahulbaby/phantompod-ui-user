@@ -43,6 +43,12 @@ const DashboardStati = () => {
 		getRows();
 	}, []);
 	if (loading || !result.length) return null;
+
+	const maxValueOfX = Math.max(...result.map((o) => o.postLikes || 0), 0);
+
+	console.log('highestPostLikeCount', maxValueOfX, result);
+	const xAxisDiv = maxValueOfX / 5;
+
 	return (
 		<div className="trending-graph-wrapper">
 			<h3 className="graph-head">Trending Posts by Number of Likes</h3>
@@ -59,23 +65,23 @@ const DashboardStati = () => {
 					</div>
 					<div className="breakdown-single">
 						<div className="breakdown-border"></div>
-						<span>100</span>
+						<span>{parseInt(xAxisDiv * 1)}</span>
 					</div>
 					<div className="breakdown-single">
 						<div className="breakdown-border"></div>
-						<span>200</span>
+						<span>{parseInt(xAxisDiv * 2)}</span>
 					</div>
 					<div className="breakdown-single">
 						<div className="breakdown-border"></div>
-						<span>300</span>
+						<span>{parseInt(xAxisDiv * 3)}</span>
 					</div>
 					<div className="breakdown-single">
 						<div className="breakdown-border"></div>
-						<span>400</span>
+						<span>{parseInt(xAxisDiv * 4)}</span>
 					</div>
 					<div className="breakdown-single">
 						<div className="breakdown-border"></div>
-						<span>500</span>
+						<span>{xAxisDiv * 5}</span>
 					</div>
 				</div>
 			</div>
