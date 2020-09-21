@@ -81,11 +81,11 @@ const PodForm = (props) => {
       </div>
       <div className="pod-create-wrapper">
         <FormInput
-          {...getInputProps('name', 'Pod Name')}
+          {...getInputProps('name', 'Pod Name*')}
           className="form-input curved mb-3 box-shadow border-none"
         />
         <FormTextArea
-          {...getInputProps('description', 'Description')}
+          {...getInputProps('description', 'Description*')}
           className="form-form-control mb-3 box-shadow border-none"
         />
       </div>
