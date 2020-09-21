@@ -51,7 +51,7 @@ const ProfileCard = ({ setShowPasswordForm, userData }) => {
         <div className="profile-img-actions">
           <Modal ref={modalRef}>
             <span className="action-text color-blue" style={{ cursor: 'pointer' }}>
-              {userData.image ? 'Change' : 'Add profile picture'}
+              {userData.image ? 'Change' : 'Update'}
             </span>
             <UserAvatar onSuccess={() => modalRef.current.toggleModal()} />
           </Modal>
