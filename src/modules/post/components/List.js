@@ -63,7 +63,7 @@ const PostDeleteButton = ({ id }) => {
 
 const PostRow = ({ row, count, isPodOwner }) => {
 	const { getReduxItem } = useRedux();
-	const isOwner = useIsOwner(row.userId);
+	const isOwner = useIsOwner(row.userId._id);
 	const auth = getReduxItem('auth');
 	return (
 		<div className="pods-list-wrapper box-shadow">
