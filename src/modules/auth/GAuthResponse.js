@@ -22,7 +22,7 @@ export default () => {
     if (token) {
       dispatch(showMessage('Success', 'success'));
       dispatch(authenticated({ token }));
-      history.replace('login');
+      history.replace('thankyou');
     } else {
       dispatch(showMessage('Something went wrong', 'danger'));
       history.replace('login');
