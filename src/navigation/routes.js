@@ -23,6 +23,7 @@ import UserPlanSelection from 'modules/user/PlanSelection';
 import UserSubscription from 'modules/user/Subscription';
 import VerifyEmail from 'modules/pages/VerifyEmail';
 import VerifyEmailPrompt from 'modules/pages/VerifyEmailPrompt';
+import ThankYou from 'modules/pages/ThankYou';
 
 const routes = [
   {
@@ -134,6 +135,11 @@ const routes = [
     path: '/notice',
     exact: true,
     component: Notice,
+  },
+  {
+    path: '/thankyou',
+    exact: true,
+    component: ThankYou,
   },
   {
     path: '*',
