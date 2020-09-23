@@ -1141,7 +1141,10 @@
     }
     /* EOF Notification Page */
     /* BOF FAQ Page */
-
+    .alert m-4
+    {
+        text-align: center;
+    }
     .faq-wrapper {
         background: #fff;
         border: 1px solid #bccddc;
