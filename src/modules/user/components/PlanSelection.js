@@ -69,7 +69,7 @@ const UserPlanSelection = () => {
 				<div className="plan-list-single box-shadow free-plan">
 					<h3 className="subscription-head">Free Trial</h3>
 					<div className="plan-price">
-						<span className="currency">$</span>0<p className="price-title">Free for 14 days</p>
+						<span className="currency">$</span>0<p className="price-title">Free for 7 days</p>
 					</div>
 					<ul className="plan-specs">
 						<li className="plan-includes">Join Up to 10 Pods</li>
