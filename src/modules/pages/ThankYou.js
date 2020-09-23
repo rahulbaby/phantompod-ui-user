@@ -15,7 +15,7 @@ const useQuery = (name) => {
 
 const txtArr = [
 	'Authentication successful.',
-	'Authentication successful. Now you can close this window.',
+	'Authentication successful. Now you can close this window and reload Phantompod.',
 ];
 
 const NoticePgae = (props) => {
