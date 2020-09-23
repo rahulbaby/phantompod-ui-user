@@ -75,7 +75,7 @@ const UserPlanSelection = () => {
 						<li className="plan-includes">Join Up to 10 Pods</li>
 						<li className="plan-includes">Create Up to 10 Pods</li>
 						<li className="plan-includes">Submit 5 Posts per Day</li>
-						<li className="plan-includes">Create Private Pods for Free</li>
+						<li className="plan-includes">Up to 5 Private Pods</li>
 						<li className="not-includes">Dedicated Support</li>
 					</ul>
 					<TrialSubscriptionButton onSuccess={() => history.push('/settings')} />
@@ -90,7 +90,7 @@ const UserPlanSelection = () => {
 						<li className="plan-includes">Join Unlimited Pods</li>
 						<li className="plan-includes">Create Unlimited Pods</li>
 						<li className="plan-includes">Submit Unlimited Posts</li>
-						<li className="plan-includes">Create Private Pods for Free</li>
+						<li className="plan-includes">Unlimited Private Pods</li>
 						<li className="plan-includes">Dedicated Support</li>
 					</ul>
 					<button className="btn small-btn" onClick={() => history.push('/premium-subscription')}>
