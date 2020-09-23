@@ -14,7 +14,7 @@ const VerificationResult = ({ verified }) => {
 		</div>
 	) : (
 		<div className="alert alert-danger m-4" role="alert">
-			Sorry ! Can't varify email now.
+			Sorry ! verification mail expired.
 		</div>
 	);
 };
