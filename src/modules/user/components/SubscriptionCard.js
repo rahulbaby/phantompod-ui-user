@@ -38,7 +38,7 @@ const SubscriptionCardTrial = ({ user, setShowBillingForm }) => {
 	return (
 		<div className="subscription-box box-shadow free-trail">
 			<h3 className="subscription-head color-blue">Subscription</h3>
-			<h5 className="subscription-type">Free Trail</h5>
+			<h5 className="subscription-type">Free Trial</h5>
 			<p className="subscription-expiry">
 				(Expires on {moment.unix(user.trialDetails.expiresAt).format('DD MMM YYYY hh:mm a')})
 			</p>
