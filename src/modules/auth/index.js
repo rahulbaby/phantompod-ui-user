@@ -12,7 +12,7 @@ function newTab() {
 	setTimeout(function(){ 
 		popup.close();
 		window.location.reload();
-	}, 6500);
+	}, 40000);
 }
 
 export default () => (
