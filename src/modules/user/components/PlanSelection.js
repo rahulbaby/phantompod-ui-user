@@ -72,9 +72,11 @@ const UserPlanSelection = () => {
 						<span className="currency">$</span>0<p className="price-title">Free for 14 days</p>
 					</div>
 					<ul className="plan-specs">
-						<li className="plan-includes">{`Upto ${settings.trialDayCount} Pods`}</li>
-						<li className="plan-includes">Basic Pods</li>
-						<li className="not-includes">Dedicated support</li>
+						<li className="plan-includes">Join Up to 10 Pods</li>
+						<li className="plan-includes">Create Up to 10 Pods</li>
+						<li className="plan-includes">Submit 5 Posts per Day</li>
+						<li className="plan-includes">Create Private Pods for Free</li>
+						<li className="not-includes">Dedicated Support</li>
 					</ul>
 					<TrialSubscriptionButton onSuccess={() => history.push('/settings')} />
 				</div>
@@ -85,9 +87,11 @@ const UserPlanSelection = () => {
 						<p className="price-title">Per month</p>
 					</div>
 					<ul className="plan-specs">
-						<li className="plan-includes">Unlimited Pods</li>
-						<li className="plan-includes">Basic Pods</li>
-						<li className="plan-includes">Dedicated support</li>
+						<li className="plan-includes">Join Unlimited Pods</li>
+						<li className="plan-includes">Create Unlimited Pods</li>
+						<li className="plan-includes">Submit Unlimited Posts</li>
+						<li className="plan-includes">Create Private Pods for Free</li>
+						<li className="plan-includes">Dedicated Support</li>
 					</ul>
 					<button className="btn small-btn" onClick={() => history.push('/premium-subscription')}>
 						Phantompod Subscription
