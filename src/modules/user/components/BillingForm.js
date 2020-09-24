@@ -30,11 +30,11 @@ const validationSchema = yup.object().shape({
 	state: yup
 		.string()
 		.required()
-		.min(3)
+		.min(3),
 		//.matches(/^[a-z ,.'-]+$/i, 'name is not in proper format'),
 	streetAddress: yup
 		.string()
-		.min(3)
+		.min(3),
 		.required('street address is a required field')
 		//.matches(/^[a-z ,.'-]+$/i, 'name is not in proper format'),
 	city: yup.string().required(),
