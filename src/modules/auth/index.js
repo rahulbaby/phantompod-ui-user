@@ -7,12 +7,11 @@ import LoginForm from './components/LoginForm';
 const GOOGLE_AUTH_URL = `${BASE_URL}auth/google`;
 
 function newTab() { 
-	var popup=window.open(GOOGLE_AUTH_URL, 
-	"", "width=500, height=400"); 
+	window.open(GOOGLE_AUTH_URL, 
+	"", "width=530, height=500"); 
 	setTimeout(function(){ 
-		popup.close();
 		window.location.reload();
-	}, 40000);
+	},1000);	
 }
 
 export default () => (
