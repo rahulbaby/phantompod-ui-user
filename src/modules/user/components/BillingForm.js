@@ -98,7 +98,7 @@ const UserBillingForm = (props) => {
 				</div>
 				<div className="form-group">
 					<FormInput
-						{...getInputProps('StreetAddress', 'StreetAddress')}
+						{...getInputProps('streetAddress', 'streetAddress')}
 						className="form-control form-Input"
 					/>
 				</div>
