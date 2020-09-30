@@ -1,12 +1,19 @@
 import React from 'react';
+export default ({ register, options, name, label,valKey, labelKey ,rest }) => {
+  let optionsArr = {};
 
-export default ({ register, options, name, label, ...rest }) => {
+  if (options)
+    options.map((x) => {
+      if (typeof x === 'object') optionsArr[x[valKey || 'id']] = x[labelKey || valKey || 'name'];
+      else optionsArr[x] = x;
+    });
+
 	return (
-		<select name={name} ref={register} {...rest}>
+		<select className="form-control" name={name} ref={register} {...rest}>
 			<option value="">{label}</option>
-			{options.map((value, idx) => (
-				<option value={value} key={idx}>
-					{value}
+			{Object.keys(optionsArr).map((x) =>(
+				<option value={x} key={x.toString()}>
+					{optionsArr[x]}
 				</option>
 			))}
 		</select>
