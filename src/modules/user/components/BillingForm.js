@@ -1,8 +1,10 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, Component } from 'react';
 import { useRedux } from 'hooks';
 import * as yup from 'yup';
-import { getNames } from 'country-list';
+import { getData } from 'country-list';
 import { yupResolver } from '@hookform/resolvers';
+
+
 
 import {
 	useForm,
@@ -18,8 +20,7 @@ import { useRouter, useSubmit, useItem } from 'hooks';
 import { showMessage } from 'store/messages/actions';
 import { refreshUser } from 'modules/auth/actions';
 
-const countryListArr = getNames();
-
+const countryListObj = getData();
 const validationSchema = yup.object().shape({
 	name: yup
 		.string()
@@ -59,7 +60,7 @@ const UserBillingForm = (props) => {
 			}
 		});
 	};
-
+	
 	const getInputProps = (name, label = '') => ({ name, label, register });
 	return (
 		<div className="billing-form">
@@ -76,10 +77,12 @@ const UserBillingForm = (props) => {
 				<div className="row">
 					<div className="col-xl-6">
 						<div className="form-group">
-							<FormSelect
+						<FormSelect
 								{...getInputProps('country', 'Country*')}
-								options={countryListArr}
 								className="form-control"
+								options={countryListObj}
+                                labelKey ="name"
+                                valKey="code"
 							/>
 						</div>
 					</div>
