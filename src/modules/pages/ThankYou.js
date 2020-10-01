@@ -12,6 +12,15 @@ const useQuery = (name) => {
 	let query = new URLSearchParams(useLocation().search);
 	return query;
 };
+
+function RefreshParent() {
+	if (window.opener != null && !window.opener.closed) {
+		window.opener.location.reload();
+	}
+}
+window.onbeforeunload = RefreshParent;
+
+
 function newTab() { 
 	setTimeout(function(){ 
 		window.close();
