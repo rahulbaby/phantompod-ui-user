@@ -6,13 +6,21 @@ import SignUpForm from './components/SignUpForm';
 
 const GOOGLE_AUTH_URL = `${BASE_URL}auth/google`;
 
-function newTab() { 
-	window.open(GOOGLE_AUTH_URL, 
-	"", "width=530, height=500"); 
-	setTimeout(function(){ 
-		window.location.reload();
-	},1000);	
-}
+
+// function newTab() { 
+// 	window.open(GOOGLE_AUTH_URL, 
+// 	"", "width=530, height=500"); 
+// 	setTimeout(function(){ 
+// 		window.location.reload();
+// 	},1000);	
+// }
+var popup;
+
+function newTab(url) {
+            popup=window.open(GOOGLE_AUTH_URL, 
+				"", "width=530, height=500");
+            popup.focus();
+        }
 
 export default () => (
 	<LayoutAuth>
