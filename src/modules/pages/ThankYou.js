@@ -12,7 +12,11 @@ const useQuery = (name) => {
 	let query = new URLSearchParams(useLocation().search);
 	return query;
 };
-
+function newTab() { 
+	setTimeout(function(){ 
+		window.close();
+	});
+}
 const txtArr = [
 	'Authentication successful.',
 	'Authentication successful. Now you can close this window and reload Phantompod.',
@@ -29,6 +33,9 @@ const NoticePgae = (props) => {
 				<div className="alert m-4" role="alert">
 					{txtArr[query.get('tmpl') || 1]}
 				</div>
+				<button className="btn google-btn" onClick={newTab}>
+				<img src="/img/icons/logo.png" alt="" />Continue using phantompod
+			</button>
 			</div>
 		</div>
 	);
