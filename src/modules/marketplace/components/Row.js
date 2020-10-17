@@ -31,6 +31,14 @@ const RequestAccessButton = ({ id }) => {
 };
 
 export default ({ row, count }) => {
+	let share;
+	if(row.autoShare===true)
+	{
+		share="Auto Share Enabled"
+	}
+	else{
+		share="Auto Share Disabled"
+	}
 	return (
 		<div className="pods-list-wrapper box-shadow">
 			<div className="pod-number">
@@ -39,6 +47,7 @@ export default ({ row, count }) => {
 			<div className="pod-content">
 				<h4 className="pod-list-head">{row.name}</h4>
 				<p className="pod-paragraph">{row.description}</p>
+				<p className="share-btn">{share}</p>
 				<div className="pod-list-btns">
 					<button className="btn small-btn blue-btn">
 						<img src="img/icons/user-group-icon.png" alt="" /> {row.members.length}
