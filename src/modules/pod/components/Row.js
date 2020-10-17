@@ -56,6 +56,14 @@ export default ({ row, count }) => {
 	const members = row.members.filter((x) =>
 		isOwner ? x.status !== 'rejected' : x.status === 'accepted',
 	);
+	let share;
+	if(row.autoShare===true)
+	{
+		share="Auto Share Enabled"
+	}
+	else{
+		share="Auto Share Disabled"
+	}
 	return (
 		<div className="pods-list-wrapper box-shadow">
 			<div className="pod-number">
@@ -65,6 +73,7 @@ export default ({ row, count }) => {
 				<LinkCustom to={`/pod/details/${_id}`}>
 					<h4 className="pod-list-head">{row.name}</h4>
 				</LinkCustom>
+				<p className="share-btn">{share}</p>
 				<p className="pod-paragraph">
 					{row.description}
 					<br />
