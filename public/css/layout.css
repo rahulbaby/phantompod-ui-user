@@ -214,7 +214,7 @@
     }
 
      .share-btn{
-        background: #6f42c1;
+        background: #af5ea5;
         float:right;
         font-size:12px;
         color: #fff;
@@ -227,7 +227,8 @@
         -moz-border-radius: 10px;
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
-    } 
+    }
+
 
     .small-btn {
         line-height: 24px;
